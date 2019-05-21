@@ -1,0 +1,26 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        Ingrese sus datos personales
+      </div>
+  
+      <!-- Login Form -->
+      <form >
+        <input type="text"  #nombre  class="fadeIn second" name="nombre" placeholder="nombre">
+        <input type="text" #apellido  class="fadeIn third" name="apellido" placeholder="apellido">
+        <input type="button" (click)="login(nombre.value,apellido.value)" class="fadeIn fourth" value="Aceptar"> 
+     
+      </form>
+
+      <div class="fadeIn first">
+          Login con Google
+        <br>
+          <button style="background-color: red"    type="button"(click)="socialSignIn('google')" mdbBtn class="btn-gplus waves-light" mdbWavesEffect><i class="fab fa-google-plus left"></i>Google
+          </button>
+        </div>
+     
+    </div>
+  </div>
