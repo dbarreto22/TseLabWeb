@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AuthService,
-  GoogleLoginProvider,
-  LinkedinLoginProvider
-} from 'angular-6-social-login';
+import { AuthService, GoogleLoginProvider, LinkedinLoginProvider } from 'angular-6-social-login';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-login-red-social',
+  templateUrl: './login-red-social.component.html',
+  styleUrls: ['./login-red-social.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginRedSocialComponent implements OnInit {
 
   constructor( private socialAuthService: AuthService , private router: Router) { }
 
@@ -46,8 +42,6 @@ export class LoginComponent implements OnInit {
     
   
   }
-
-
 
 
 
