@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiServiceService } from '../api-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-primer-pagina',
@@ -8,9 +10,22 @@ import { Router } from '@angular/router';
 })
 export class PrimerPaginaComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public devolucion: Observable<any>;
+  public mostrar :string;
+
+  constructor(private router: Router, private apiService : ApiServiceService) { }
 
   ngOnInit() {
+   this.devolucion = this.apiService.prueba();
+   console.log(this.devolucion);
+   this.devolucion.subscribe(
+    (data) => {
+      console.log("this.mostrar");
+      this.mostrar = data;
+      console.log(this.mostrar);
+    });
+   
+    
   }
 
 

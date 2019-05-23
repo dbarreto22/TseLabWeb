@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 export class ApiServiceService {
 
   api_key = '593353109d5846fa8188a9de013e4faa';
+
+  url = 'https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/rest/prueba'
 
   constructor(private http:HttpClient) { }
 
@@ -18,6 +21,10 @@ export class ApiServiceService {
   }
   getArticlesByID(source: String){
    return this.http.get('https://newsapi.org/v2/top-headlines?sources='+source+'&apiKey='+this.api_key);
+  }
+
+  prueba():Observable<any>{
+    return this.http.get<any>('https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/RESTServices/prueba');
   }
 } 
 
