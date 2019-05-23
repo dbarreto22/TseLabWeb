@@ -9,18 +9,10 @@
   
       <!-- Login Form -->
       <form >
-        <input type="text"  #nombre  class="fadeIn second" name="nombre" placeholder="nombre">
-        <input type="text" #apellido  class="fadeIn third" name="apellido" placeholder="apellido">
-        <input type="button" (click)="login(nombre.value,apellido.value)" class="fadeIn fourth" value="Aceptar"> 
+        <input type="text"  #mail  class="fadeIn second" name="mail" placeholder="Mail">
+        <input type="password" #password  class="fadeIn third" name="password" placeholder="Password">
+        <input type="button" (click)="login(mail.value,password.value)" class="fadeIn fourth" value="Login"> 
      
       </form>
-
-      <div class="fadeIn first">
-          Login con Google
-        <br>
-          <button style="background-color: red"    type="button"(click)="socialSignIn('google')" mdbBtn class="btn-gplus waves-light" mdbWavesEffect><i class="fab fa-google-plus left"></i>Google
-          </button>
-        </div>
-     
     </div>
   </div>

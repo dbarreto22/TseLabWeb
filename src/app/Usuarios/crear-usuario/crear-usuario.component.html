@@ -9,11 +9,11 @@
                           <legend>Ingresar Usuario</legend>
                           <label class="k-form-field">
                               <span>Nombre Completo<span class="k-required">*</span></span>
-                              <input  #nombre  class="k-textbox" placeholder="Nombre" />
+                              <input  #nombre  class="k-textbox" placeholder="Nombre Completo" />
                           </label>
                           <label class="k-form-field">
                                 <span>Telefono<span class="k-required">*</span></span>
-                                <input  #telefono  class="k-textbox" placeholder="Nombre" />
+                                <input  #telefono  class="k-textbox" placeholder="Telefono" />
                             </label>
                             <label class="k-form-field">
                                     <span>Email <span class="k-required">*</span></span>
@@ -21,11 +21,15 @@
                                   </label>
                           <label class="k-form-field">
                               <span>Password</span>
-                              <input #password  type="password" class="k-textbox"  placeholder="password"/>
+                              <input #password  type="password" class="k-textbox"  placeholder="Password"/>
                           </label>
+                          <label class="k-form-field">
+                            <span>Rol</span>
+                            <input #rol   class="k-textbox"  placeholder="Rol"/>
+                        </label>
                       </fieldset>
                       <div class="text-right">
-                        <button type="button" style="right: 10%" class="k-button k-primary" (click)="crearUsuario(nombre.value,telefono.value,mail.value,password.value)">Aceptar</button>
+                        <button type="button" style="right: 10%" class="k-button k-primary" (click)="crearUsuario(nombre.value,telefono.value,mail.value,password.value, rol.value)">Aceptar</button>
                         
                         <button type="button" class="k-button" (click)="cancelar()">Cancelar</button>
                     </div>               

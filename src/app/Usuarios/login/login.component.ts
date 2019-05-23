@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  loginGoogle(){
+  login(mail, password ){
    
 
     

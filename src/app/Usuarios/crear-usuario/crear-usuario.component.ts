@@ -29,7 +29,7 @@ export class CrearUsuarioComponent implements OnInit {
     this.router.navigate(['/setingsUser']);
   }
 
-  crearUsuario(cedula, nombre, apellido, mail, password) {
+  crearUsuario(nombre,telefono,mail,password, rol) {
    /* console.log(apellido);
     this.DtUsuario.cedula = cedula;
     this.DtUsuario.nombre = nombre;
