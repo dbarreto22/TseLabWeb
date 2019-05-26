@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, GoogleLoginProvider, LinkedinLoginProvider } from 'angular-6-social-login';
+import { 
+  AuthService,
+  GoogleLoginProvider,
+  LinkedinLoginProvider,
+  SocialLoginModule,
+ } from 'angular-6-social-login-v2';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/api-service.service';
+
 
 @Component({
   selector: 'app-login-red-social',
   templateUrl: './login-red-social.component.html',
-  styleUrls: ['./login-red-social.component.scss']
+  styleUrls: ['./login-red-social.component.scss'],
+  providers: [SocialLoginModule, AuthService]
 })
 export class LoginRedSocialComponent implements OnInit {
 
+
+  public socialPlatformProvider;
   constructor( private socialAuthService: AuthService , private router: Router, private apiservice:ApiServiceService) { }
 
 
@@ -17,17 +26,18 @@ export class LoginRedSocialComponent implements OnInit {
   }
   public socialSignIn(socialPlatform : string) {
     console.log(socialPlatform);
-    let socialPlatformProvider;
+   
      if(socialPlatform == "google"){
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+      this.socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     } else if (socialPlatform == "linkedin") {
-      socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
+      this.socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
     }
 
-    this.socialAuthService.signIn(socialPlatformProvider).then(
+    this.socialAuthService.signIn(this.socialPlatformProvider).then(
       
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
+
         this.apiservice.loginCitizen( userData.email,userData.idToken).subscribe( result => {
           
           console.log(result);
@@ -40,13 +50,8 @@ export class LoginRedSocialComponent implements OnInit {
     );
   }
 
-  loginGoogle(){
-   
 
-    
   
-  }
-
 
 
 }

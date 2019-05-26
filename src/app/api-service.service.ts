@@ -49,15 +49,15 @@ export class ApiServiceService {
   loginCitizen(email , token){
     var a: any = {};
     a.mail = email;
-    a.token = token;
+    a.token_id = token;
     let json = JSON.stringify(a);
     console.log(json);
 
     return this.http.post(`${this.API_URL}/citizen/login` , json, httpOptions);
   }
 
-  prueba():Observable<any>{
+ /* prueba():Observable<any>{
     return this.http.get<any>('https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/RESTServices/prueba');
-  }
+  }*/
 } 
 

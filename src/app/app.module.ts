@@ -18,7 +18,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
   LinkedinLoginProvider,
-} from "angular-6-social-login";
+} from "angular-6-social-login-v2";
 
 import { GestionComponenetesComponent } from './Usuarios/gestion-componenetes/gestion-componenetes.component';
 import { AbmUsuariosComponent } from './Usuarios/abm-usuarios/abm-usuarios.component';
@@ -29,6 +29,9 @@ import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { PaginaPrincipalComponent } from './Citizen/pagina-principal/pagina-principal.component';
 import { LoginRedSocialComponent } from './Citizen/login-red-social/login-red-social.component';
 import { HechosComponent } from './hechos/hechos.component';
+import { VerificarHechoComponent } from './Usuarios/verificar-hecho/verificar-hecho.component';
+import {NgbModule, NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-checker/seleccionar-hecho-checker.component';
 
 
 export function getAuthServiceConfigs() {
@@ -58,6 +61,8 @@ export function getAuthServiceConfigs() {
     PrimerPaginaComponent,
     LoginRedSocialComponent,
     HechosComponent,
+    VerificarHechoComponent,
+    SeleccionarHechoCheckerComponent,
 
   ],
   imports: [
@@ -76,7 +81,8 @@ export function getAuthServiceConfigs() {
     ButtonsModule, 
     InputsModule, 
     MDBBootstrapModule, GridModule,
-    NgxSoapModule
+    NgxSoapModule,
+    NgbModule,NgbPaginationModule, NgbAlertModule
   ],
   providers: [
               

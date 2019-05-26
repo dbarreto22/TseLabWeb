@@ -10,21 +10,10 @@ import { Observable } from 'rxjs';
 })
 export class PrimerPaginaComponent implements OnInit {
 
-  public devolucion: Observable<any>;
-  public mostrar :string;
 
   constructor(private router: Router, private apiService : ApiServiceService) { }
 
   ngOnInit() {
-   this.devolucion = this.apiService.prueba();
-   console.log(this.devolucion);
-   this.devolucion.subscribe(
-    (data) => {
-      console.log("this.mostrar");
-      this.mostrar = data;
-      console.log(this.mostrar);
-    });
-   
     
   }
 
