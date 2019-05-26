@@ -28,6 +28,7 @@ import { NgxSoapModule } from 'ngx-soap';
 import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { PaginaPrincipalComponent } from './Citizen/pagina-principal/pagina-principal.component';
 import { LoginRedSocialComponent } from './Citizen/login-red-social/login-red-social.component';
+import { HechosComponent } from './hechos/hechos.component';
 
 
 export function getAuthServiceConfigs() {
@@ -56,6 +57,7 @@ export function getAuthServiceConfigs() {
     CrearUsuarioComponent,
     PrimerPaginaComponent,
     LoginRedSocialComponent,
+    HechosComponent,
 
   ],
   imports: [

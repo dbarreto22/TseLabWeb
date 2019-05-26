@@ -37,4 +37,8 @@ export class PrimerPaginaComponent implements OnInit {
     this.router.navigate(['/paginaPrincipal']);
   }
 
+  Citizen(){
+    this.router.navigate(['/loginRedSocial']);
+  }
+
 }
