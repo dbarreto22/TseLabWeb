@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, GoogleLoginProvider, LinkedinLoginProvider } from 'angular-6-social-login';
 import { Router } from '@angular/router';
+import { ApiServiceService } from 'src/app/api-service.service';
 
 @Component({
   selector: 'app-login-red-social',
@@ -9,10 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginRedSocialComponent implements OnInit {
 
-  constructor( private socialAuthService: AuthService , private router: Router) { }
+  constructor( private socialAuthService: AuthService , private router: Router, private apiservice:ApiServiceService) { }
 
-  public nombre:string;
-  public email :string;
+
   ngOnInit() {
   }
   public socialSignIn(socialPlatform : string) {
@@ -28,9 +28,13 @@ export class LoginRedSocialComponent implements OnInit {
       
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
-        this.nombre = userData.name;
-        this.email = userData.email;
-        
+        this.apiservice.loginCitizen( userData.email,userData.token).subscribe( result => {
+          
+          console.log(result);
+      },
+      error => {
+          console.log(<any>error);
+      });
             
       }
     );
