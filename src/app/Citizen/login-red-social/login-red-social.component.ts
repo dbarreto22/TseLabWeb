@@ -28,7 +28,7 @@ export class LoginRedSocialComponent implements OnInit {
       
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
-        this.apiservice.loginCitizen( userData.email,userData.token).subscribe( result => {
+        this.apiservice.loginCitizen( userData.email,userData.idToken).subscribe( result => {
           
           console.log(result);
       },
