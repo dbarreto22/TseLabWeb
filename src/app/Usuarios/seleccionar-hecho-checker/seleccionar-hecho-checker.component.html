@@ -1,11 +1,11 @@
-<!--<div class="jumbotron" style="background: aliceblue">
+<div class="jumbotron" style="background: aliceblue">
 
   <div class="example-config">
       <p class="font-weight-normal" style="color: dodgerblue">Seleccione Hecho a Verificar</p>
   </div>
   
   <kendo-grid     
-      [kendoGridBinding]="usuarios | async" 
+      [kendoGridBinding]="hechos | async" 
       [pageSize]="10"
       [pageable]="true"
       [sortable]="true"
@@ -20,25 +20,27 @@
       [loading]="loading"
       [height]="500"
   >
-  <kendo-grid-column field="cedula" title="Cedula" width="100" >
+  <kendo-grid-column field="titulo" title="Titulo" width="100" >
       </kendo-grid-column>
-  <kendo-grid-column field="nombre" title="Nombre">
+  <kendo-grid-column field="submite.nombre" title="Nombre Submiter">
       </kendo-grid-column>
-  <kendo-grid-column field="apellido" title="Apellido">
+  <kendo-grid-column field="usuarioAlta" title="Usuario dio de Alta">
+      </kendo-grid-column>
+  <kendo-grid-column field="fechaRegistroCalificacion" title="Fecha de registro del Hecho">
       </kendo-grid-column>
   <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
       </kendo-grid>
 
   <div class="row">
     <div class="col-sm-12 example-col">
-      <kendo-buttongroup  [selection]="'single'" [width]="'80%'">
+      <kendo-buttongroup  [selection]="'single'" [width]="'100%'">
         <button kendoButton [toggleable]="true"  (click)="crearUsuario()">Verificar</button>
         <button kendoButton [toggleable]="true"  (click)="cancelar()">Cancelar</button>
       </kendo-buttongroup>
     </div>
   </div>
 
-</div>-->
+</div>
 
 
 

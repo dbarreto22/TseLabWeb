@@ -23,7 +23,6 @@ import {
 import { GestionComponenetesComponent } from './Usuarios/gestion-componenetes/gestion-componenetes.component';
 import { AbmUsuariosComponent } from './Usuarios/abm-usuarios/abm-usuarios.component';
 import { CrearUsuarioComponent } from './Usuarios/crear-usuario/crear-usuario.component';
-import { NgxSoapModule } from 'ngx-soap';
 import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { PaginaPrincipalComponent } from './Citizen/pagina-principal/pagina-principal.component';
 import { LoginRedSocialComponent } from './Citizen/login-red-social/login-red-social.component';
@@ -35,6 +34,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { VerificarHechoComponent } from './Usuarios/verificar-hecho/verificar-hecho.component';
 import {NgbModule, NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-checker/seleccionar-hecho-checker.component';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { FormsModule } from '@angular/forms';
 
 
 export function getAuthServiceConfigs() {
@@ -84,8 +86,11 @@ export function getAuthServiceConfigs() {
     ButtonsModule, 
     InputsModule, 
     MDBBootstrapModule, GridModule,
-    NgxSoapModule,
-    NgbModule,NgbPaginationModule, NgbAlertModule
+    NgbModule,NgbPaginationModule, NgbAlertModule,
+    ButtonsModule,
+    DateInputsModule,
+    DropDownsModule,
+    FormsModule
   ],
   providers: [
               
