@@ -20,10 +20,15 @@
     (pageChange)="pageChange($event)"
     [height]="500" 
   >
-  <kendo-grid-column field="Productid" title="Id" width="100" [filterable]="false">
+  <kendo-grid-column field="id" title="Id" width="100" [filterable]="false">
     </kendo-grid-column>
-  <kendo-grid-column field="ProductName" title="Titulo">
+  <kendo-grid-column field="titulo" title="Titulo">
     </kendo-grid-column>
+    <kendo-grid-column field="url" title="URL" width="100" [filterable]="false">
+    </kendo-grid-column>
+  <kendo-grid-column field="titulo" title="Titulo">
+    </kendo-grid-column>
+  
   <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
     </kendo-grid>
   

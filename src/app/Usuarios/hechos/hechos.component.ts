@@ -31,11 +31,15 @@ export class HechosComponent implements OnInit {
   constructor(  private apiService: ApiServiceService,
     private router: Router
   ) {
-    
-    this.hechos = this.apiService.getAllHechos();
+      this.hechos = this.apiService.getAllHechos();
+      this.hechos.subscribe(
+        (res) =>{ console.log(res)},
+        ee => {
+           console.log(ee)
+        }
+      )
 
-    
-   }
+    }
 
   ngOnInit() {
   }
