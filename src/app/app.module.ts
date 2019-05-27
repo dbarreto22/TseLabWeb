@@ -18,7 +18,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
   LinkedinLoginProvider,
-} from "angular-6-social-login";
+} from "angular-6-social-login-v2";
 
 import { GestionComponenetesComponent } from './Usuarios/gestion-componenetes/gestion-componenetes.component';
 import { AbmUsuariosComponent } from './Usuarios/abm-usuarios/abm-usuarios.component';
@@ -32,6 +32,9 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';  
+import { VerificarHechoComponent } from './Usuarios/verificar-hecho/verificar-hecho.component';
+import {NgbModule, NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-checker/seleccionar-hecho-checker.component';
 
 
 export function getAuthServiceConfigs() {
@@ -61,6 +64,8 @@ export function getAuthServiceConfigs() {
     PrimerPaginaComponent,
     LoginRedSocialComponent,
     HechosComponent,
+    VerificarHechoComponent,
+    SeleccionarHechoCheckerComponent,
 
   ],
   imports: [
@@ -79,7 +84,8 @@ export function getAuthServiceConfigs() {
     ButtonsModule, 
     InputsModule, 
     MDBBootstrapModule, GridModule,
-    NgxSoapModule
+    NgxSoapModule,
+    NgbModule,NgbPaginationModule, NgbAlertModule
   ],
   providers: [
               
@@ -93,7 +99,7 @@ export function getAuthServiceConfigs() {
                 useClass: ApiServiceService,
                 multi: true
               },
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
             ],
   bootstrap: [AppComponent],
   exports: [MatTabsModule, MatSidenavModule,MatIconModule, MatButtonModule,MatListModule,

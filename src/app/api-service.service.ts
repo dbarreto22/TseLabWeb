@@ -28,8 +28,8 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
 
-  initSources() {
-    return this.http.get('https://newsapi.org/v2/sources?language=en&apiKey=' + this.api_key);
+/*  initSources(){
+     return this.http.get('https://newsapi.org/v2/sources?language=en&apiKey='+this.api_key);
   }
   initArticles() {
     return this.http.get('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=' + this.api_key);
@@ -57,10 +57,17 @@ export class ApiServiceService {
 
     return this.http.post(`${this.API_URL}/citizen/login`, json, httpOptions);
   }
-*/
+
   prueba(): Observable<any> {
     return this.http.get<any>('https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/RESTServices/prueba');
   }
+    return this.http.post(`${this.API_URL}/citizen/login` , json, httpOptions);
+  }
+
+  prueba():Observable<any>{
+    return this.http.get<any>('https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/RESTServices/prueba');
+  }*/
+
 
   getAllHechos(): Observable<Array<object>> {
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));

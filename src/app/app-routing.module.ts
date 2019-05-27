@@ -7,6 +7,7 @@ import { CrearUsuarioComponent } from './Usuarios/crear-usuario/crear-usuario.co
 import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { HechosComponent } from './Usuarios/hechos/hechos.component';
 
+
 const routes: Routes = [
       
   {path: '', component:PrimerPaginaComponent},
