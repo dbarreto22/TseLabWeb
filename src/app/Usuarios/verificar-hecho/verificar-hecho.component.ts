@@ -26,8 +26,15 @@ export class VerificarHechoComponent implements OnInit {
   public fecha: Date = new Date();
   public valueM: any = [];
   public listItems: Array<any> = ['Interno','Externo'] ;
-  public mecanismos : Array<Mecanismos>
- 
+  public mecanismos : Array<Mecanismos>;
+  public calificacion: Array<{ text: string, value: string }> = [
+    { text: "Verdadero", value: "VERDADERO" },
+    { text: "Verdadero a medias", value: "VERD_A_MEDIAS" },
+    { text: "Inflado", value: "INFLADO" },
+    { text: "Engañoso", value: "ENGANOSO" },
+    { text: "Falso", value: "FALSO" },
+    { text: "Rídiculo", value: "RIDICULO" },
+];
   
   
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {

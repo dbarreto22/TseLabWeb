@@ -16,6 +16,7 @@ export class Hechos {
     fechaCalificacion : Date;
     justificacion : string;
     validado : boolean;
-    mecanismos : Array<Mecanismos>
+    mecanismos : Array<Mecanismos>;
+    calificacion : string;
     
 }
