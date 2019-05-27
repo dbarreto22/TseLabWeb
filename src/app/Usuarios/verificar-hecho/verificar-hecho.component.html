@@ -1,0 +1,52 @@
+<div class="jumbotron" style="background: aliceblue">
+
+    <div class="row example-wrapper">
+    <div class="col-xs-20 col-sm-6 offset-sm-3 example-col">
+        <div class="card">
+          <div class="card-block">
+            <form class="k-form">
+              <fieldset>
+                <legend>Verificacion de un Hecho</legend>
+                  <label class="k-form-field" for="readOnlyInput">
+                    <span>Titulo</span>
+                    <input #titulo   value= {{hecho.titulo}} class="form-control" id="readOnlyInput" type="text" readonly/>
+                  </label>
+                  <label class="k-form-field" for="readOnlyInput">
+                    <span>Url</span>
+                    <input #url   value= {{hecho.url}} class="form-control" id="readOnlyInput" type="text" readonly/>
+                  </label>
+                  <label class="k-form-field">
+                    <span>Justificacion </span>
+                    <textarea #justificacion  type="text" class="form-control"></textarea>
+                  </label>
+                  <label class="k-form-field">
+                    <span>Fecha</span>    
+                    <kendo-dateinput  [(value)]="fecha"  [format]="'dd-MMM-yyyy'" (valueChange)="onChange($event)" ></kendo-dateinput>
+                  </label>
+                  <label class="k-form-field">
+                    <span>Mecanismo Utilizados</span>
+                    <kendo-multiselect [data]="listItems" [(ngModel)]="valueM" [ngModelOptions]="{standalone: true}" [placeholder]="'Mecanismos'">
+                    </kendo-multiselect>
+                 <!--   <kendo-multiselect
+                    kendoMultiSelectSummaryTag
+                    [data]="listItems"
+                    [(ngModel)]="id"
+                    [textField]="'descripcion'"
+                    [valueField]="'id'"
+                  >
+                  </kendo-multiselect>-->
+                   
+                  </label>
+              </fieldset>
+              <div class="text-center">
+                <button type="button" class="btn btn-primary btn-lg" (click)="verificar(titulo.value,url.value,justificacion.value, valueM.value)">
+                    Aceptar</button>
+                <button type="button" class="btn btn-secondary disable btn-lg" (click)="cancelar()">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

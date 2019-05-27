@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/api-service.service';
 import { State } from '@progress/kendo-data-query';
+import { Observable } from 'rxjs';
+import { Hechos } from '../clases/hechos';
 
 @Component({
   selector: 'app-seleccionar-hecho-checker',
@@ -20,9 +22,24 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
   public nombreCarrera;
   public loading;
   public skip = 0;
+  public hecho : Hechos;
+  public hechos : Observable<Array<any>>;
 
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
     this.setSelectableSettings();
+
+    this.hechos = this.apiService.getAllHechos();
+
+    this.hechos.subscribe(
+      ()=> {
+        this.loading=false
+      },
+      err=>{
+        this.loading=false;
+        //this.apiService.mensajeConError(err);
+      }
+    )
+  
   }
 
   ngOnInit() {
@@ -42,7 +59,7 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
   //cambiar por que buscar 
   public mySelection: string[] = [];
   public mySelectionKey(context: RowArgs): string {
-    return context.dataItem.codigo;
+    return context.dataItem.id;
   }
 
   public pageChange(event: PageChangeEvent): void {
@@ -53,20 +70,23 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
 
   change() {
    
-  /*  this.carreras.subscribe(
-    (data: Array<carrera>)=> {
+    this.hechos.subscribe(
+    (data: Array<Hechos>)=> {
       data.forEach(asig=>{
-        if(asig.codigo == this.mySelection[0]){
-          this.codigo = asig.codigo;
+        if(asig.id == this.mySelection[0]){
+          this.codigo= asig.id;
         }
         console.log('codigo ',this.codigo)
       })
       
     },
     err=>{
-      this.apiService.mensajeConError(err);
+      console.log(err);
+     // this.apiService.mensajeConError(err);
     }
-  )*/
+  )
+
+
 }
 
 
@@ -83,11 +103,11 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
   public hechoVerificar() {
     if (this.codigo != undefined) {
       localStorage.setItem('hechoVerificar', this.codigo);
-      if(this.selector==1)
-        this.router.navigate(['/verificarhecho']);
+      //if(this.selector==1)
+      this.router.navigate(['/verificarhecho']);
     }
-    else
-      alert('Debe seleccionar una carrera para continuar.');
+    //else
+     // alert('Debe seleccionar una carrera para continuar.');
   }
 
 }

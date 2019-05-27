@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Sesion } from './Usuarios/clases/sesion.model';
+import { Hechos } from './Usuarios/clases/hechos';
 
 
 const httpOptions: {
@@ -98,5 +99,10 @@ export class ApiServiceService {
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
     console.log(sesion);
     return sesion != null ? sesion.token.jwt : null;
+  }
+  verificarhecho(hecho: Hechos){
+    
+
+    return this.http.post(`${this.API_URL}/checker/verificarHecho` , hecho, httpOptions);
   }
 }

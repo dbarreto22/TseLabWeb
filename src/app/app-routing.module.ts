@@ -6,6 +6,8 @@ import { PaginaPrincipalComponent } from './Citizen/pagina-principal/pagina-prin
 import { CrearUsuarioComponent } from './Usuarios/crear-usuario/crear-usuario.component';
 import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { HechosComponent } from './Usuarios/hechos/hechos.component';
+import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-checker/seleccionar-hecho-checker.component';
+import { VerificarHechoComponent } from './Usuarios/verificar-hecho/verificar-hecho.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path: 'loginRedSocial', component: LoginRedSocialComponent},
   {path: 'crearUsuario', component: CrearUsuarioComponent},
   {path: 'hechos', component: HechosComponent},
+  {path: 'seleccionarHecho', component: SeleccionarHechoCheckerComponent},   
+  {path: 'verificarHecho', component: VerificarHechoComponent},
 ];
 
 @NgModule({
