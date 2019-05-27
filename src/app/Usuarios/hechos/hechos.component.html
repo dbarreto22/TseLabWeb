@@ -1,0 +1,69 @@
+<div class="jumbotron" style="background: aliceblue">  
+  
+  <div class="example-config">
+      <p class="font-weight-normal" style="color: dodgerblue">Asignar hechos</p>
+  </div>
+  
+  <kendo-grid     
+    [kendoGridBinding]="hechos | async" 
+    [pageSize]="10"
+    [pageable]="true"
+    [sortable]="true"
+    [loading]="loading"
+    [filterable]="true"
+    [resizable]="true"
+    [selectable]="selectableSettings" 
+    (selectionChange) = "change()"
+    [kendoGridSelectBy]="mySelectionKey"
+    [selectedKeys]="mySelection"
+    [skip]="skip"
+    (pageChange)="pageChange($event)"
+    [height]="500" 
+  >
+  <kendo-grid-column field="Productid" title="Id" width="100" [filterable]="false">
+    </kendo-grid-column>
+  <kendo-grid-column field="ProductName" title="Titulo">
+    </kendo-grid-column>
+  <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
+    </kendo-grid>
+  
+  
+  <div class="row">
+    <div class="col-sm-12 example-col">
+      <kendo-buttongroup  [selection]="'single'" [width]="'100%'">
+        <button kendoButton [toggleable]="true"  >hola</button>
+        <button kendoButton [toggleable]="true"  (click)="modificarAsignatura()">Modificar Asignatura</button>
+        <button kendoButton [toggleable]="true"  (click)="eliminarAsignatura()">Eliminar Asignatura</button>
+      </kendo-buttongroup>
+    </div>
+  </div>
+
+<!--</div>
+    
+  <div class="example-wrapper">
+    <kendo-dialog title="Confirmar" *ngIf="dialogOpened" (close)="close('dialog')" [minWidth]="200" [width]="350">
+      <p style="margin: 30px; text-align: center;">Desea eliminar la Carrera seleccionada?</p>
+        <kendo-dialog-actions>
+          <button kendoButton (click)="confirmarEliminarAsignatura()" primary="true">Confirmar</button>
+          <button kendoButton (click)="action()" >No</button>  
+        </kendo-dialog-actions>
+    </kendo-dialog>
+  </div>
+  
+  <kendo-grid [data]="gridData" [height]="410">
+    <kendo-grid-column field="ProductID" title="ID" width="40">
+    </kendo-grid-column>
+    <kendo-grid-column field="ProductName" title="Name" width="250">
+    </kendo-grid-column>
+    <kendo-grid-column field="Category.CategoryName" title="Category">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitPrice" title="Price" width="80">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitsInStock" title="In stock" width="80">
+    </kendo-grid-column>
+    <kendo-grid-column field="Discontinued" title="Discontinued" width="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <input type="checkbox" [checked]="dataItem.Discontinued" disabled/>
+        </ng-template>
+    </kendo-grid-column>
+</kendo-grid>-->

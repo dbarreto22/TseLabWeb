@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, GoogleLoginProvider, LinkedinLoginProvider } from 'angular-6-social-login';
 import { Router } from '@angular/router';
-import { ApiServiceService } from 'src/app/api-service.service';
+import { AuthenticationService } from 'src/app/authentication.service';
+import { Sesion } from '../../Usuarios/clases/sesion.model';
 
 @Component({
   selector: 'app-login-red-social',
@@ -10,7 +11,7 @@ import { ApiServiceService } from 'src/app/api-service.service';
 })
 export class LoginRedSocialComponent implements OnInit {
 
-  constructor( private socialAuthService: AuthService , private router: Router, private apiservice:ApiServiceService) { }
+  constructor( private socialAuthService: AuthService , private router: Router, private apiservice:AuthenticationService) { }
 
 
   ngOnInit() {
@@ -28,9 +29,16 @@ export class LoginRedSocialComponent implements OnInit {
       
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
-        this.apiservice.loginCitizen( userData.email,userData.token).subscribe( result => {
-          
-          console.log(result);
+        localStorage.setItem('userMail',userData.email);
+        this.apiservice.loginCitizen( userData.email,userData.idToken).subscribe( result => {
+          var resultado=JSON.parse(result);
+          //localStorage.setItem('session',JSON.stringify(new Sesion(res,null)));
+          if(resultado.jwt!= null)
+          {
+            localStorage.setItem('session',JSON.stringify(new Sesion(resultado,null)));
+          }
+          console.log("******************** resultado de login por red social*******************************");
+          console.log(resultado);
       },
       error => {
           console.log(<any>error);

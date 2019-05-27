@@ -4,14 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start.dev": "nodemon server.js",
-    "postinstall": "nodemon server.js", 
+    "postinstall": "nodemon server.js",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "keywords":[
+  "keywords": [
     "Node.js",
     "produccion"
   ],
@@ -35,7 +35,7 @@
     "@progress/kendo-angular-inputs": "^5.0.0",
     "@progress/kendo-angular-intl": "^1.7.0",
     "@progress/kendo-angular-l10n": "^1.4.0",
-    "@progress/kendo-angular-popup": "^2.0.0",
+    "@progress/kendo-angular-popup": "^2.5.0",
     "@progress/kendo-data-query": "^1.5.1",
     "@progress/kendo-drawing": "^1.5.12",
     "@progress/kendo-theme-default": "latest",
@@ -50,7 +50,8 @@
     "events": "^3.0.0",
     "lodash": "^4.17.11",
     "ngx-soap": "^0.6.0",
-    "rxjs": "~6.3.3",
+    "password-hash": "^1.2.2",
+    "rxjs": "^6.3.3",
     "rxjs-compat": "^6.5.2",
     "sax": "^1.2.4",
     "stream": "0.0.2",

@@ -5,7 +5,7 @@ import {
   LinkedinLoginProvider
 } from 'angular-6-social-login';
 import { Router } from '@angular/router';
-import { ApiServiceService } from 'src/app/api-service.service';
+import { AuthenticationService } from 'src/app/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ import { ApiServiceService } from 'src/app/api-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private socialAuthService: AuthService , private router: Router, private apiservice : ApiServiceService) { }
+  constructor( private socialAuthService: AuthService , private router: Router, private apiservice : AuthenticationService) { }
 
   public nombre:string;
   public email :string;

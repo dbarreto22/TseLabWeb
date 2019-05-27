@@ -11,7 +11,7 @@ import { ApiServiceService } from './api-service.service';
 import {APP_BASE_HREF} from '@angular/common';
 import { LoginComponent } from './Usuarios/login/login.component';
 // MDB Angular Free
-import { ButtonsModule, InputsModule, MDBBootstrapModule, MdbCardHeaderComponent } from 'angular-bootstrap-md'
+import {  MDBBootstrapModule, MdbCardHeaderComponent } from 'angular-bootstrap-md'
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -23,12 +23,15 @@ import {
 import { GestionComponenetesComponent } from './Usuarios/gestion-componenetes/gestion-componenetes.component';
 import { AbmUsuariosComponent } from './Usuarios/abm-usuarios/abm-usuarios.component';
 import { CrearUsuarioComponent } from './Usuarios/crear-usuario/crear-usuario.component';
-import { GridModule } from '@progress/kendo-angular-grid';
 import { NgxSoapModule } from 'ngx-soap';
 import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { PaginaPrincipalComponent } from './Citizen/pagina-principal/pagina-principal.component';
 import { LoginRedSocialComponent } from './Citizen/login-red-social/login-red-social.component';
-import { HechosComponent } from './hechos/hechos.component';
+import { HechosComponent } from './Usuarios/hechos/hechos.component';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';  
 
 
 export function getAuthServiceConfigs() {
@@ -84,8 +87,13 @@ export function getAuthServiceConfigs() {
               {
                 provide: AuthServiceConfig,
                 useFactory: getAuthServiceConfigs
-              }
-            
+              },
+              {
+                provide: HTTP_INTERCEPTORS,
+                useClass: ApiServiceService,
+                multi: true
+              },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             ],
   bootstrap: [AppComponent],
   exports: [MatTabsModule, MatSidenavModule,MatIconModule, MatButtonModule,MatListModule,
