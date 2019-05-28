@@ -71,7 +71,7 @@ export class UsuariosComponent implements OnInit {
             this.mail = usr.email;
             console.log("***************NombreUsuario********************");
             console.log(this.nombre);
-            localStorage.setItem("idHecho",this.nombre);
+            localStorage.setItem("mailUsuario",this.mail);
           }
         })
 
@@ -83,8 +83,8 @@ export class UsuariosComponent implements OnInit {
     )
   }
 
-  seleccionarUsuarios(){
-    this.router.navigate(["/usuarios"]);
+  asignarUsuarios(){
+    this.apiService.asignarUsuario().subscribe(msg=>{console.log(msg)},err=>{console.log(err)});
   }
 
 }
