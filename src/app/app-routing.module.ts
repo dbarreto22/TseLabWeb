@@ -8,6 +8,7 @@ import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { HechosComponent } from './Usuarios/hechos/hechos.component';
 import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-checker/seleccionar-hecho-checker.component';
 import { VerificarHechoComponent } from './Usuarios/verificar-hecho/verificar-hecho.component';
+import { UsuariosComponent } from './Usuarios/usuarios/usuarios.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'hechos', component: HechosComponent},
   {path: 'seleccionarHecho', component: SeleccionarHechoCheckerComponent},   
   {path: 'verificarHecho', component: VerificarHechoComponent},
+  {path: 'usuarios', component: UsuariosComponent},
 ];
 
 @NgModule({
@@ -27,10 +29,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { 
-
-
-  
-
-
 
 }

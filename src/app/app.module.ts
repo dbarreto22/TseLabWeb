@@ -37,6 +37,7 @@ import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-c
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { FormsModule } from '@angular/forms';
+import { UsuariosComponent } from './Usuarios/usuarios/usuarios.component';
 
 
 export function getAuthServiceConfigs() {
@@ -68,6 +69,7 @@ export function getAuthServiceConfigs() {
     HechosComponent,
     VerificarHechoComponent,
     SeleccionarHechoCheckerComponent,
+    UsuariosComponent,
 
   ],
   imports: [

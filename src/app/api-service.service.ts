@@ -74,15 +74,6 @@ export class ApiServiceService {
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
     console.log('****************Token**********************')
     console.log(sesion.token.jwt);
-    /* var hechos;
-     var hecho;
-     hecho.id=1;
-     hecho.titulo="algo";
-     hecho.subbmiter="pedro";
-     hecho.url="www.com.uy";
-     hecho.usuarioAlta="pepe";
-     hechos.push(hecho);
-     //return hechos;*/
     return this.http.get<Array<object>>('https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/RESTServices/getHechos');
   }
 

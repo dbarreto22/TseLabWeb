@@ -1,26 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
-//import { NgbPaginationConfig } from "@ng-bootstrap/ng-bootstrap";
 import { State, CompositeFilterDescriptor } from "@progress/kendo-data-query";
 import { SelectableSettings, RowArgs, PageChangeEvent } from "@progress/kendo-angular-grid";
 import { ApiServiceService } from '../../api-service.service';
 import { Router } from '@angular/router';
 import { Observable } from "rxjs";
-import { Hechos } from '../clases/hechos';
-
+import { Usuario } from '../clases/usuario';
 
 @Component({
-  selector: 'app-hechos',
-  templateUrl: './hechos.component.html',
-  styleUrls: ['./hechos.component.css']
+  selector: 'app-usuarios',
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.scss']
 })
-export class HechosComponent implements OnInit {
-  public id;
-  public titulo;
-  public subbmiter;
-  public url;
-  public usuarioAlta;
-  public hechos: Observable<Array<Object>>;
+export class UsuariosComponent implements OnInit {
+  public nombre;
+  public mail;
+  public usuarios: Observable<Array<Object>>;
   public checked = false;
   public filter: CompositeFilterDescriptor;
   selectedValue: any[];
@@ -30,8 +25,8 @@ export class HechosComponent implements OnInit {
   constructor(  private apiService: ApiServiceService,
     private router: Router
   ) {
-      this.hechos = this.apiService.getAllHechos();
-      this.hechos.subscribe(
+      this.usuarios = this.apiService.getAllUsuarios();
+      this.usuarios.subscribe(
         (res) =>{ console.log(res)},
         ee => {
            console.log(ee)
@@ -68,15 +63,15 @@ export class HechosComponent implements OnInit {
   }
 
   change() {
-    this.hechos.subscribe(
-      (data: Array<Hechos>) => {
-        data.forEach(hecho => {
-          if (hecho.id == this.mySelection[0]) {
-            this.id = hecho.id;
-            this.titulo = hecho.titulo;
-            console.log("***************IDHECHO********************");
-            console.log(this.id);
-            localStorage.setItem("idHecho",this.id);
+    this.usuarios.subscribe(
+      (data: Array<Usuario>) => {
+        data.forEach(usr => {
+          if (usr.nombre == this.mySelection[0]) {
+            this.nombre = usr.nombre;
+            this.mail = usr.email;
+            console.log("***************NombreUsuario********************");
+            console.log(this.nombre);
+            localStorage.setItem("idHecho",this.nombre);
           }
         })
 
