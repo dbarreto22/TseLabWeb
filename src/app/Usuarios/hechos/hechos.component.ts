@@ -89,6 +89,7 @@ export class HechosComponent implements OnInit {
   }
 
   seleccionarUsuarios(){
+    
     this.router.navigate(["/usuarios"]);
   }
 

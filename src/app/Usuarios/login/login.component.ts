@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
-import { ApiServiceService } from 'src/app/api-service.service';
 import { Sesion } from '../clases/sesion.model';
+import { ApiServiceService } from 'src/app/api-service.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   public nombre:string;
   public email :string;
-  public passwordHash = require('password-hash');
+
+  
 
   
   ngOnInit() {
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
       {
         localStorage.setItem('session',JSON.stringify(new Sesion(resultado,null)));
       }
-      console.log("******* resultado de login**********");
+      console.log("******************** resultado de login*******************************");
       console.log(resultado);
   },
   error => {
