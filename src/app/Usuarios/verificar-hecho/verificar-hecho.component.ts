@@ -19,26 +19,28 @@ import { getNow } from '@progress/kendo-angular-dateinputs/dist/es2015/util';
 export class VerificarHechoComponent implements OnInit {
 
   public hechos : Observable<Array<any>>;
+  public idMecanismo;
   public loading;
-  public id : string;
+  public idHecho : string;
   public hecho : Hechos;
   public hechoEnviar = new Hechos();
   public fecha: Date = new Date();
   public valueM: any = [];
   public listItems: Array<any> = ['Interno','Externo'] ;
   public mecanismos : Array<Mecanismos>;
-  public calificacion: Array<{ text: string, value: string }> = [
-    { text: "Verdadero", value: "VERDADERO" },
-    { text: "Verdadero a medias", value: "VERD_A_MEDIAS" },
-    { text: "Inflado", value: "INFLADO" },
-    { text: "Engañoso", value: "ENGANOSO" },
-    { text: "Falso", value: "FALSO" },
-    { text: "Rídiculo", value: "RIDICULO" },
+  public calificacion: Array<{ text: string, cal: string }> = [
+    { text: "Verdadero", cal: "VERDADERO" },
+    { text: "Verdadero a medias", cal: "VERD_A_MEDIAS" },
+    { text: "Inflado", cal: "INFLADO" },
+    { text: "Engañoso", cal: "ENGANOSO" },
+    { text: "Falso", cal: "FALSO" },
+    { text: "Rídiculo", cal: "RIDICULO" },
 ];
   
   
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {
-    this.id = localStorage.getItem("hechoVerificar")
+    this.idMecanismo = localStorage.getItem("idMecanismo");
+    this.idHecho = localStorage.getItem("idHecho");
 
     this.hechos = this.apiService.getAllHechos();
 
@@ -65,9 +67,9 @@ export class VerificarHechoComponent implements OnInit {
     this.hechos.subscribe(
     (data: Array<Hechos>)=> {
       data.forEach(asig=>{
-        if(asig.id == this.id){
+        if(asig.id == this.idHecho){
           this.hecho =  asig;
-          this.mecanismos = this.hecho.mecanismos;
+          this.mecanismos = asig.mecanismos;
          /* this.hecho.mecanismos.forEach(desc=>{
             if(desc.habilitado == true){
 
@@ -92,20 +94,22 @@ public onChange(value: Date): void {
   this.fecha = value;
 }
 
-verificar(titulo,url,justificacion, valueM){
+verificar(justificacion, cal){
 
-    this.hechoEnviar.titulo = titulo;
-    this.hechoEnviar.url = url;
-    this.hechoEnviar.justificacion = justificacion;
-    this.hechoEnviar.mecanismos = this.mecanismos;
-    this.hechoEnviar.fechaRegistroCalificacion = this.fecha;
-    this.apiService.verificarhecho(this.hechoEnviar).subscribe(
+    this.hecho.justificacion = justificacion;
+    this.hecho.calificacion = cal;
+    console.log(cal);
+    this.apiService.verificarhecho(this.hecho).subscribe(
       data => {
         console.log(data);
       }, err => {
         console.log(err);
       });
 
+}
+
+cancelar(){
+  this.router.navigate(['/seleccionarHecho']);
 }
   
 

@@ -1,0 +1,50 @@
+<div class="jumbotron" style="background: aliceblue">
+
+  <div class="example-config">
+      <p class="font-weight-normal" style="color: dodgerblue">Seleccione Hecho a Verificar</p>
+  </div>
+
+  <div class="example-config">
+    <p class="font-weight-normal" style="color: black">Si desea verificar con un mecanismo, seleccione uno y click en Siguiente.</p>
+    <p class="font-weight-normal" style="color: black">De lo contrario click en Cancelar.</p>
+
+</div>
+  
+  <kendo-grid     
+      [kendoGridBinding]="componentes | async" 
+      [pageSize]="10"
+      [pageable]="true"
+      [sortable]="true"
+      [filterable]="true"
+      [resizable]="true"
+      [selectable]="selectableSettings" 
+      (selectionChange) = "change()"
+      [kendoGridSelectBy]="mySelectionKey"
+      [selectedKeys]="mySelection"
+      [skip]="skip"
+      (pageChange)="pageChange($event)"
+      [loading]="loading"
+      [height]="500"
+  >
+  <kendo-grid-column field="id" title="Titulo" width="100" >
+      </kendo-grid-column>
+  <kendo-grid-column field="descripcion" title="Nombre Submiter">
+      </kendo-grid-column>
+  <kendo-grid-column field="url" title="Usuario dio de Alta">
+      </kendo-grid-column>
+  <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
+      </kendo-grid>
+
+  <div class="row">
+    <div class="col-sm-12 example-col">
+      <kendo-buttongroup  [selection]="'single'" [width]="'100%'">
+        <button kendoButton [toggleable]="true"  (click)="siguiente()" aria-placeholder="Seleccione Mecanismo">Siguiente</button>
+        <button kendoButton [toggleable]="true"  (click)="cancelar()" aria-placeholder="Verificar Hecho sin Mecanismo">Cancelar</button>
+      </kendo-buttongroup>
+    </div>
+  </div>
+
+</div>
+
+
+

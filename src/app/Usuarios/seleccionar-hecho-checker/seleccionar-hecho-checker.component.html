@@ -22,9 +22,9 @@
   >
   <kendo-grid-column field="titulo" title="Titulo" width="100" >
       </kendo-grid-column>
-  <kendo-grid-column field="submite.nombre" title="Nombre Submiter">
+  <kendo-grid-column field="submiter.nombre" title="Nombre Submiter">
       </kendo-grid-column>
-  <kendo-grid-column field="usuarioAlta" title="Usuario dio de Alta">
+  <kendo-grid-column field="usuarioAlta.nombre" title="Usuario dio de Alta">
       </kendo-grid-column>
   <kendo-grid-column field="fechaRegistroCalificacion" title="Fecha de registro del Hecho">
       </kendo-grid-column>
@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col-sm-12 example-col">
       <kendo-buttongroup  [selection]="'single'" [width]="'100%'">
-        <button kendoButton [toggleable]="true"  (click)="crearUsuario()">Verificar</button>
+        <button kendoButton [toggleable]="true"  (click)="aceptar()">Aceptar</button>
         <button kendoButton [toggleable]="true"  (click)="cancelar()">Cancelar</button>
       </kendo-buttongroup>
     </div>

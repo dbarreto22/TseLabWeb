@@ -4,4 +4,5 @@ export class Mecanismos {
     id : string;
     descripcion : string;
     habilitado : boolean;
+    url: string;
 }

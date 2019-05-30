@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatTabsModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiServiceService } from './api-service.service';
 import {APP_BASE_HREF} from '@angular/common';
@@ -30,7 +30,7 @@ import { HechosComponent } from './Usuarios/hechos/hechos.component';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { InputsModule } from '@progress/kendo-angular-inputs';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';  
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';  
 import { VerificarHechoComponent } from './Usuarios/verificar-hecho/verificar-hecho.component';
 import {NgbModule, NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-checker/seleccionar-hecho-checker.component';
@@ -38,6 +38,8 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { FormsModule } from '@angular/forms';
 import { UsuariosComponent } from './Usuarios/usuarios/usuarios.component';
+import { ListadoComponentesComponent } from './Usuarios/listado-componentes/listado-componentes.component'
+import { AuthenticationService } from './authentication.service';
 
 
 export function getAuthServiceConfigs() {
@@ -70,6 +72,7 @@ export function getAuthServiceConfigs() {
     VerificarHechoComponent,
     SeleccionarHechoCheckerComponent,
     UsuariosComponent,
+    ListadoComponentesComponent,
 
   ],
   imports: [
@@ -97,6 +100,9 @@ export function getAuthServiceConfigs() {
   providers: [
               
               ApiServiceService,
+              HttpClient,
+              HttpClientModule,
+              AuthenticationService,
               {
                 provide: AuthServiceConfig,
                 useFactory: getAuthServiceConfigs
@@ -115,3 +121,4 @@ export function getAuthServiceConfigs() {
 
 })
 export class AppModule { }
+export class PizzaPartyAppModule { }

@@ -75,6 +75,8 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
       data.forEach(asig=>{
         if(asig.id == this.mySelection[0]){
           this.codigo= asig.id;
+
+
         }
         console.log('codigo ',this.codigo)
       })
@@ -89,6 +91,14 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
 
 }
 
+aceptar(){
+  if (this.codigo != undefined) {
+  localStorage.setItem("idHecho", this.codigo);
+  this.router.navigate(['/listarComponentes']);
+  }else{
+    alert("Debe seleccionar un hecho a verirficar")
+  }
+}
 
 
   cancelar() {
@@ -102,7 +112,7 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
 
   public hechoVerificar() {
     if (this.codigo != undefined) {
-      localStorage.setItem('hechoVerificar', this.codigo);
+      localStorage.setItem('listarComponentes', this.codigo);
       //if(this.selector==1)
       this.router.navigate(['/verificarhecho']);
     }

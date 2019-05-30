@@ -37,11 +37,22 @@ export class ApiServiceService {
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
   }
 
+  getHechosByChecker(): Observable<Array<object>> {
+    var mail = localStorage.getItem("mailUsuario");
+
+    return this.http.get<Array<object>>(`${this.API_URL}/getHechosByChecker` + mail);
+  }
+
   getAllUsuarios(): Observable<Array<object>> {
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
     console.log('****************Token**********************')
     console.log(sesion.token.jwt);
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
+  }
+
+  getAllMecanismos(): Observable<Array<object>> {
+
+    return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosVerificacion`);
   }
 
   asignarUsuario(){
@@ -68,9 +79,10 @@ export class ApiServiceService {
     console.log(sesion);
     return sesion != null ? sesion.token.jwt : null;
   }
-  verificarhecho(hecho: Hechos){
-    
 
+
+  verificarhecho(hecho: Hechos){
     return this.http.post(`${this.API_URL}/checker/verificarHecho` , hecho, httpOptions);
   }
+
 }

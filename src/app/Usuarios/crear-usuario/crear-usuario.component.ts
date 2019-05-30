@@ -3,7 +3,7 @@ import { ApiServiceService } from '../../api-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Usuario } from '../clases/usuario';
-import 'rxjs/add/observable/fromPromise'
+
 
 
 @Component({
