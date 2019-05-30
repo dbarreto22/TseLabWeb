@@ -44,6 +44,9 @@ export class ApiServiceService {
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
   }
 
+  getCheckers(): Observable<Array<object>> {
+    return this.http.get<Array<object>>(`${this.API_URL}/backend/getCheckers`);
+}
   asignarUsuario(){
     var idHecho=localStorage.getItem("idHecho");
     var mailUsuario=localStorage.getItem("mailUsuario");
