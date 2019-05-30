@@ -20,6 +20,15 @@
                     <textarea #justificacion  type="text" class="form-control"></textarea>
                   </label>
                   <label class="k-form-field">
+                    <span>Calificacion</span>
+                    <kendo-dropdownlist
+                    [data]="calificacion"
+                    [textField]="'text'"
+                    [valueField]="'value'"
+                     >
+                    </kendo-dropdownlist>                   
+                  </label>
+                  <label class="k-form-field">
                     <span>Fecha</span>    
                     <kendo-dateinput  [(value)]="fecha"  [format]="'dd-MMM-yyyy'" (valueChange)="onChange($event)" ></kendo-dateinput>
                   </label>
