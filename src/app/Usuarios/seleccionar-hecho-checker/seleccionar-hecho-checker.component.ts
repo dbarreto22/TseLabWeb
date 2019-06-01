@@ -28,7 +28,8 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
     this.setSelectableSettings();
 
-    this.hechos = this.apiService.getAllHechos();
+   // this.hechos = this.apiService.getHechosByChecker();
+   this.hechos = this.apiService.getAllHechos();
 
     this.hechos.subscribe(
       ()=> {
@@ -91,13 +92,23 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
 
 }
 
-aceptar(){
+calificar(){
   if (this.codigo != undefined) {
   localStorage.setItem("idHecho", this.codigo);
-  this.router.navigate(['/listarComponentes']);
+  this.router.navigate(['/verificarHecho']);
   }else{
     alert("Debe seleccionar un hecho a verirficar")
   }
+}
+
+verificar(){
+  if (this.codigo != undefined) {
+    localStorage.setItem("idHecho", this.codigo);
+    this.router.navigate(['/listarComponentes']);
+    }else{
+      alert("Debe seleccionar un hecho a verificar")
+    }
+ 
 }
 
 

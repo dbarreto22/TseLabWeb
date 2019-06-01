@@ -3,6 +3,9 @@ import { ApiServiceService } from '../../api-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Usuario } from '../clases/usuario';
+import { Admin } from '../clases/admin';
+import { Submiter } from '../clases/submiter';
+import { Checker } from '../clases/checker';
 
 
 
@@ -13,38 +16,60 @@ import { Usuario } from '../clases/usuario';
 })
 export class CrearUsuarioComponent implements OnInit {
 
-
-  public DtUsuario = new Usuario();
-  constructor(public http: HttpClient, private router: Router) {}
+  public roles: Array<string> = ["Administrador", "Submitter", "Checker"];
+  public rol : string;
+  public user = new Usuario();
+  public validEmail :boolean;
+  constructor(public http: HttpClient, private apiService: ApiServiceService,private router: Router) {}
 
   ngOnInit() {
-    let rolElegido = localStorage.getItem('rolElegido');
+    /*let rolElegido = localStorage.getItem('rolElegido');
     if (rolElegido != '1') {
       alert('El rol actual no puede acceder a esta función.');
       this.router.navigate(['/'])
+    }*/
+  }
+
+  public crearUsuario(nombre,nickname, mail,telefono,password) {
+    var crypto = require('crypto'); //Libreria de criptografia
+    var cipher = crypto.createCipher('aes256', 'pass'); // tipo de cifrado y password
+    var data = password;
+    cipher.update(data, 'utf8', 'hex'); // cifro la contraseña
+    var cip = cipher.final('hex'); //Cifrado
+    console.log("Encrypted data = " + cip);
+    
+    if (this.rol == "Administrador"){
+      this.user.nombre = nombre;
+      this.user.email = mail;
+      this.user.contrasenia = cip;
+      this.user.telefono = telefono;
+      this.user.nickname = nickname;
+      this.user.rol = "Admin";
+      console.log(this.user)
+      
+      this.apiService.crearUser(this.user);
+      
+    }else{
+      this.user.nombre = nombre;
+      this.user.email = mail;
+      this.user.contrasenia = cip;
+      this.user.telefono = telefono;
+      this.user.nickname = nickname;
+      this.user.rol = this.rol;
+      console.log(this.user)
+      
+      this.apiService.crearUser(this.user);
+
     }
+    
   }
 
-  cancelar() {
-    this.router.navigate(['/setingsUser']);
+  public cancelar(){
+    this.router.navigate(['/']);
+
+
   }
 
-  crearUsuario(nombre,telefono,mail,password, rol) {
-   /* console.log(apellido);
-    this.DtUsuario.cedula = cedula;
-    this.DtUsuario.nombre = nombre;
-    this.DtUsuario.apellido = apellido;
-    this.DtUsuario.email = mail;
-    this.DtUsuario.password = password;
-    this.apiService.ingresarUsuario(this.DtUsuario).subscribe(
-      data => {
-        this.apiService.mensajeSinError(data, 1);
-      },
-      err => {
-        this.apiService.mensajeConError(err);
-      }
-    );
-    this.router.navigate(['/setingsUser']);*/
-  }
+  
 
 }

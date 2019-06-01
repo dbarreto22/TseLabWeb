@@ -21,7 +21,6 @@ import {
 } from "angular-6-social-login-v2";
 
 import { GestionComponenetesComponent } from './Usuarios/gestion-componenetes/gestion-componenetes.component';
-import { AbmUsuariosComponent } from './Usuarios/abm-usuarios/abm-usuarios.component';
 import { CrearUsuarioComponent } from './Usuarios/crear-usuario/crear-usuario.component';
 import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { PaginaPrincipalComponent } from './Citizen/pagina-principal/pagina-principal.component';
@@ -40,6 +39,8 @@ import { FormsModule } from '@angular/forms';
 import { UsuariosComponent } from './Usuarios/usuarios/usuarios.component';
 import { ListadoComponentesComponent } from './Usuarios/listado-componentes/listado-componentes.component'
 import { AuthenticationService } from './authentication.service';
+import { CrearHechoComponent } from './Usuarios/crear-hecho/crear-hecho.component';
+import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perifericos/gestion-nodos-perifericos.component';
 
 
 export function getAuthServiceConfigs() {
@@ -64,7 +65,6 @@ export function getAuthServiceConfigs() {
     LoginComponent,
     PaginaPrincipalComponent,
     GestionComponenetesComponent,
-    AbmUsuariosComponent,
     CrearUsuarioComponent,
     PrimerPaginaComponent,
     LoginRedSocialComponent,
@@ -73,6 +73,8 @@ export function getAuthServiceConfigs() {
     SeleccionarHechoCheckerComponent,
     UsuariosComponent,
     ListadoComponentesComponent,
+    CrearHechoComponent,
+    GestionNodosPerifericosComponent,
 
   ],
   imports: [

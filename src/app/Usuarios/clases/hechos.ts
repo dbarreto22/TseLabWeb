@@ -11,12 +11,13 @@ export class Hechos {
     submiter : Submiter;
     checkers : Array<Checker>;
     url : string;
+    mailUserAlta : string;
     usuarioAlta : Usuario;
     fechaRegistroCalificacion : Date;
     fechaCalificacion : Date;
     justificacion : string;
     validado : boolean;
-    mecanismos : Array<Mecanismos>;
+    mecanismos = new Array<Mecanismos>();
     calificacion : string;
     
 }

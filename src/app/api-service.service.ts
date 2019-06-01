@@ -3,6 +3,10 @@ import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpHandler, HttpEven
 import { Observable } from 'rxjs';
 import { Sesion } from './Usuarios/clases/sesion.model';
 import { Hechos } from './Usuarios/clases/hechos';
+import { Admin } from './Usuarios/clases/admin';
+import { Usuario } from './Usuarios/clases/usuario';
+import { Submiter } from './Usuarios/clases/submiter';
+import { Checker } from './Usuarios/clases/checker';
 
 
 const httpOptions: {
@@ -38,9 +42,9 @@ export class ApiServiceService {
   }
 
   getHechosByChecker(): Observable<Array<object>> {
-    var mail = localStorage.getItem("mailUsuario");
+    var mail = localStorage.getItem("userMail");
 
-    return this.http.get<Array<object>>(`${this.API_URL}/getHechosByChecker` + mail);
+    return this.http.get<Array<object>>(`${this.API_URL}/getHechosByChecker/` + mail);
   }
 
   getAllUsuarios(): Observable<Array<object>> {
@@ -84,8 +88,29 @@ export class ApiServiceService {
   }
 
 
-  verificarhecho(hecho: Hechos){
+  calificarHecho(hecho: Hechos){
     return this.http.post(`${this.API_URL}/checker/verificarHecho` , hecho, httpOptions);
   }
+
+  crearUser(usuario:Usuario){
+   
+    return this.http.post(`${this.API_URL}/backend/registro` , usuario, httpOptions);
+  }
+//ACTUALIZAR URL
+verificarHechoComponente(idMecanismo, idHecho){
+    var a: any = {};
+    a.idHecho=idHecho;
+    a.idMecanismo=idMecanismo;
+    let json=JSON.stringify(a);
+
+
+  return this.http.post(`${this.API_URL}/` , json, httpOptions);
+}
+
+
+//ACTUALIZAR URL
+crearhecho(hecho:Hechos){
+  return this.http.post(`${this.API_URL}/` , hecho, httpOptions);
+}
 
 }

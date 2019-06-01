@@ -10,6 +10,12 @@ import { Hechos } from '../clases/hechos';
 import { Mecanismos } from '../clases/mecanismos';
 import { getNow } from '@progress/kendo-angular-dateinputs/dist/es2015/util';
 
+interface Item {
+  text: string,
+  value: string
+}
+
+
 @Component({
   selector: 'app-verificar-hecho',
   templateUrl: './verificar-hecho.component.html',
@@ -27,15 +33,17 @@ export class VerificarHechoComponent implements OnInit {
   public fecha: Date = new Date();
   public valueM: any = [];
   public listItems: Array<any> = ['Interno','Externo'] ;
-  public mecanismos : Array<Mecanismos>;
-  public calificacion: Array<{ text: string, cal: string }> = [
-    { text: "Verdadero", cal: "VERDADERO" },
-    { text: "Verdadero a medias", cal: "VERD_A_MEDIAS" },
-    { text: "Inflado", cal: "INFLADO" },
-    { text: "Engañoso", cal: "ENGANOSO" },
-    { text: "Falso", cal: "FALSO" },
-    { text: "Rídiculo", cal: "RIDICULO" },
+  public mecanismos = new Array<Mecanismos>();
+  public mostrar : boolean = false;
+  public calificacion: Array<Item> = [
+    { text: "Verdadero", value: "VERDADERO" },
+    { text: "Verdadero a medias", value: "VERD_A_MEDIAS" },
+    { text: "Inflado", value: "INFLADO" },
+    { text: "Engañoso", value: "ENGANOSO" },
+    { text: "Falso", value: "FALSO" },
+    { text: "Rídiculo", value: "RIDICULO" },
 ];
+public selectedValue: string;
   
   
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {
@@ -68,17 +76,18 @@ export class VerificarHechoComponent implements OnInit {
     (data: Array<Hechos>)=> {
       data.forEach(asig=>{
         if(asig.id == this.idHecho){
+          console.log("asig",asig)
+          
           this.hecho =  asig;
-          this.mecanismos = asig.mecanismos;
-         /* this.hecho.mecanismos.forEach(desc=>{
-            if(desc.habilitado == true){
 
-              this.listItems.push(desc.descripcion);
-            }
-          })*/
-        }
-        console.log('codigo ',this.hecho)
-      })
+          console.log("hecho", this.hecho)
+          this.mecanismos=this.hecho.mecanismos;
+
+           // this.mostrar = true;  
+          }
+        
+        console.log('mecanismo ',this.mecanismos)
+    })
       
     },
     err=>{
@@ -94,17 +103,15 @@ public onChange(value: Date): void {
   this.fecha = value;
 }
 
-verificar(justificacion, cal){
-
+verificar(justificacion){
+    console.log(this.selectedValue);
     this.hecho.justificacion = justificacion;
-    this.hecho.calificacion = cal;
-    console.log(cal);
-    this.apiService.verificarhecho(this.hecho).subscribe(
-      data => {
-        console.log(data);
-      }, err => {
-        console.log(err);
-      });
+    this.hecho.fechaRegistroCalificacion = this.fecha;
+    this.hecho.calificacion = this.selectedValue;
+
+   console.log(this.hecho);
+   this.apiService.calificarHecho(this.hecho);
+   this.router.navigate(['/seleccionarHecho']);
 
 }
 
