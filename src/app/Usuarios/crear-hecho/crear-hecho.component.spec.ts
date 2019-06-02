@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AbmUsuariosComponent } from './abm-usuarios.component';
+import { CrearHechoComponent } from './crear-hecho.component';
 
-describe('AbmUsuariosComponent', () => {
-  let component: AbmUsuariosComponent;
-  let fixture: ComponentFixture<AbmUsuariosComponent>;
+describe('CrearHechoComponent', () => {
+  let component: CrearHechoComponent;
+  let fixture: ComponentFixture<CrearHechoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AbmUsuariosComponent ]
+      declarations: [ CrearHechoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AbmUsuariosComponent);
+    fixture = TestBed.createComponent(CrearHechoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

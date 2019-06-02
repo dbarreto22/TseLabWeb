@@ -63,6 +63,8 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
         //this.apiService.mensajeConError(err);
       }
     )
+
+    this.change()
   
   }
 
@@ -99,6 +101,7 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
     this.mecanismos.subscribe(
     (data: Array<Mecanismos>)=> {
       data.forEach(asig=>{
+        console.log(data);
         if(asig.id == this.mySelection[0]){
           this.codigo= asig.id;
           this.descripcion=asig.descripcion;
@@ -119,18 +122,21 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
 }
 
 siguiente(){
-  if(this.codigo != undefined){
+  if(this.codigo != undefined){   
+    this.apiService.verificarHechoComponente(this.codigo,this.idHecho),
+    alert("Se ha enviado correctamente")
     this.router.navigate(['/seleccionarHecho']);
-    localStorage.setItem("idMecanismo", this.codigo);
   }else{
     alert("Debe seleccionar un mecanismo para verificar")
   }
 
 }
 
+
+
   cancelar() {
     if(this.codigo == undefined){
-      this.router.navigate(['/verificarHecho']);
+      this.router.navigate(['/seleccionarHecho']);
     }
    
   }
