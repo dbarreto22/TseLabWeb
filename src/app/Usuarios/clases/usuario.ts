@@ -5,5 +5,5 @@ export class Usuario{
     public telefono : string;
     public nickname : string;
     public rol : string;
-    public contrasenia : string;
+    public password : string;
 }

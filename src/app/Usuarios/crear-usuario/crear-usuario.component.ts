@@ -41,21 +41,28 @@ export class CrearUsuarioComponent implements OnInit {
     if (this.rol == "Administrador"){
       this.user.nombre = nombre;
       this.user.email = mail;
-      this.user.contrasenia = cip;
+      this.user.password = cip;
       this.user.telefono = telefono;
       this.user.nickname = nickname;
-      this.user.rol = "Admin";
+      this.user.rol = "ADMIN";
       console.log(this.user)
       
-      this.apiService.crearUser(this.user);
+      this.apiService.crearUser(this.user).subscribe((res)=> {
+        console.log("RESP",res);
+      },
+      err=>{
+        console.log("ERROR",err);
+        //this.apiService.mensajeConError(err);
+      }
+      )
       
-    }else{
+    }else {
       this.user.nombre = nombre;
       this.user.email = mail;
-      this.user.contrasenia = cip;
+      this.user.password = cip;
       this.user.telefono = telefono;
       this.user.nickname = nickname;
-      this.user.rol = this.rol;
+      this.user.rol = this.rol.toUpperCase();
       console.log(this.user)
       
       this.apiService.crearUser(this.user);

@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     console.log("Encrypted data = " + cip);
 
     //Descomentar la siguiente linea para pasar la pass cifrada
-    //  this.apiservi ce.loginUsuario(mail, cip).subscribe( result => {
+    //  this.apiservice.loginUsuario(mail, cip).subscribe( result => {
     this.apiservice.loginUsuario(mail, password).subscribe( result => {
       localStorage.setItem('userMail',mail);
       var resultado=JSON.parse(result);

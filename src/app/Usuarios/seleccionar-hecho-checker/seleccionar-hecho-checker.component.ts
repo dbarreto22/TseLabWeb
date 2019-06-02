@@ -28,8 +28,8 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
     this.setSelectableSettings();
 
-   // this.hechos = this.apiService.getHechosByChecker();
-   this.hechos = this.apiService.getAllHechos();
+    this.hechos = this.apiService.getHechosByChecker();
+   //this.hechos = this.apiService.getAllHechos();
 
     this.hechos.subscribe(
       ()=> {

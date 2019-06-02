@@ -7,9 +7,13 @@ import { Admin } from './Usuarios/clases/admin';
 import { Usuario } from './Usuarios/clases/usuario';
 import { Submiter } from './Usuarios/clases/submiter';
 import { Checker } from './Usuarios/clases/checker';
+import { observe } from '@progress/kendo-angular-grid/dist/es2015/utils';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import { Mecanismos } from './Usuarios/clases/mecanismos';
+import { Perifericos } from './Usuarios/clases/perifericos';
 
 
-const httpOptions: {
+const httpOptions:{
   headers?: HttpHeaders,
   observe?: 'body',
   params?: HttpParams,
@@ -21,6 +25,12 @@ const httpOptions: {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   responseType: 'text'
 };
+
+const mailUser = new HttpParams().append('mail', localStorage.getItem("userMail"));
+const headersget= new HttpHeaders({'Content-Type': 'application/json'});
+//headersget.append('Content-Type': 'application/json');
+
+//const options = new httpOptions({headers: new Headers({'Content-Type': 'application/json'}), params:mailUser});
 
 @Injectable({
   providedIn: 'root'
@@ -41,10 +51,12 @@ export class ApiServiceService {
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
   }
 
-  getHechosByChecker(): Observable<Array<object>> {
-    var mail = localStorage.getItem("userMail");
-
-    return this.http.get<Array<object>>(`${this.API_URL}/getHechosByChecker/` + mail);
+  getHechosByChecker(): Observable<Array<object>> { 
+   // { headers:headersget, params:mailUser}
+    
+    let mail=localStorage.getItem("mailUsuario");;
+    
+    return this.http.get<Array<object>>(`${this.API_URL}/getHechosByChecker` + mail);
   }
 
   getAllUsuarios(): Observable<Array<object>> {
@@ -62,6 +74,12 @@ export class ApiServiceService {
   getCheckers(): Observable<Array<object>> {
     return this.http.get<Array<object>>(`${this.API_URL}/backend/getCheckers`);
 }
+
+getNodosPerifericos(): Observable<Array<object>> {
+  
+  return this.http.get<Array<object>>(`${this.API_URL}/admin/getNodosPerifericos`);
+}
+
   asignarUsuario(){
     var idHecho=localStorage.getItem("idHecho");
     var mailUsuario=localStorage.getItem("mailUsuario");
@@ -97,20 +115,50 @@ export class ApiServiceService {
     return this.http.post(`${this.API_URL}/backend/registro` , usuario, httpOptions);
   }
 //ACTUALIZAR URL
-verificarHechoComponente(idMecanismo, idHecho){
+verificarHechoMecanismoSinApi(idMecanismo, idHecho){
+
     var a: any = {};
     a.idHecho=idHecho;
-    a.idMecanismo=idMecanismo;
+    a.idMecanismoVerificacion=idMecanismo;
     let json=JSON.stringify(a);
 
 
-  return this.http.post(`${this.API_URL}/` , json, httpOptions);
+  return this.http.post(`${this.API_URL}/checker/verificarHechoMecanismo` , json, httpOptions);
+}
+
+verificarHechoMecanismoConApi(idMecanismo, idHecho, calificacion){
+ 
+  var a: any = {};
+  a.idHecho=idHecho;
+  a.idMecanismo=idMecanismo;
+  a.calificacion = calificacion;
+  let json=JSON.stringify(a);
+
+
+return this.http.post(`${this.API_URL}/checker/verificarHechoMecanismo` , json, httpOptions);
 }
 
 
-//ACTUALIZAR URL
-crearhecho(hecho:Hechos){
-  return this.http.post(`${this.API_URL}/` , hecho, httpOptions);
+
+crearhecho(titulo: string,url :string){
+  var a: any = {};
+  a.titulo=titulo;
+  a.url=url;
+  let json=JSON.stringify(a);
+
+
+  return this.http.post(`${this.API_URL}/citizen/addHecho` , json, httpOptions);
+}
+
+
+crearMecanismoVerificacion(mec:Perifericos, tipoMecanismo:string){
+  var a: any = {};
+  a.tipoMecanismo=tipoMecanismo;
+  //a.url=url;
+  let json=JSON.stringify(a);
+
+
+  return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion` , {mec ,json}, httpOptions);
 }
 
 }
