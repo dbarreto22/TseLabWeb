@@ -28,7 +28,7 @@ export class ApiServiceService {
   API_URL = 'https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/RESTServices'
 
   constructor(private http: HttpClient) { }
-
+x
 
   getAllHechos(): Observable<Array<object>> {
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
