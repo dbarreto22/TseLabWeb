@@ -25,7 +25,7 @@ export class UsuariosComponent implements OnInit {
   constructor(  private apiService: ApiServiceService,
     private router: Router
   ) {
-      this.usuarios = this.apiService.getAllUsuarios();
+      this.usuarios = this.apiService.getCheckers();
       this.usuarios.subscribe(
         (res) =>{ console.log(res)},
         ee => {
@@ -53,7 +53,7 @@ export class UsuariosComponent implements OnInit {
 
   public mySelection: string[] = [];
   public mySelectionKey(context: RowArgs): string {
-    return context.dataItem.id;
+    return context.dataItem.nickname;
   }
 
   public pageChange(event: PageChangeEvent): void {
@@ -66,8 +66,11 @@ export class UsuariosComponent implements OnInit {
     this.usuarios.subscribe(
       (data: Array<Usuario>) => {
         data.forEach(usr => {
-          if (usr.nombre == this.mySelection[0]) {
-            this.nombre = usr.nombre;
+          console.log("usr: ");
+          console.log(usr.nickname);
+          console.log(this.mySelection[0]);
+          if (usr.nickname == this.mySelection[0]) {
+            this.nombre = usr.nickname;
             this.mail = usr.email;
             console.log("***************NombreUsuario********************");
             console.log(this.nombre);
@@ -84,6 +87,11 @@ export class UsuariosComponent implements OnInit {
   }
 
   asignarUsuarios(){
+    console.log("idHecho");
+    console.log(localStorage.getItem("idHecho"));
+    console.log("mailUsuario");
+    console.log(localStorage.getItem("mailUsuario"));
+    console.log("llamada al servicio");
     this.apiService.asignarUsuario().subscribe(msg=>{console.log(msg)},err=>{console.log(err)});
   }
 

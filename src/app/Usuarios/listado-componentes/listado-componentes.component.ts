@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { SelectableSettings, RowArgs, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
@@ -12,8 +12,12 @@ import { Mecanismos } from '../clases/mecanismos';
   templateUrl: './listado-componentes.component.html',
   styleUrls: ['./listado-componentes.component.scss']
 })
-export class ListadoComponentesComponent implements OnInit {
+export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
   
+  public titulo;
+  public encabezado;
+  public gestionar=false;
+  public verificar=false;
   public selector;
   public dialogOpened = false;
   public checkboxOnly = true;
@@ -24,16 +28,35 @@ export class ListadoComponentesComponent implements OnInit {
   public skip = 0;
   public mecanismos : Observable<Array<any>>;
   public idHecho;
+  public descripcion;
+  public url;
+  public estado;
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
     this.setSelectableSettings();
 
+    console.log(localStorage.getItem("funcion"));
+    if(localStorage.getItem("funcion")=="gestionarMecanismos")
+    {
+      this.gestionar=true;
+      this.titulo="Gestión de mecanismos";
+      this.encabezado="Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
+    }
+    else{
+      this.verificar=true;
+      this.titulo="Seleccione Hecho a Verificar";
+      this.encabezado="Si desea verificar con un mecanismo, seleccione uno y click en Siguiente.\n De lo contrario click en Cancelar."
+    }
     this.idHecho = localStorage.getItem("idHecho");
 
     this.mecanismos = this.apiService.getAllMecanismos();
-
+  
     this.mecanismos.subscribe(
-      ()=> {
+      (res)=> {
         this.loading=false
+          console.log("*******************mecanismos");
+    console.log(this.mecanismos);
+    console.log(res);
+
       },
       err=>{
         this.loading=false;
@@ -45,6 +68,9 @@ export class ListadoComponentesComponent implements OnInit {
   
   }
 
+  ngAfterContentChecked(){
+    localStorage.setItem("funcion","");
+  }
   ngOnInit() {
   }
   public setSelectableSettings(): void {
@@ -78,6 +104,9 @@ export class ListadoComponentesComponent implements OnInit {
         console.log(data);
         if(asig.id == this.mySelection[0]){
           this.codigo= asig.id;
+          this.descripcion=asig.descripcion;
+          this.estado=asig.habilitado;
+          this.url=asig.url;
         }
         console.log('codigo ',this.codigo)
       })
@@ -119,6 +148,36 @@ siguiente(){
       this.router.navigate(['/seleccionarHecho']);
     }
    
+  }
+
+  volver(){
+    this.router.navigate(['/paginaPrincipal']);
+  }
+
+  modificar(){
+    if(this.codigo != undefined){
+      var a: any = {};
+      localStorage.setItem("funcion", "modificar");
+      a.id=this.codigo;
+      a.descripcion=this.descripcion;
+      a.url=this.url;
+      a.habilitado=this.estado;
+      localStorage.setItem("mecanismo", JSON.stringify(a));
+      this.router.navigate(['/mecanismos']);
+    }else{
+      alert("Debe seleccionar un mecanismo para modificar")
+    }
+  }
+
+  alta(){
+    localStorage.setItem("funcion", "alta");
+    this.router.navigate(['/mecanismos']);
+  }
+
+  inhabilitar(){
+    localStorage.setItem("funcion", "inhabilitar");
+    this.router.navigate(['/mecanismos']);
+    
   }
 
 }

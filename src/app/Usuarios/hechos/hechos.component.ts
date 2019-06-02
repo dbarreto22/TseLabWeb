@@ -82,7 +82,7 @@ export class HechosComponent implements OnInit {
 
       },
       err => {
-        console.error("Se rompe en hechos.component")
+        console.error("Se rompe en hechos.component",err);
         //this.apiService.mensajeConError(err);
       }
     )

@@ -39,6 +39,7 @@ import { FormsModule } from '@angular/forms';
 import { UsuariosComponent } from './Usuarios/usuarios/usuarios.component';
 import { ListadoComponentesComponent } from './Usuarios/listado-componentes/listado-componentes.component'
 import { AuthenticationService } from './authentication.service';
+import { MecanismosComponent } from './Usuarios/mecanismos/mecanismos.component';
 import { CrearHechoComponent } from './Usuarios/crear-hecho/crear-hecho.component';
 import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perifericos/gestion-nodos-perifericos.component';
 import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
@@ -75,6 +76,7 @@ export function getAuthServiceConfigs() {
     SeleccionarHechoCheckerComponent,
     UsuariosComponent,
     ListadoComponentesComponent,
+    MecanismosComponent,
     CrearHechoComponent,
     GestionNodosPerifericosComponent,
     CrearNodosPerifericosComponent,

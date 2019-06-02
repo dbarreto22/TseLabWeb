@@ -30,4 +30,9 @@ export class PrimerPaginaComponent implements OnInit {
     this.router.navigate(['/loginRedSocial']);
   }
 
+  gestionarMecanismos(){
+    localStorage.setItem("funcion","gestionarMecanismos");
+    this.router.navigate(['/listarComponentes'])
+  }
+
 }
