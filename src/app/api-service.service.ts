@@ -110,7 +110,6 @@ getNodosPerifericos(): Observable<Array<object>> {
     return this.http.post(`${this.API_URL}/checker/verificarHecho` , hecho, httpOptions);
   }
 
-<<<<<<< HEAD
   altaMecanismo(descripcion,url)
   {
     var a: any = {};
@@ -136,7 +135,7 @@ getNodosPerifericos(): Observable<Array<object>> {
     let json=JSON.stringify(a);
     return this.http.post(`${this.API_URL}/`,json,httpOptions);    
   }
-=======
+
   crearUser(usuario:Usuario){
    
     return this.http.post(`${this.API_URL}/backend/registro` , usuario, httpOptions);
@@ -187,6 +186,6 @@ crearMecanismoVerificacion(mec:Perifericos, tipoMecanismo:string){
 
   return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion` , {mec ,json}, httpOptions);
 }
->>>>>>> 98554457cc0a39d1808b7f1dff51f97ce4c4353e
+
 
 }
