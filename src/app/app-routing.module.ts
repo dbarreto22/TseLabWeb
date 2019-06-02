@@ -13,6 +13,9 @@ import { ListadoComponentesComponent } from './Usuarios/listado-componentes/list
 import { MecanismosComponent } from './Usuarios/mecanismos/mecanismos.component';
 import { CrearHechoComponent } from './Usuarios/crear-hecho/crear-hecho.component';
 import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perifericos/gestion-nodos-perifericos.component';
+import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
+import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
+
 
 
 const routes: Routes = [
@@ -30,6 +33,9 @@ const routes: Routes = [
   {path: 'mecanismos', component: MecanismosComponent},
   {path: 'crearHecho', component: CrearHechoComponent},
   {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent},
+  {path: 'crearNodosPerifericos', component: CrearNodosPerifericosComponent},
+  {path: 'modificarNodosPerifericos', component: ModificarNodosPerifericosComponent},
+
 
 
 ];

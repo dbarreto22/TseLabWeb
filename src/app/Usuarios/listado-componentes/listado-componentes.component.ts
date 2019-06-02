@@ -122,8 +122,17 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
 }
 
 siguiente(){
+
+  //FALTA HACER EL DE API DE GOOGLE
   if(this.codigo != undefined){   
-    this.apiService.verificarHechoComponente(this.codigo,this.idHecho),
+    this.apiService.verificarHechoMecanismoSinApi(this.codigo,this.idHecho).subscribe((res)=> {
+      console.log("RESP",res);
+    },
+    err=>{
+      console.log("ERROR",err);
+      //this.apiService.mensajeConError(err);
+    }
+    );
     alert("Se ha enviado correctamente")
     this.router.navigate(['/seleccionarHecho']);
   }else{

@@ -3,7 +3,7 @@ export class Usuario{
     public nickname: string;
     public email: string;
     public telefono : string;
-    public nickname : string;
+    public nombre : string;
     public rol : string;
-    public contrasenia : string;
+    public password : string;
 }

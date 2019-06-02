@@ -110,7 +110,16 @@ verificar(justificacion){
     this.hecho.calificacion = this.selectedValue;
 
    console.log(this.hecho);
-   this.apiService.calificarHecho(this.hecho);
+   this.apiService.calificarHecho(this.hecho).subscribe((res)=> {
+    console.log("RESP",res);
+    console.log(this.hecho);
+  },
+  err=>{
+    console.log("ERROR",err);
+    console.log(this.hecho);
+    //this.apiService.mensajeConError(err);
+  }
+  );
    this.router.navigate(['/seleccionarHecho']);
 
 }

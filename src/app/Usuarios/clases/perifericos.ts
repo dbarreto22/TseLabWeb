@@ -1,12 +1,16 @@
 import { Mecanismos } from './mecanismos';
 import { Usuario } from './usuario';
 
-export class Perifericos extends Mecanismos{
+export class Perifericos {
     constructor(){
-        super();
+       
     }
+    id : string;
+    descripcion : string;
+    habilitado : boolean;
+    url: string;
     usuario : Usuario;
-    contrasenia : string;
+    password : string;
     
 
 }

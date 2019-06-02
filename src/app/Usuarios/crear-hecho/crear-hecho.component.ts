@@ -30,7 +30,14 @@ export class CrearHechoComponent implements OnInit {
 
       console.log(this.hecho);
   
-      this.apiService.crearhecho(this.hecho);
+      this.apiService.crearhecho(titulo,url).subscribe((res)=> {
+        console.log("RESP",res);
+      },
+      err=>{
+        console.log("ERROR",err);
+        //this.apiService.mensajeConError(err);
+      }
+      );
       alert("Se ha enviado correctamente.");
       this.router.navigate(['/']);
     }else {

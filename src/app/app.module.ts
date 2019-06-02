@@ -42,6 +42,8 @@ import { AuthenticationService } from './authentication.service';
 import { MecanismosComponent } from './Usuarios/mecanismos/mecanismos.component';
 import { CrearHechoComponent } from './Usuarios/crear-hecho/crear-hecho.component';
 import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perifericos/gestion-nodos-perifericos.component';
+import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
+import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
 
 
 export function getAuthServiceConfigs() {
@@ -77,6 +79,8 @@ export function getAuthServiceConfigs() {
     MecanismosComponent,
     CrearHechoComponent,
     GestionNodosPerifericosComponent,
+    CrearNodosPerifericosComponent,
+    ModificarNodosPerifericosComponent,
 
   ],
   imports: [
