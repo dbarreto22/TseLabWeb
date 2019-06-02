@@ -1,5 +1,5 @@
 export class Usuario{
     constructor(){}
-    public nombre: string;
+    public nickname: string;
     public email: string;
 }

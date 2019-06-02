@@ -40,6 +40,7 @@ import { FormsModule } from '@angular/forms';
 import { UsuariosComponent } from './Usuarios/usuarios/usuarios.component';
 import { ListadoComponentesComponent } from './Usuarios/listado-componentes/listado-componentes.component'
 import { AuthenticationService } from './authentication.service';
+import { MecanismosComponent } from './Usuarios/mecanismos/mecanismos.component';
 
 
 export function getAuthServiceConfigs() {
@@ -73,6 +74,7 @@ export function getAuthServiceConfigs() {
     SeleccionarHechoCheckerComponent,
     UsuariosComponent,
     ListadoComponentesComponent,
+    MecanismosComponent,
 
   ],
   imports: [

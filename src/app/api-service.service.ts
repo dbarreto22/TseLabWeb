@@ -88,4 +88,30 @@ export class ApiServiceService {
     return this.http.post(`${this.API_URL}/checker/verificarHecho` , hecho, httpOptions);
   }
 
+  altaMecanismo(descripcion,url)
+  {
+    var a: any = {};
+    a.usuario="";
+    a.password="";
+    a.descripcion=descripcion;
+    a.url=url;
+    a.habilitado="true";
+    a.tipomecanismo="INTERNO";
+    let json=JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/`,json,httpOptions);    
+  }
+
+  modificarMecanismo(id,descripcion,url,habilitado)
+  {
+    var a: any = {};
+    a.id=id;
+    a.descripcion=descripcion;
+    a.url=url;
+    a.habilitado=habilitado;
+    a.usuario="";
+    a.password="";
+    let json=JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/`,json,httpOptions);    
+  }
+
 }

@@ -10,6 +10,7 @@ import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-c
 import { VerificarHechoComponent } from './Usuarios/verificar-hecho/verificar-hecho.component';
 import { UsuariosComponent } from './Usuarios/usuarios/usuarios.component';
 import { ListadoComponentesComponent } from './Usuarios/listado-componentes/listado-componentes.component';
+import { MecanismosComponent } from './Usuarios/mecanismos/mecanismos.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'verificarHecho', component: VerificarHechoComponent},
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'listarComponentes', component: ListadoComponentesComponent},
+  {path: 'mecanismos', component: MecanismosComponent},
 
 ];
 
