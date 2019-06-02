@@ -35,4 +35,13 @@ export class PrimerPaginaComponent implements OnInit {
     this.router.navigate(['/listarComponentes'])
   }
 
+  suscripcion(){
+    var aceptar;
+    aceptar=confirm("Desea suscribirse a las notificaciones").valueOf();
+    if(aceptar=true)
+    {
+      this.apiService.suscribirse().subscribe;
+    }
+  }
+
 }

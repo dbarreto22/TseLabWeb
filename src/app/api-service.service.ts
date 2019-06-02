@@ -92,7 +92,6 @@ x
     return this.http.post(`${this.API_URL}/checker/verificarHecho` , hecho, httpOptions);
   }
 
-<<<<<<< HEAD
   altaMecanismo(descripcion,url)
   {
     var a: any = {};
@@ -118,7 +117,6 @@ x
     let json=JSON.stringify(a);
     return this.http.post(`${this.API_URL}/`,json,httpOptions);    
   }
-=======
   crearUser(usuario:Usuario){
    
     return this.http.post(`${this.API_URL}/backend/registro` , usuario, httpOptions);
@@ -137,8 +135,15 @@ verificarHechoComponente(idMecanismo, idHecho){
 
 //ACTUALIZAR URL
 crearhecho(hecho:Hechos){
-  return this.http.post(`${this.API_URL}/` , hecho, httpOptions);
+    return this.http.post(`${this.API_URL}/` , hecho, httpOptions);
 }
->>>>>>> 98554457cc0a39d1808b7f1dff51f97ce4c4353e
+
+suscribirse()
+{
+  var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
+  var a: any = {};
+  a=JSON.stringify(sesion.usr.email);
+  return this.http.post(`${this.API_URL}/citizen/suscripcion` , a, httpOptions);
+}
 
 }

@@ -10,12 +10,9 @@ import { SeleccionarHechoCheckerComponent } from './Usuarios/seleccionar-hecho-c
 import { VerificarHechoComponent } from './Usuarios/verificar-hecho/verificar-hecho.component';
 import { UsuariosComponent } from './Usuarios/usuarios/usuarios.component';
 import { ListadoComponentesComponent } from './Usuarios/listado-componentes/listado-componentes.component';
-<<<<<<< HEAD
 import { MecanismosComponent } from './Usuarios/mecanismos/mecanismos.component';
-=======
 import { CrearHechoComponent } from './Usuarios/crear-hecho/crear-hecho.component';
 import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perifericos/gestion-nodos-perifericos.component';
->>>>>>> 98554457cc0a39d1808b7f1dff51f97ce4c4353e
 
 
 const routes: Routes = [
@@ -30,13 +27,10 @@ const routes: Routes = [
   {path: 'verificarHecho', component: VerificarHechoComponent},
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'listarComponentes', component: ListadoComponentesComponent},
-<<<<<<< HEAD
   {path: 'mecanismos', component: MecanismosComponent},
-=======
   {path: 'crearHecho', component: CrearHechoComponent},
   {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent},
 
->>>>>>> 98554457cc0a39d1808b7f1dff51f97ce4c4353e
 
 ];
 
