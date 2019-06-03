@@ -471,6 +471,13 @@ var CrearNodosPerifericosComponent = /** @class */ (function () {
             this.nodoPeriferico.descripcion = descripcion;
             this.nodoPeriferico.url = url,
                 this.nodoPeriferico.usuario = usuario;
+            /*
+            var crypto = require('crypto'); //Libreria de criptografia
+            var cipher = crypto.createCipher('aes256', 'pass'); // tipo de cifrado y password
+            var data = password;
+            cipher.update(data, 'utf8', 'hex'); // cifro la contraseña
+            var cip = cipher.final('hex'); //Cifrado
+            console.log("Encrypted data = " + cip);*/
             this.nodoPeriferico.password = password;
             this.nodoPeriferico.mecanismo = "PERIFERICO";
             if (this.habilita == "Si") {
@@ -1590,7 +1597,7 @@ var ModificarNodosPerifericosComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron\" style=\"background: aliceblue\">\n\n  <div class=\"example-config\">\n      <p class=\"font-weight-normal\" style=\"color: dodgerblue\">Seleccione Hecho a Verificar</p>\n  </div>\n  \n  <kendo-grid     \n      [kendoGridBinding]=\"hechos | async\" \n      [pageSize]=\"10\"\n      [pageable]=\"true\"\n      [sortable]=\"true\"\n      [filterable]=\"true\"\n      [resizable]=\"true\"\n      [selectable]=\"selectableSettings\" \n      (selectionChange) = \"change()\"\n      [kendoGridSelectBy]=\"mySelectionKey\"\n      [selectedKeys]=\"mySelection\"\n      [skip]=\"skip\"\n      (pageChange)=\"pageChange($event)\"\n      [loading]=\"loading\"\n      [height]=\"500\"\n  >\n  <kendo-grid-column field=\"titulo\" title=\"Titulo\" width=\"100\" >\n      </kendo-grid-column>\n  <kendo-grid-column field=\"submiter.nombre\" title=\"Nombre Submiter\">\n      </kendo-grid-column>\n  <kendo-grid-column field=\"usuarioAlta.nombre\" title=\"Usuario dio de Alta\">\n      </kendo-grid-column>\n  <kendo-grid-column field=\"fechaRegistroCalificacion\" title=\"Fecha de registro del Hecho\">\n      </kendo-grid-column>\n  <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>\n      </kendo-grid>\n\n  <div class=\"row\">\n    <div class=\"col-sm-12 example-col\">\n      <kendo-buttongroup  [selection]=\"'single'\" [width]=\"'100%'\">\n        <button kendoButton [toggleable]=\"true\"  (click)=\"calificar()\">Calificar Hecho</button>\n        <button kendoButton [toggleable]=\"true\"  (click)=\"verificar()\">Verificar Hecho Componentes</button>\n        <button kendoButton [toggleable]=\"true\"  (click)=\"cancelar()\">Cancelar</button>\n      </kendo-buttongroup>\n    </div>\n  </div>\n\n</div>\n\n\n\n"
+module.exports = "<div class=\"jumbotron\" style=\"background: aliceblue\">\n\n  <div class=\"example-config\">\n      <p class=\"font-weight-normal\" style=\"color: dodgerblue\">Seleccione Hecho a Verificar</p>\n  </div>\n  \n  <kendo-grid     \n      [kendoGridBinding]=\"hechos | async\" \n      [pageSize]=\"10\"\n      [pageable]=\"true\"\n      [sortable]=\"true\"\n      [filterable]=\"true\"\n      [resizable]=\"true\"\n      [selectable]=\"selectableSettings\" \n      (selectionChange) = \"change()\"\n      [kendoGridSelectBy]=\"mySelectionKey\"\n      [selectedKeys]=\"mySelection\"\n      [skip]=\"skip\"\n      (pageChange)=\"pageChange($event)\"\n      [loading]=\"loading\"\n      [height]=\"500\"\n  >\n  <kendo-grid-column field=\"titulo\" title=\"Titulo\" width=\"100\" >\n      </kendo-grid-column>\n  <kendo-grid-column field=\"url\" title=\"URL\">\n      </kendo-grid-column>\n  <kendo-grid-column field=\"estado\" title=\"Estado actual\">\n      </kendo-grid-column>\n  <kendo-grid-column field=\"fechaRegistroCalificacion\" title=\"Fecha de registro del Hecho\">\n      </kendo-grid-column>\n  <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>\n      </kendo-grid>\n\n  <div class=\"row\">\n    <div class=\"col-sm-12 example-col\">\n      <kendo-buttongroup  [selection]=\"'single'\" [width]=\"'100%'\">\n        <button kendoButton [toggleable]=\"true\"  (click)=\"calificar()\">Calificar Hecho</button>\n        <button kendoButton [toggleable]=\"true\"  (click)=\"verificar()\">Verificar Hecho Componentes</button>\n        <button kendoButton [toggleable]=\"true\"  (click)=\"cancelar()\">Cancelar</button>\n      </kendo-buttongroup>\n    </div>\n  </div>\n\n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -1643,7 +1650,14 @@ var SeleccionarHechoCheckerComponent = /** @class */ (function () {
         this.setSelectableSettings();
         this.hechos = this.apiService.getHechosByChecker();
         //this.hechos = this.apiService.getAllHechos();
+        /* A_COMPROBAR	("A comprobar"),
+         NUEVO	("Nuevo"),
+         EN_PROCESO	("En proceso"),
+         VERIFICADO	("Verificado"),
+         PUBLICADO	("Publicado"),
+         CANCELADO	("Cancelado");*/
         this.hechos.subscribe(function () {
+            console.log(_this.hechos);
             _this.loading = false;
         }, function (err) {
             _this.loading = false;
@@ -1668,6 +1682,7 @@ var SeleccionarHechoCheckerComponent = /** @class */ (function () {
     SeleccionarHechoCheckerComponent.prototype.change = function () {
         var _this = this;
         this.hechos.subscribe(function (data) {
+            console.log(data);
             data.forEach(function (asig) {
                 if (asig.id == _this.mySelection[0]) {
                     _this.codigo = asig.id;
