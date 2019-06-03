@@ -25,8 +25,6 @@ export class GestionNodosPerifericosComponent implements OnInit {
   constructor(public http: HttpClient, private router: Router ,private apiService:ApiServiceService) { 
     this.setSelectableSettings();
 
-    //this.idHecho = localStorage.getItem("idHecho");
-
     this.perifericos = this.apiService.getNodosPerifericos();
 
     this.perifericos.subscribe(

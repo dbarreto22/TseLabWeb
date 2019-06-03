@@ -47,6 +47,7 @@ import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-p
 import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component';
 
 
+
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
       [
@@ -83,6 +84,7 @@ export function getAuthServiceConfigs() {
     CrearNodosPerifericosComponent,
     ModificarNodosPerifericosComponent,
     DonacionesComponent,
+
 
   ],
   imports: [

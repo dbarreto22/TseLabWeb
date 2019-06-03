@@ -65,7 +65,16 @@ export class CrearUsuarioComponent implements OnInit {
       this.user.rol = this.rol.toUpperCase();
       console.log(this.user)
       
-      this.apiService.crearUser(this.user);
+      this.apiService.crearUser(this.user).subscribe((res)=> {
+        console.log("RESP",res);
+        console.log(this.user);
+      },
+      err=>{
+        console.log("ERROR",err);
+        console.log(this.user);
+        //this.apiService.mensajeConError(err);
+      }
+      );
 
     }
     

@@ -6,18 +6,18 @@ import { Mecanismos } from './mecanismos';
 export class Hechos {
     constructor(){
     }
-    id : string;
-    titulo : string;
-    submiter : Submiter;
-    checkers : Array<Checker>;
-    url : string;
-    mailUserAlta : string;
-    usuarioAlta : Usuario;
-    fechaRegistroCalificacion : Date;
-    fechaCalificacion : Date;
-    justificacion : string;
-    validado : boolean;
-    mecanismos = new Array<Mecanismos>();
-    calificacion : string;
+    public id : string;
+    public titulo : string;
+    public submiter : Submiter;
+    public checkers : Array<Checker>;
+    public url : string;
+    public mailUserAlta : string;
+    public usuarioAlta : Usuario;
+    public fechaRegistroCalificacion : Date;
+    public fechaCalificacion : Date;
+    public justificacion : string;
+    public validado : boolean;
+    public mecanismos = new Array<Mecanismos>();
+    public calificacion : string;
     
 }

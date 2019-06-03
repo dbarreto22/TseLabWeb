@@ -54,9 +54,9 @@ x
   getHechosByChecker(): Observable<Array<object>> { 
    // { headers:headersget, params:mailUser}
     
-    let mail=localStorage.getItem("mailUsuario");;
+    let mail=localStorage.getItem("userMail");;
     
-    return this.http.get<Array<object>>(`${this.API_URL}/getHechosByChecker` + mail);
+    return this.http.get<Array<object>>(`${this.API_URL}/getHechosByChecker/` + mail);
   }
 
   getAllUsuarios(): Observable<Array<object>> {
@@ -75,7 +75,7 @@ x
     return this.http.get<Array<object>>(`${this.API_URL}/backend/getCheckers`);
 }
 
-getNodosPerifericos(): Observable<Array<object>> {
+  getNodosPerifericos(): Observable<Array<object>> {
   
   return this.http.get<Array<object>>(`${this.API_URL}/admin/getNodosPerifericos`);
 }
@@ -140,7 +140,7 @@ getNodosPerifericos(): Observable<Array<object>> {
    
     return this.http.post(`${this.API_URL}/backend/registro` , usuario, httpOptions);
   }
-//ACTUALIZAR URL
+
 verificarHechoMecanismoSinApi(idMecanismo, idHecho){
 
     var a: any = {};
@@ -183,12 +183,19 @@ crearhecho(titulo: string,url :string){
 }
 
 
-crearMecanismoVerificacion(mec:Perifericos, tipoMecanismo:string){
+crearMecanismoVerificacionPeriferico(mec:Perifericos){
   var a: any = {};
-  a.tipoMecanismo=tipoMecanismo;
-  //a.url=url;
+  a.MecanismoVerificacion=mec;
   let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion` , {mec ,json}, httpOptions);
+  return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion` , mec, httpOptions);
+}
+
+modificarMecanismoVerificacionPeriferico(mec:Perifericos){
+  var a: any = {};
+  a.MecanismoVerificacion=mec;
+  let json=JSON.stringify(a);
+  return this.http.post(`${this.API_URL}/admin/modificarMecanismoVerificacion`, mec, httpOptions);
+  
 }
 
 getMecanismosInternos(): Observable<Array<object>> {
