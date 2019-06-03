@@ -6,5 +6,6 @@ export class Mecanismos {
     public habilitado : boolean;
     public url: string;
     public mecanismo : string;
+    public calificacion : string;
    
 }

@@ -80,6 +80,7 @@ public selectedValue: string;
           
           this.hecho =  asig;
           asig.resultadosMecanismos.forEach(r=>{
+            r.mecanismo.calificacion = r.calificacion;
             this.mecanismos.push(r.mecanismo);
           }) 
 
@@ -101,13 +102,8 @@ public selectedValue: string;
 
 
 
-verificar(justificacion){
-    console.log(this.selectedValue);
-    this.hecho.justificacion = justificacion;
-    this.hecho.calificacion = this.selectedValue;
-
-   console.log(this.hecho);
-   this.apiService.calificarHecho(this.hecho).subscribe((res)=> {
+verificar(justificacion){ 
+   this.apiService.calificarHecho(this.hecho.id, this.selectedValue,justificacion).subscribe((res)=> {
     console.log("RESP",res);
     console.log(this.hecho);
   },

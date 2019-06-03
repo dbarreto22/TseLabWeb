@@ -6,6 +6,7 @@ export class ResultadosMecanismos {
     public id : string;
     public calificacion : string;
     public mecanismo : Mecanismos;
+    
 
    
 }

@@ -256,6 +256,7 @@ public idMecanismoVerificar;
     this.mecanismosMostrar.forEach(asig => {
       if(asig.id  == this.mySelection[0] ){
         this.idMecanismoVerificar = asig.id;
+        
         console.log(this.idMecanismoVerificar);
       }
     })
