@@ -165,9 +165,9 @@ verificarHechoMecanismoConApi(idMecanismo, idHecho, calificacion){
 
 suscribirse()
 {
-  var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
+  var mail = localStorage.getItem('userMail');
   var a: any = {};
-  a=JSON.stringify(sesion.usr.email);
+  a=JSON.stringify(mail);
   return this.http.post(`${this.API_URL}/citizen/suscripcion` , a, httpOptions);
 }
 

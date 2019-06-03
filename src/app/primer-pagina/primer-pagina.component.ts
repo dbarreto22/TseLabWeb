@@ -45,7 +45,12 @@ export class PrimerPaginaComponent implements OnInit {
     aceptar=confirm("Desea suscribirse a las notificaciones").valueOf();
     if(aceptar=true)
     {
-      this.apiService.suscribirse().subscribe();
+      this.apiService.suscribirse().subscribe((res)=>{
+        console.log(res);
+      },
+      err=>{
+        console.log(err);
+      });
     }
   }
 
