@@ -14,7 +14,7 @@ export class CrearNodosPerifericosComponent implements OnInit {
 
   public habilitados: Array<string> = ["Si", "No"];
   public habilita : string;
-  public nodoPeriferico : Perifericos;
+  public nodoPeriferico = new Perifericos();
 
   constructor(public http: HttpClient, private apiService: ApiServiceService,private router: Router) { }
 
@@ -24,7 +24,7 @@ export class CrearNodosPerifericosComponent implements OnInit {
 	
 
   crearNodo(descripcion,url,usuario, password){
-    console.log("DESC", descripcion);
+    console.log("DESC", url);
     //let desc = descripcion
    if(descripcion!= undefined && url!= undefined && usuario!= undefined && password!= undefined && this.habilita != undefined){
 
@@ -32,13 +32,14 @@ export class CrearNodosPerifericosComponent implements OnInit {
     this.nodoPeriferico.url = url,
     this.nodoPeriferico.usuario = usuario;
     this.nodoPeriferico.password = password;
+    this.nodoPeriferico.mecanismo = "PERIFERICO";
     if(this.habilita == "Si"){
       this.nodoPeriferico.habilitado = true;
-    }else{
+    }else{      
       this.nodoPeriferico.habilitado = false;
     }
 
-  /*  this.apiService.crearMecanismoVerificacion(this.nodoPeriferico, "PERIFERICO").subscribe((res)=> {
+    this.apiService.crearMecanismoVerificacionPeriferico(this.nodoPeriferico ).subscribe((res)=> {
       console.log("RESP",res);
       console.log(this.nodoPeriferico);
     },
@@ -47,16 +48,16 @@ export class CrearNodosPerifericosComponent implements OnInit {
       console.log(this.nodoPeriferico);
       //this.apiService.mensajeConError(err);
     }
-    )*/
+    )
 
 
    }else{
     alert("Debe completar todos los datos.")
+   }
   }
-   
-   
 
-
+  cancelar(){
+    this.router.navigate(['/']);
   }
 
 }

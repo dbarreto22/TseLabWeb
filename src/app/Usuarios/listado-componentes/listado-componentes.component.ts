@@ -31,6 +31,12 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
   public descripcion;
   public url;
   public estado;
+/*  public mecanismosGestionInterno : Observable<Array<any>>;
+  public mecanismosGestionExterno : Observable<Array<any>>;
+  public mecanismosGestionPerifericos : Observable<Array<any>>;
+  public mecanismosMostrar*/
+
+
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
     this.setSelectableSettings();
 

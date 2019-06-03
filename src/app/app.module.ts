@@ -46,6 +46,7 @@ import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-periferic
 import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
 
 
+
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
       [
@@ -81,6 +82,7 @@ export function getAuthServiceConfigs() {
     GestionNodosPerifericosComponent,
     CrearNodosPerifericosComponent,
     ModificarNodosPerifericosComponent,
+
 
   ],
   imports: [

@@ -1,8 +1,8 @@
 export class Mecanismos {
     constructor(){}
 
-    id : string;
-    descripcion : string;
-    habilitado : boolean;
-    url: string;
+    public id : string;
+    public descripcion : string;
+    public habilitado : boolean;
+    public url: string;
 }

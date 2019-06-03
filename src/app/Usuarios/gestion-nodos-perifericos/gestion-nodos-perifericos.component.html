@@ -1,8 +1,11 @@
-<!--<div class="jumbotron" style="background: aliceblue">
+<div class="jumbotron" style="background: aliceblue">
 
   <div class="example-config">
       <p class="font-weight-normal" style="color: dodgerblue">Gestion Nodos Perifericos</p>
   </div>
+  <div class="example-config">
+    <p class="font-weight-normal" style="color: dodgerblue">Seleccione un Nodo</p>
+</div>
   
   <kendo-grid     
       [kendoGridBinding]="perifericos | async" 
@@ -43,14 +46,4 @@
 
 </div>
 
-<div class="example-wrapper">
-  <kendo-dialog title="Confirmar" *ngIf="dialogOpened" (close)="close('dialog')" [minWidth]="200" [width]="350">
-      <p style="margin: 30px; text-align: center;">Desea eliminar al Usuario seleccionado?</p>
-        <kendo-dialog-actions>
-            <button kendoButton (click)="confirmarEliminarUsr()" primary="true">Confirmar</button>
-            <button kendoButton (click)="action()" >No</button>  
-        </kendo-dialog-actions>
-  </kendo-dialog>
-</div>
 
--->

@@ -35,7 +35,6 @@ const routes: Routes = [
   {path: 'listarComponentes', component: ListadoComponentesComponent},
 
   {path: 'mecanismos', component: MecanismosComponent},
-
   {path: 'crearHecho', component: CrearHechoComponent},
   {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent},
   {path: 'crearNodosPerifericos', component: CrearNodosPerifericosComponent},
