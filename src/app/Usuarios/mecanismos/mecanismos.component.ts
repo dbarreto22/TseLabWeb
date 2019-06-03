@@ -3,6 +3,7 @@ import { ApiServiceService } from '../../api-service.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Mecanismos } from '../clases/mecanismos';
+import { containsElement } from '@angular/animations/browser/src/render/shared';
 
 @Component({
   selector: 'app-mecanismos',
@@ -23,8 +24,11 @@ export class MecanismosComponent implements OnInit {
   public estado;
   public id;
   constructor(public http: HttpClient, private router: Router, private apiService: ApiServiceService) {
-
+    
     this.funcion = localStorage.getItem("funcion");
+
+    console.log("**************funcion");
+    console.log(this.funcion);
     if (this.funcion == "modificar") {
       this.titulo = "Modificación mecanismo";
       this.encabezado = "Ingrese los datos nuevos para el mecanismo seleccionado.\n Para inhabilitar cambie el estado a inhabilitado";
@@ -34,6 +38,7 @@ export class MecanismosComponent implements OnInit {
       this.id = this.mecanismo.id;
       this.estado = this.mecanismo.habilitado;
       this.modificacion=true;
+      console.log(this.descripcion);
     }
     else {
       this.titulo = "Alta mecanismo";
@@ -45,16 +50,18 @@ export class MecanismosComponent implements OnInit {
   }
 
   accion() {
+    console.log("*************Accion")
+    console.log(this.funcion);
     if (this.funcion == "modificar") {
-      /*  this.apiService.modificarMecanismo(this.id,this.descripcion,this.url,this.estado).suscribe(
-         (res=>{
+        this.apiService.modificarMecanismo(this.id,this.descripcion,this.url,this.estado,this.mecanismo.mecanismo).subscribe(
+         (res)=>{
            console.log(res);
    
-         },err=>{
+         },(err)=>{
            console.log(err);
-         })
+         }
        );
-     */
+     
       console.log("modificar mecanismo:")
       console.log(this.descripcion);
       console.log(this.url);
@@ -63,16 +70,16 @@ export class MecanismosComponent implements OnInit {
 
     }
     else {
-      /* this.apiService.altaMecanismo(this.descripcion,this.url).suscribe(
-        (res=>{
+       this.apiService.altaMecanismo(this.descripcion,this.url).subscribe(
+        (res)=>{
           console.log(res);
   
         },err=>{
           console.log(err);
-        })
+        }
       );
   
-      */
+      
       console.log("alta mecanismo:")
       console.log(this.descripcion);
       console.log(this.url);

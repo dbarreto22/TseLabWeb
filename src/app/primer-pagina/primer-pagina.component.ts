@@ -30,9 +30,23 @@ export class PrimerPaginaComponent implements OnInit {
     this.router.navigate(['/loginRedSocial']);
   }
 
-  gestionarMecanismos(){
-    localStorage.setItem("funcion","gestionarMecanismos");
+  gestionarMecanismosInternos(){  
+    localStorage.setItem("funcion","gestionarMecanismosInternos");
     this.router.navigate(['/listarComponentes'])
+  }
+
+  gestionarMecanismosExternos(){  
+    localStorage.setItem("funcion","gestionarMecanismosExternos");
+    this.router.navigate(['/listarComponentes'])
+  }
+
+  suscripcion(){
+    var aceptar;
+    aceptar=confirm("Desea suscribirse a las notificaciones").valueOf();
+    if(aceptar=true)
+    {
+      this.apiService.suscribirse().subscribe();
+    }
   }
 
 }

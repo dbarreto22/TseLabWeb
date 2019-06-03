@@ -65,12 +65,12 @@ x
     console.log(sesion.token.jwt);
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
   }
-
+/*
   getAllMecanismos(): Observable<Array<object>> {
 
     return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosVerificacion`);
   }
-
+*/
   getCheckers(): Observable<Array<object>> {
     return this.http.get<Array<object>>(`${this.API_URL}/backend/getCheckers`);
 }
@@ -118,12 +118,12 @@ x
     a.descripcion=descripcion;
     a.url=url;
     a.habilitado="true";
-    a.tipomecanismo="INTERNO";
+    a.mecanismo="INTERNO";
     let json=JSON.stringify(a);
-    return this.http.post(`${this.API_URL}/`,json,httpOptions);    
+    return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion`,json,httpOptions);    
   }
 
-  modificarMecanismo(id,descripcion,url,habilitado)
+  modificarMecanismo(id,descripcion,url,habilitado,tipoMecanismo)
   {
     var a: any = {};
     a.id=id;
@@ -132,10 +132,10 @@ x
     a.habilitado=habilitado;
     a.usuario="";
     a.password="";
+    a.mecanismo=tipoMecanismo;
     let json=JSON.stringify(a);
     return this.http.post(`${this.API_URL}/admin/modificarMecanismoVerificacion`,json,httpOptions);    
   }
-
   crearUser(usuario:Usuario){
    
     return this.http.post(`${this.API_URL}/backend/registro` , usuario, httpOptions);
@@ -159,10 +159,18 @@ verificarHechoMecanismoConApi(idMecanismo, idHecho, calificacion){
   a.idMecanismo=idMecanismo;
   a.calificacion = calificacion;
   let json=JSON.stringify(a);
-
-
-return this.http.post(`${this.API_URL}/checker/verificarHechoMecanismo` , json, httpOptions);
+  return this.http.post(`${this.API_URL}/checker/verificarHechoMecanismo` , json, httpOptions);
 }
+
+
+suscribirse()
+{
+  var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
+  var a: any = {};
+  a=JSON.stringify(sesion.usr.email);
+  return this.http.post(`${this.API_URL}/citizen/suscripcion` , a, httpOptions);
+}
+
 
 
 
@@ -171,8 +179,6 @@ crearhecho(titulo: string,url :string){
   a.titulo=titulo;
   a.url=url;
   let json=JSON.stringify(a);
-
-
   return this.http.post(`${this.API_URL}/citizen/addHecho` , json, httpOptions);
 }
 
@@ -189,6 +195,17 @@ modificarMecanismoVerificacionPeriferico(mec:Perifericos){
   a.MecanismoVerificacion=mec;
   let json=JSON.stringify(a);
   return this.http.post(`${this.API_URL}/admin/modificarMecanismoVerificacion`, mec, httpOptions);
+  
+}
+
+getMecanismosInternos(): Observable<Array<object>> {
+
+  return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosInternos`);
+}
+
+getMecanismosExternos(): Observable<Array<object>> {
+
+  return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosExternos`);
 }
 
 
