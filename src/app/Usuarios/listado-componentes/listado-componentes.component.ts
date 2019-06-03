@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/api-service.service';
 import { Mecanismos } from '../clases/mecanismos';
+import { MecanismosCompleto } from '../clases/mecanismoCompleto';
 
 @Component({
   selector: 'app-listado-componentes',
@@ -32,10 +33,10 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
   public descripcion;
   public url;
   public estado;
-/*  public mecanismosGestionInterno : Observable<Array<any>>;
+  public mecanismosGestionInterno : Observable<Array<any>>;
   public mecanismosGestionExterno : Observable<Array<any>>;
   public mecanismosGestionPerifericos : Observable<Array<any>>;
-  public mecanismosMostrar*/
+  public mecanismosMostrar = new Array<MecanismosCompleto>() ;
 
   constructor(public http: HttpClient, private router: Router, private apiService: ApiServiceService) {
 
@@ -48,24 +49,81 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
       this.titulo = "Gestión de mecanismos Internos";
       this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
       this.mecanismos = this.apiService.getMecanismosInternos();
+      this.mecanismos.subscribe(
+        (res) => {
+          this.loading = false
+          console.log("*******************mecanismos");
+          console.log(this.mecanismos);
+          console.log(res);
+  
+        },
+        err => {
+          this.loading = false;
+          //this.apiService.mensajeConError(err);
+        }
+      )
+      this.change();
+  
     }
     else if (this.funcion == "gestionarMecanismosExternos") {
       this.gestionar = true;
       this.titulo = "Gestión de mecanismos Externos";
       this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
       this.mecanismos = this.apiService.getMecanismosExternos();
+      this.mecanismos.subscribe(
+        (res) => {
+          this.loading = false
+          console.log("*******************mecanismos");
+          console.log(this.mecanismos);
+          console.log(res);
+  
+        },
+        err => {
+          this.loading = false;
+          //this.apiService.mensajeConError(err);
+        }
+      )
+      this.change();
+  
     }
     else {
       this.verificar = true;
       this.titulo = "Seleccione mecanismo para Verificar";
       this.encabezado = "Si desea verificar con un mecanismo, seleccione uno y click en Siguiente.\n De lo contrario click en Cancelar."
       //acá deberías programar la lógica que trae todos los componentes
-    }
+   
 
     this.idHecho = localStorage.getItem("idHecho");
+    this.mecanismosGestionExterno = this.apiService.getMecanismosExternos();
+    this.mecanismosGestionInterno = this.apiService.getMecanismosInternos();
+    this.mecanismosGestionPerifericos = this.apiService.getNodosPerifericos();
+    this.mecanismosGestionExterno.subscribe(
+      (res) => {
+        this.loading = false
+        console.log("*******************mecanismos");
+        console.log(this.mecanismos);
+        console.log(res);
 
+      },
+      err => {
+        this.loading = false;
+        //this.apiService.mensajeConError(err);
+      }
+    )
+    this.mecanismosGestionInterno.subscribe(
+      (res) => {
+        this.loading = false
+        console.log("*******************mecanismos");
+        console.log(this.mecanismos);
+        console.log(res);
 
-    this.mecanismos.subscribe(
+      },
+      err => {
+        this.loading = false;
+        //this.apiService.mensajeConError(err);
+      }
+    )
+    this.mecanismosGestionPerifericos.subscribe(
       (res) => {
         this.loading = false
         console.log("*******************mecanismos");
@@ -79,7 +137,9 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
       }
     )
 
-    this.change()
+    console.log("*********ESTOY ANTES*************");
+    this.CargaMecanismoCompletos();
+  }
 
   }
 
@@ -139,6 +199,56 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
         // this.apiService.mensajeConError(err);
       }
     )
+
+
+  }
+
+
+  CargaMecanismoCompletos() {
+    console.log("*********ESTOY adentro*************");
+    this.mecanismosGestionExterno.subscribe(
+      (data: Array<MecanismosCompleto>) => {
+        data.forEach(asig => {
+          asig.mecanismo = "Externo";
+          this.mecanismosMostrar.push(asig);
+        })
+
+      },
+      err => {
+        console.log(err);
+        // this.apiService.mensajeConError(err);
+      }
+    )
+    this.mecanismosGestionInterno.subscribe(
+      (data: Array<MecanismosCompleto>) => {
+        data.forEach(asig => {
+          asig.mecanismo = "Interno";
+          this.mecanismosMostrar.push(asig);
+        })
+
+      },
+      err => {
+        console.log(err);
+        // this.apiService.mensajeConError(err);
+      }
+    )
+    this.mecanismosGestionPerifericos.subscribe(
+      (data: Array<MecanismosCompleto>) => {
+        data.forEach(asig => {
+        if (asig.habilitado ){
+          asig.mecanismo = "Periferico";
+          this.mecanismosMostrar.push(asig);
+        }
+
+        })
+
+      },
+      err => {
+        console.log(err);
+        // this.apiService.mensajeConError(err);
+      }
+    )
+      console.log(this.mecanismosMostrar)
 
 
   }

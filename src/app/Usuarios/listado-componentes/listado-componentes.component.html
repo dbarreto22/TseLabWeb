@@ -9,7 +9,7 @@
 
 </div>
   
-  <kendo-grid     
+  <kendo-grid  *ngIf="gestionar"   
       [kendoGridBinding]="mecanismos | async" 
       [pageSize]="10"
       [pageable]="true"
@@ -30,6 +30,36 @@
   <kendo-grid-column field="descripcion" title="Nombre Submiter">
       </kendo-grid-column>
   <kendo-grid-column field="url" title="Usuario dio de Alta">
+      </kendo-grid-column>
+  <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
+      </kendo-grid>
+
+
+  <kendo-grid  *ngIf="verificar"   
+      [data]="mecanismosMostrar" 
+      [pageSize]="10"
+      [pageable]="true"
+      [sortable]="true"
+      [filterable]="true"
+      [resizable]="true"
+      [selectable]="selectableSettings" 
+      (selectionChange) = "change()"
+      [kendoGridSelectBy]="mySelectionKey"
+      [selectedKeys]="mySelection"
+      [skip]="skip"
+      (pageChange)="pageChange($event)"
+      [loading]="loading"
+      [height]="500"
+  >
+  <kendo-grid-column  field="id" title="Identificador" width="100" >
+      </kendo-grid-column>
+  <kendo-grid-column field="descripcion" title="Descripcion">
+      </kendo-grid-column>
+  <kendo-grid-column field="url" title="Url">
+      </kendo-grid-column>
+  <kendo-grid-column field="habilitado" editor="boolean" title="Habilitado">
+      </kendo-grid-column>
+  <kendo-grid-column field="mecanismo" title="Tipo de mecanismo">
       </kendo-grid-column>
   <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
       </kendo-grid>

@@ -8,7 +8,7 @@ export class Perifericos extends Mecanismos {
 
     public usuario : Usuario;
     public password : string;
-    public mecanismo : string;
+    
     
 
 }
