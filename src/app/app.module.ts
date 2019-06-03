@@ -44,6 +44,7 @@ import { CrearHechoComponent } from './Usuarios/crear-hecho/crear-hecho.componen
 import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perifericos/gestion-nodos-perifericos.component';
 import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
 import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
+import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component';
 
 
 
@@ -82,6 +83,7 @@ export function getAuthServiceConfigs() {
     GestionNodosPerifericosComponent,
     CrearNodosPerifericosComponent,
     ModificarNodosPerifericosComponent,
+    DonacionesComponent,
 
 
   ],
