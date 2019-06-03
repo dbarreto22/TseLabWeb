@@ -136,9 +136,7 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
         //this.apiService.mensajeConError(err);
       }
     )
-
-    console.log("*********ESTOY ANTES*************");
-    this.CargaMecanismoCompletos();
+   
   }
 
   }
@@ -147,6 +145,7 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
     localStorage.setItem("funcion", "");
   }
   ngOnInit() {
+    this.CargaMecanismoCompletos();
   }
   public setSelectableSettings(): void {
     this.selectableSettings = {
@@ -203,14 +202,14 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
 
   }
 
-
-  CargaMecanismoCompletos() {
-    console.log("*********ESTOY adentro*************");
+CargaMecanismoCompletos() {
     this.mecanismosGestionExterno.subscribe(
       (data: Array<MecanismosCompleto>) => {
         data.forEach(asig => {
+          if (asig.habilitado ){
           asig.mecanismo = "Externo";
           this.mecanismosMostrar.push(asig);
+          }
         })
 
       },
@@ -222,8 +221,10 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
     this.mecanismosGestionInterno.subscribe(
       (data: Array<MecanismosCompleto>) => {
         data.forEach(asig => {
+          if (asig.habilitado ){
           asig.mecanismo = "Interno";
           this.mecanismosMostrar.push(asig);
+          }
         })
 
       },
@@ -248,16 +249,23 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
         // this.apiService.mensajeConError(err);
       }
     )
-      console.log(this.mecanismosMostrar)
-
-
+      console.log(this.mecanismosMostrar);
+  }
+public idMecanismoVerificar;
+  mecanismoSeleccionado(){
+    this.mecanismosMostrar.forEach(asig => {
+      if(asig.id  == this.mySelection[0] ){
+        this.idMecanismoVerificar = asig.id;
+        console.log(this.idMecanismoVerificar);
+      }
+    })
   }
 
   siguiente() {
 
     //FALTA HACER EL DE API DE GOOGLE
-    if (this.codigo != undefined) {
-      this.apiService.verificarHechoMecanismoSinApi(this.codigo, this.idHecho).subscribe((res) => {
+    if (this.idMecanismoVerificar != undefined) {
+      this.apiService.verificarHechoMecanismoSinApi(this.idMecanismoVerificar, this.idHecho).subscribe((res) => {
         console.log("RESP", res);
       },
         err => {

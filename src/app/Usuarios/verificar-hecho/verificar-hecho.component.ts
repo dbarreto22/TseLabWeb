@@ -79,12 +79,14 @@ public selectedValue: string;
           console.log("asig",asig)
           
           this.hecho =  asig;
+          asig.resultadosMecanismos.forEach(r=>{
+            this.mecanismos.push(r.mecanismo);
+          }) 
 
-          console.log("hecho", this.hecho)
-          this.mecanismos=this.hecho.mecanismos;
-
-           // this.mostrar = true;  
           }
+        if(this.mecanismos.length > 0){
+          this.mostrar = true;
+        }
         
         console.log('mecanismo ',this.mecanismos)
     })
@@ -97,14 +99,11 @@ public selectedValue: string;
   )
 }
 
-public onChange(value: Date): void {
-  this.fecha = value;
-}
+
 
 verificar(justificacion){
     console.log(this.selectedValue);
     this.hecho.justificacion = justificacion;
-    this.hecho.fechaRegistroCalificacion = this.fecha;
     this.hecho.calificacion = this.selectedValue;
 
    console.log(this.hecho);
