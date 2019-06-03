@@ -30,9 +30,15 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
 
     this.hechos = this.apiService.getHechosByChecker();
    //this.hechos = this.apiService.getAllHechos();
-
+  /* A_COMPROBAR	("A comprobar"),
+   NUEVO	("Nuevo"),
+   EN_PROCESO	("En proceso"),
+   VERIFICADO	("Verificado"),
+   PUBLICADO	("Publicado"),
+   CANCELADO	("Cancelado");*/
     this.hechos.subscribe(
       ()=> {
+        console.log(this.hechos)
         this.loading=false
       },
       err=>{
@@ -40,7 +46,7 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
         //this.apiService.mensajeConError(err);
       }
     )
-  
+      
   }
 
   ngOnInit() {
@@ -73,11 +79,10 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
    
     this.hechos.subscribe(
     (data: Array<Hechos>)=> {
+      console.log(data)
       data.forEach(asig=>{
         if(asig.id == this.mySelection[0]){
           this.codigo= asig.id;
-
-
         }
         console.log('codigo ',this.codigo)
       })

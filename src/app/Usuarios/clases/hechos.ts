@@ -21,5 +21,6 @@ export class Hechos {
     public mecanismos = new Array<Mecanismos>();
     public calificacion : string;
     public resultadosMecanismos : Array<ResultadosMecanismos>;
+    public estado : string;
     
 }
