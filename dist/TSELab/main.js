@@ -2539,7 +2539,7 @@ var AuthenticationService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper fadeInDown\">\n  <div id=\"formContent\">\n    <!-- Tabs Titles -->\n\n    <!-- Icon -->\n    <div class=\"fadeIn first\">\n      Bienvenido\n\n    </div>\n    <h2>\n      {{mostrar}}\n    </h2>\n    <br>\n    <a mat-list-item (click)=\"gestionarMecanismosInternos()\">Mecanismos Internos\n    </a>\n    <br>\n    <a mat-list-item (click)=\"gestionarMecanismosExternos()\">Mecanismos Externos\n    </a>\n    <br>\n    <a mat-list-item (click)=\"suscripcion()\">Suscribirse\n    </a>\n    <br>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color:blue\" type=\"button\" (click)=\"Usuario()\" mdbBtn>Usuario\n      </button>\n    </div>\n    <br>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color: blue\" type=\"button\" (click)=\"Visitante()\" mdbBtn>Visitante\n      </button>\n    </div>\n    <br>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color: blue\" type=\"button\" (click)=\"Citizen()\" mdbBtn>Citizen\n      </button>\n    </div>\n\n  </div>\n</div>\n"
+module.exports = "<div class=\"wrapper fadeInDown\">\n  <div id=\"formContent\">\n    <!-- Tabs Titles -->\n\n    <!-- Icon -->\n    <div class=\"fadeIn first\">\n      Bienvenido\n\n    </div>\n    <h2>\n      {{mostrar}}\n    </h2>\n    <br>\n    <a mat-list-item (click)=\"gestionarMecanismosInternos()\">Mecanismos Internos\n    </a>\n    <br>\n    <a mat-list-item (click)=\"gestionarMecanismosExternos()\">Mecanismos Externos\n    </a>\n    <br>\n    <a mat-list-item (click)=\"suscripcion()\">Suscribirse\n    </a>\n    <br>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color:blue\" type=\"button\" (click)=\"Usuario()\" mdbBtn>Usuario\n      </button>\n    </div>\n    <br>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color: blue\" type=\"button\" (click)=\"Visitante()\" mdbBtn>Visitante\n      </button>\n    </div>\n    <br>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color: blue\" type=\"button\" (click)=\"Citizen()\" mdbBtn>Citizen\n      </button>\n    </div>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color: blue\" type=\"button\" (click)=\"crearUsuario()\" mdbBtn>crearUsuario\n      </button>\n    </div>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color: blue\" type=\"button\" (click)=\"crearhecho()\" mdbBtn>crear Hecho citizen\n      </button>\n    </div>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color: blue\" type=\"button\" (click)=\"listarHechosByChecker()\" mdbBtn>listar hechos checker\n      </button>\n    </div>\n    <div class=\"fadeIn first\">\n      <button style=\"background-color: blue\" type=\"button\" (click)=\"gestionNodos()\" mdbBtn>Gestion perifericos admin\n      </button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2595,6 +2595,18 @@ var PrimerPaginaComponent = /** @class */ (function () {
     PrimerPaginaComponent.prototype.gestionarMecanismosExternos = function () {
         localStorage.setItem("funcion", "gestionarMecanismosExternos");
         this.router.navigate(['/listarComponentes']);
+    };
+    PrimerPaginaComponent.prototype.crearUsuario = function () {
+        this.router.navigate(['/crearUsuario']);
+    };
+    PrimerPaginaComponent.prototype.crearhecho = function () {
+        this.router.navigate(['/crearHecho']);
+    };
+    PrimerPaginaComponent.prototype.listarHechosByChecker = function () {
+        this.router.navigate(['/seleccionarHecho']);
+    };
+    PrimerPaginaComponent.prototype.gestionNodos = function () {
+        this.router.navigate(['/gestionNodosPerifericos']);
     };
     PrimerPaginaComponent.prototype.suscripcion = function () {
         var aceptar;
