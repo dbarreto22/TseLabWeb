@@ -65,12 +65,12 @@ x
     console.log(sesion.token.jwt);
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
   }
-
+/*
   getAllMecanismos(): Observable<Array<object>> {
 
     return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosVerificacion`);
   }
-
+*/
   getCheckers(): Observable<Array<object>> {
     return this.http.get<Array<object>>(`${this.API_URL}/backend/getCheckers`);
 }
@@ -118,12 +118,12 @@ getNodosPerifericos(): Observable<Array<object>> {
     a.descripcion=descripcion;
     a.url=url;
     a.habilitado="true";
-    a.tipomecanismo="INTERNO";
+    a.mecanismo="INTERNO";
     let json=JSON.stringify(a);
-    return this.http.post(`${this.API_URL}/`,json,httpOptions);    
+    return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion`,json,httpOptions);    
   }
 
-  modificarMecanismo(id,descripcion,url,habilitado)
+  modificarMecanismo(id,descripcion,url,habilitado,tipoMecanismo)
   {
     var a: any = {};
     a.id=id;
@@ -132,8 +132,9 @@ getNodosPerifericos(): Observable<Array<object>> {
     a.habilitado=habilitado;
     a.usuario="";
     a.password="";
+    a.mecanismo=tipoMecanismo;
     let json=JSON.stringify(a);
-    return this.http.post(`${this.API_URL}/`,json,httpOptions);    
+    return this.http.post(`${this.API_URL}/admin/modificarMecanismoVerificacion`,json,httpOptions);    
   }
   crearUser(usuario:Usuario){
    
@@ -187,9 +188,17 @@ crearMecanismoVerificacion(mec:Perifericos, tipoMecanismo:string){
   a.tipoMecanismo=tipoMecanismo;
   //a.url=url;
   let json=JSON.stringify(a);
-
-
   return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion` , {mec ,json}, httpOptions);
+}
+
+getMecanismosInternos(): Observable<Array<object>> {
+
+  return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosInternos`);
+}
+
+getMecanismosExternos(): Observable<Array<object>> {
+
+  return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosExternos`);
 }
 
 

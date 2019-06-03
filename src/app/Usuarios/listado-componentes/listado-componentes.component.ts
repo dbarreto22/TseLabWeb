@@ -12,12 +12,13 @@ import { Mecanismos } from '../clases/mecanismos';
   templateUrl: './listado-componentes.component.html',
   styleUrls: ['./listado-componentes.component.scss']
 })
-export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
-  
+export class ListadoComponentesComponent implements OnInit, AfterContentChecked {
+  public tipoMecanismo;
+  public funcion;
   public titulo;
   public encabezado;
-  public gestionar=false;
-  public verificar=false;
+  public gestionar = false;
+  public verificar = false;
   public selector;
   public dialogOpened = false;
   public checkboxOnly = true;
@@ -26,59 +27,68 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
   public nombreCarrera;
   public loading;
   public skip = 0;
-  public mecanismos : Observable<Array<any>>;
+  public mecanismos: Observable<Array<any>>;
   public idHecho;
   public descripcion;
   public url;
   public estado;
-  constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
+  constructor(public http: HttpClient, private router: Router, private apiService: ApiServiceService) {
+
     this.setSelectableSettings();
 
-    console.log(localStorage.getItem("funcion"));
-    if(localStorage.getItem("funcion")=="gestionarMecanismos")
-    {
-      this.gestionar=true;
-      this.titulo="Gestión de mecanismos";
-      this.encabezado="Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
+    //********** */Inicailizo el componente de acuerdo a la funcion a realizar
+    this.funcion = localStorage.getItem("funcion");
+    if (this.funcion == "gestionarMecanismosInternos") {
+      this.gestionar = true;
+      this.titulo = "Gestión de mecanismos Internos";
+      this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
+      this.mecanismos = this.apiService.getMecanismosInternos();
     }
-    else{
-      this.verificar=true;
-      this.titulo="Seleccione Hecho a Verificar";
-      this.encabezado="Si desea verificar con un mecanismo, seleccione uno y click en Siguiente.\n De lo contrario click en Cancelar."
+    else if (this.funcion == "gestionarMecanismosExternos") {
+      this.gestionar = true;
+      this.titulo = "Gestión de mecanismos Externos";
+      this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
+      this.mecanismos = this.apiService.getMecanismosExternos();
     }
+    else {
+      this.verificar = true;
+      this.titulo = "Seleccione mecanismo para Verificar";
+      this.encabezado = "Si desea verificar con un mecanismo, seleccione uno y click en Siguiente.\n De lo contrario click en Cancelar."
+      //acá deberías programar la lógica que trae todos los componentes
+    }
+
     this.idHecho = localStorage.getItem("idHecho");
 
-    this.mecanismos = this.apiService.getAllMecanismos();
-  
+
     this.mecanismos.subscribe(
-      (res)=> {
-        this.loading=false
-          console.log("*******************mecanismos");
-    console.log(this.mecanismos);
-    console.log(res);
+      (res) => {
+        this.loading = false
+        console.log("*******************mecanismos");
+        console.log(this.mecanismos);
+        console.log(res);
 
       },
-      err=>{
-        this.loading=false;
+      err => {
+        this.loading = false;
         //this.apiService.mensajeConError(err);
       }
     )
 
     this.change()
-  
+
   }
 
-  ngAfterContentChecked(){
-    localStorage.setItem("funcion","");
+  ngAfterContentChecked() {
+    localStorage.setItem("funcion", "");
   }
   ngOnInit() {
   }
   public setSelectableSettings(): void {
     this.selectableSettings = {
-        checkboxOnly: this.checkboxOnly,
-        mode: 'single',
+      checkboxOnly: this.checkboxOnly,
+      mode: 'single',
     };
-}
+  }
   public state: State = {
     skip: 0,
     take: 5
@@ -97,87 +107,91 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked{
   }
 
   change() {
-   
+
     this.mecanismos.subscribe(
-    (data: Array<Mecanismos>)=> {
-      data.forEach(asig=>{
-        console.log(data);
-        if(asig.id == this.mySelection[0]){
-          this.codigo= asig.id;
-          this.descripcion=asig.descripcion;
-          this.estado=asig.habilitado;
-          this.url=asig.url;
-        }
-        console.log('codigo ',this.codigo)
-      })
-      
-    },
-    err=>{
-      console.log(err);
-     // this.apiService.mensajeConError(err);
-    }
-  )
+      (data: Array<Mecanismos>) => {
+        data.forEach(asig => {
+          console.log(data);
+          if (asig.id == this.mySelection[0]) {
+            this.codigo = asig.id;
+            this.descripcion = asig.descripcion;
+            this.estado = asig.habilitado;
+            this.url = asig.url;
+            //********* */Dependiendo de la funcionalidad elegida es el tipo de mecanismo que considero
+            if (this.funcion == "gestionarMecanismosInternos") {
+              this.tipoMecanismo="INTERNO"
+            }
+            else if (this.funcion == "gestionarMecanismosExternos") {
+              this.tipoMecanismo="EXTERNO"
+            }
+          }
+          console.log('codigo ', this.codigo)
+        })
+
+      },
+      err => {
+        console.log(err);
+        // this.apiService.mensajeConError(err);
+      }
+    )
 
 
-}
-
-siguiente(){
-
-  //FALTA HACER EL DE API DE GOOGLE
-  if(this.codigo != undefined){   
-    this.apiService.verificarHechoMecanismoSinApi(this.codigo,this.idHecho).subscribe((res)=> {
-      console.log("RESP",res);
-    },
-    err=>{
-      console.log("ERROR",err);
-      //this.apiService.mensajeConError(err);
-    }
-    );
-    alert("Se ha enviado correctamente")
-    this.router.navigate(['/seleccionarHecho']);
-  }else{
-    alert("Debe seleccionar un mecanismo para verificar")
   }
 
-}
+  siguiente() {
+
+    //FALTA HACER EL DE API DE GOOGLE
+    if (this.codigo != undefined) {
+      this.apiService.verificarHechoMecanismoSinApi(this.codigo, this.idHecho).subscribe((res) => {
+        console.log("RESP", res);
+      },
+        err => {
+          console.log("ERROR", err);
+          //this.apiService.mensajeConError(err);
+        }
+      );
+      alert("Se ha enviado correctamente")
+      this.router.navigate(['/seleccionarHecho']);
+    } else {
+      alert("Debe seleccionar un mecanismo para verificar")
+    }
+
+  }
 
 
 
   cancelar() {
-    if(this.codigo == undefined){
+    if (this.codigo == undefined) {
       this.router.navigate(['/seleccionarHecho']);
     }
-   
+
   }
 
-  volver(){
+  volver() {
     this.router.navigate(['/paginaPrincipal']);
   }
 
-  modificar(){
-    if(this.codigo != undefined){
+//*********** */Funciones especificas de gestión de mecanismos
+  modificar() {
+    if (this.codigo != undefined) {
       var a: any = {};
       localStorage.setItem("funcion", "modificar");
-      a.id=this.codigo;
-      a.descripcion=this.descripcion;
-      a.url=this.url;
-      a.habilitado=this.estado;
+      a.id = this.codigo;
+      a.descripcion = this.descripcion;
+      a.url = this.url;
+      a.habilitado = this.estado;
+      a.mecanismo=this.tipoMecanismo;
       localStorage.setItem("mecanismo", JSON.stringify(a));
       this.router.navigate(['/mecanismos']);
-    }else{
+    } else {
       alert("Debe seleccionar un mecanismo para modificar")
     }
   }
 
-  alta(){
+  alta() {
     localStorage.setItem("funcion", "alta");
     this.router.navigate(['/mecanismos']);
   }
 
-  inhabilitar(){
-    localStorage.setItem("funcion", "inhabilitar");
-    this.router.navigate(['/mecanismos']);
-    
-  }
 
 }

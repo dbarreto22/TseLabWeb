@@ -5,4 +5,5 @@ export class Mecanismos {
     descripcion : string;
     habilitado : boolean;
     url: string;
+    mecanismo:string;
 }
