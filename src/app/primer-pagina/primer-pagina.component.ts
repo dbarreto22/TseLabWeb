@@ -56,6 +56,14 @@ export class PrimerPaginaComponent implements OnInit {
     this.router.navigate(['/gestionNodosPerifericos']);
   }
 
+  asignarHecho(){
+    this.router.navigate(['/hechos']);
+  }
+
+  listarMecanismos(){
+    this.router.navigate(['/listarComponentes']);
+  }
+
   suscripcion(){
     var aceptar;
     aceptar=confirm("Desea suscribirse a las notificaciones").valueOf();
