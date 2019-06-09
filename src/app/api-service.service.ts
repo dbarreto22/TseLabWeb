@@ -105,8 +105,13 @@ x
   }
 
 
-  calificarHecho(hecho: Hechos){
-    return this.http.post(`${this.API_URL}/checker/verificarHecho` , hecho, httpOptions);
+  calificarHecho(id, calificacion, justificacion){
+    var a: any = {};
+    a.id=id;
+    a.calificacion=calificacion;
+    a.justificacion=justificacion;
+    let json=JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/checker/verificarHecho` , json, httpOptions);
   }
 
   altaMecanismo(descripcion,url,tipoMecanismo)

@@ -33,14 +33,22 @@
                   </label>
                   <label class="k-form-field">
                     <span>Fecha</span>    
-                    <kendo-dateinput  [(value)]="fecha"  [format]="'dd-MMM-yyyy'" (valueChange)="onChange($event)" ></kendo-dateinput>
+                    <kendo-dateinput  [(value)]="fecha"  [format]="'dd-MMM-yyyy'" [readonly]="true"  ></kendo-dateinput>
                   </label>
-                  <label class="k-form-field" *ngIf = "mostrar">
-                    <span>Mecanismo Utilizados</span>
-                      <tr *ngFor="let componente of componentes">
-                        <td>{{componente.descripcion}}</td>
-                        <td>{{componente.url}}</td>
-                      </tr>                   
+                  <label class="k-form-field" *ngIf="mostrar">
+                    <span>Mecanismo Utilizados y su Resultado</span>
+                      <table>
+                        <tr>
+                          <td><strong>Mecanismo</strong></td>
+                          <td><strong></strong></td>
+                          <td><strong>Resultado</strong></td>
+                        </tr>
+                        <tr *ngFor="let componente of mecanismos">
+                          <td >{{componente.descripcion}}</td>
+                          <td ></td>
+                          <td >{{componente.calificacion}}</td>
+                        </tr>     
+                      </table>                
                   </label>
               </fieldset>
               <div class="text-center">

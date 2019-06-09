@@ -2,6 +2,7 @@ import { Submiter } from './submiter';
 import { Checker } from './checker';
 import { Usuario } from './usuario';
 import { Mecanismos } from './mecanismos';
+import { ResultadosMecanismos } from './resultadosMecanismos';
 
 export class Hechos {
     constructor(){
@@ -19,5 +20,7 @@ export class Hechos {
     public validado : boolean;
     public mecanismos = new Array<Mecanismos>();
     public calificacion : string;
+    public resultadosMecanismos : Array<ResultadosMecanismos>;
+    public estado : string;
     
 }

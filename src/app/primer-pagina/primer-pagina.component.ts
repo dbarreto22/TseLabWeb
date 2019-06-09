@@ -40,6 +40,30 @@ export class PrimerPaginaComponent implements OnInit {
     this.router.navigate(['/listarComponentes'])
   }
 
+  crearUsuario(){
+    this.router.navigate(['/crearUsuario']);
+  }
+
+  crearhecho(){
+    this.router.navigate(['/crearHecho']);
+  }
+
+  listarHechosByChecker(){
+    this.router.navigate(['/seleccionarHecho']);
+  }
+
+  gestionNodos(){
+    this.router.navigate(['/gestionNodosPerifericos']);
+  }
+
+  asignarHecho(){
+    this.router.navigate(['/hechos']);
+  }
+
+  listarMecanismos(){
+    this.router.navigate(['/listarComponentes']);
+  }
+
   suscripcion(){
     var aceptar;
     aceptar=confirm("Desea suscribirse a las notificaciones").valueOf();
