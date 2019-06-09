@@ -8,7 +8,6 @@ import { Usuario } from './Usuarios/clases/usuario';
 import { Submiter } from './Usuarios/clases/submiter';
 import { Checker } from './Usuarios/clases/checker';
 import { observe } from '@progress/kendo-angular-grid/dist/es2015/utils';
-import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Mecanismos } from './Usuarios/clases/mecanismos';
 import { Perifericos } from './Usuarios/clases/perifericos';
 
@@ -110,7 +109,7 @@ x
     return this.http.post(`${this.API_URL}/checker/verificarHecho` , hecho, httpOptions);
   }
 
-  altaMecanismo(descripcion,url)
+  altaMecanismo(descripcion,url,tipoMecanismo)
   {
     var a: any = {};
     a.usuario="";
@@ -118,7 +117,7 @@ x
     a.descripcion=descripcion;
     a.url=url;
     a.habilitado="true";
-    a.mecanismo="INTERNO";
+    a.mecanismo=tipoMecanismo;
     let json=JSON.stringify(a);
     return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion`,json,httpOptions);    
   }

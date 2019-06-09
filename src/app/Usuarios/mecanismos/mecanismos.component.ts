@@ -23,10 +23,11 @@ export class MecanismosComponent implements OnInit {
   public url;
   public estado;
   public id;
+  public tipoMecanismo;
   constructor(public http: HttpClient, private router: Router, private apiService: ApiServiceService) {
     
     this.funcion = localStorage.getItem("funcion");
-
+    this.tipoMecanismo=
     console.log("**************funcion");
     console.log(this.funcion);
     if (this.funcion == "modificar") {
@@ -70,7 +71,7 @@ export class MecanismosComponent implements OnInit {
 
     }
     else {
-       this.apiService.altaMecanismo(this.descripcion,this.url).subscribe(
+       this.apiService.altaMecanismo(this.descripcion,this.url,this.mecanismo.mecanismo).subscribe(
         (res)=>{
           console.log(res);
   

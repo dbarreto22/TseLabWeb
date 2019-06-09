@@ -15,14 +15,13 @@ import { CrearHechoComponent } from './Usuarios/crear-hecho/crear-hecho.componen
 import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perifericos/gestion-nodos-perifericos.component';
 import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
 import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
+import { AuthorizatedGuard } from './authorizated.guard';
 
 
 
 const routes: Routes = [
-      
-  {path: '', component:PrimerPaginaComponent},
-  {path: 'paginaPrincipal', component:PaginaPrincipalComponent},
-  {path: 'login', component: LoginComponent},   
+/*{ path: 'principal', component: PaginaPrincipalComponent, canActivate:[AuthorizatedGuard],
+  children:[  */    
   {path: 'loginRedSocial', component: LoginRedSocialComponent},
   {path: 'crearUsuario', component: CrearUsuarioComponent},
   {path: 'hechos', component: HechosComponent},
@@ -35,8 +34,14 @@ const routes: Routes = [
   {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent},
   {path: 'crearNodosPerifericos', component: CrearNodosPerifericosComponent},
   {path: 'modificarNodosPerifericos', component: ModificarNodosPerifericosComponent},
-
-
+/*],
+   
+},*/
+{ path: '', component: LoginComponent,
+     children:[{path:'login',component:LoginComponent}]},
+{ path: 'hola', component: PrimerPaginaComponent,
+     children:[{path:'login',component:LoginComponent}]},
+{ path: '**', redirectTo: 'login' }
 
 ];
 

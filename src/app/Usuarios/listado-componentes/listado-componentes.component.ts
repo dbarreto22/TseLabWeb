@@ -305,6 +305,7 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
 
   alta() {
     localStorage.setItem("funcion", "alta");
+    localStorage.setItem("tipoMecanismo",this.tipoMecanismo);
     this.router.navigate(['/mecanismos']);
   }
 

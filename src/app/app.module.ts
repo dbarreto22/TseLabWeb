@@ -45,6 +45,9 @@ import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perif
 import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
 import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
 import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component';
+import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+
 
 
 
@@ -84,8 +87,7 @@ export function getAuthServiceConfigs() {
     CrearNodosPerifericosComponent,
     ModificarNodosPerifericosComponent,
     DonacionesComponent,
-
-
+    SidenavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,8 @@ export function getAuthServiceConfigs() {
     ButtonsModule,
     DateInputsModule,
     DropDownsModule,
-    FormsModule
+    FormsModule,
+    LayoutModule
   ],
   providers: [
               
