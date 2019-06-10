@@ -56,8 +56,8 @@ export class LoginComponent implements OnInit {
   });
 }
 
-pruebaObs(){
+/*pruebaObs(){  // esto funcionaba con los observables
   this.storage.pruebaObs();
 }
-
+*/
 }

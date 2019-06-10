@@ -94,9 +94,9 @@ logOut(){
   this.storage.clearSession();
 }
 
-pruebaObs(){
+/*pruebaObs(){
   this.storage.pruebaObs();
-}
+}*/
 
 
 }

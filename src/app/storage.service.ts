@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Sesion } from './Usuarios/clases/sesion.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +20,16 @@ export class StorageService {
   setSession(sesion, usuario){
     localStorage.setItem('session',JSON.stringify(new Sesion(sesion,usuario)));
     console.log('Storage- setseesion next*************************');
-    this.loged$.next(true);
     console.log('Se guardo la sesión*************************');
     console.log(sesion);
+    this.obs();
   }
 
   getSession()
   {
     return localStorage.getItem('session');
   }
+  
   usrLogged()
   {
     console.log('Storage - usrLogged');
@@ -38,11 +39,12 @@ export class StorageService {
 
   clearSession(){
     localStorage.clear();
-    this.loged$.next(false);
+    this.obs();
   }
-  pruebaObs(){
-    this.loged$.next(!this.loged);
-    this.loged=!this.loged;
+  
+  obs(){
+    this.loged$.next(this.usrLogged());
+    this.loged=this.usrLogged;
     console.log(this.loged);
   }
 }
