@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
 import { Sesion } from '../clases/sesion.model';
 import { ApiServiceService } from 'src/app/api-service.service';
 import { StorageService } from 'src/app/storage.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ ApiServiceService,StorageService]
+  providers: [ ApiServiceService]
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private router: Router, private apiservice : AuthenticationService,private storage : StorageService) { }
+  constructor( private router: Router, private apiservice : AuthenticationService,private storage : StorageService) { 
+  }
 
   public nombre:string;
   public email :string;
-
   
 
   
@@ -35,15 +36,18 @@ export class LoginComponent implements OnInit {
     console.log("Encrypted data = " + cip);
 
     //Descomentar la siguiente linea para pasar la pass cifrada
-      this.apiservice.loginUsuario(mail, cip).subscribe( result => {
-    //this.apiservice.loginUsuario(mail, password).subscribe( result => {
+    //  this.apiservice.loginUsuario(mail, cip).subscribe( result => {
+    this.apiservice.loginUsuario(mail, password).subscribe( result => {
       localStorage.setItem('userMail',mail);
       var resultado=JSON.parse(result);
       //localStorage.setItem('session',JSON.stringify(new Sesion(res,null)));
-      if(resultado.jwt!= null)
+      if(resultado.jwt!= null   && resultado.jwt!= "")
       {
         this.storage.setSession(resultado,null);
+        this.router.navigate(['/listarComponentes']);
       }
+      else
+        alert('Usuario o contraseña incorrectos');
       console.log("******************** resultado de login*******************************");
       console.log(resultado);
   },
@@ -52,6 +56,8 @@ export class LoginComponent implements OnInit {
   });
 }
 
-
+pruebaObs(){
+  this.storage.pruebaObs();
+}
 
 }
