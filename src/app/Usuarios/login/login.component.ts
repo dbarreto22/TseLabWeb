@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
 
   
   ngOnInit() {
+
+    if(this.storage.usrLogged())
+      this.router.navigate(['/principal']);
   }
 
 
@@ -44,20 +47,18 @@ export class LoginComponent implements OnInit {
       if(resultado.jwt!= null   && resultado.jwt!= "")
       {
         this.storage.setSession(resultado,null);
-        this.router.navigate(['/listarComponentes']);
+        this.storage.setRol(resultado.rol);
       }
       else
         alert('Usuario o contraseña incorrectos');
       console.log("******************** resultado de login*******************************");
       console.log(resultado);
+      if(this.storage.getSession)
+        this.router.navigate(['/bienvenido']);
   },
   error => {
       console.log(<any>error);
   });
 }
 
-/*pruebaObs(){  // esto funcionaba con los observables
-  this.storage.pruebaObs();
-}
-*/
 }

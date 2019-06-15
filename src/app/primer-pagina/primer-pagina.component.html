@@ -1,11 +1,20 @@
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+<div class="jumbotron" style="background: aliceblue">
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-      Bienvenido
-
-    </div>
+  <div class="example-config">
+    <p class="font-weight-normal" style="color: dodgerblue">Asignar hechos</p>
   </div>
+
+  <kendo-grid [kendoGridBinding]="hechos | async" [pageSize]="10" [pageable]="true" [sortable]="true"
+    [loading]="loading" [filterable]="true" [resizable]="true" [selectable]="selectableSettings"
+    (selectionChange)="change()" [kendoGridSelectBy]="mySelectionKey" [selectedKeys]="mySelection" [skip]="skip"
+    (pageChange)="pageChange($event)" [height]="500">
+    <kendo-grid-column field="id" title="Id" width="100" [filterable]="false">
+    </kendo-grid-column>
+    <kendo-grid-column field="titulo" title="Titulo">
+    </kendo-grid-column>
+    <kendo-grid-column field="url" title="URL" width="100" [filterable]="false">
+    </kendo-grid-column>
+
+    <kendo-grid-checkbox-column></kendo-grid-checkbox-column>
+  </kendo-grid>
 </div>

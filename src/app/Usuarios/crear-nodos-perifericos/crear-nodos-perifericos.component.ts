@@ -19,6 +19,12 @@ export class CrearNodosPerifericosComponent implements OnInit {
   constructor(public http: HttpClient, private apiService: ApiServiceService,private router: Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem('rol')!='ADMIN')
+    {
+      console.log('Mecanismos- El usuario no tiene los permisos suficientes para acceder a esta funcionalidad');
+      this.router.navigate(['/bienvenido'])
+    }
+
   }
 
 	

@@ -4,14 +4,39 @@
 
 .sidenav {
   width: 30%;
+  background: grey;
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+  backgroundr:grey;
 }
 
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.link{
+  margin-left:1%;
+  font-weight: bold;
+  font-size: 100%;
+  align-self:inherit;
+  color: orange;
+}
+
+.link:hover{
+  color: white;
+
+}
+
+.div-link{
+  text-align: right;
+}
+
+a{
+  text-decoration: none;
+  width: inherit;
+  background-color: orange;
+  border: double;
 }

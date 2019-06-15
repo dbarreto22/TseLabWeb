@@ -1,49 +1,57 @@
 <mat-toolbar color="primary" class="example-toolbar">
-  <button mat-icon-button (click)="snav.toggle()"><i class="icon ion-md-reorder"></i></button>
-  <a  *ngIf="aux" (click)="logOut()">Cerrar sesión
-  </a>
-  <a  href="">login
-  </a>
- <!-- <a mat-list-item (click)="pruebaObs()">ProbarCosas
+    <mat-icon class="link" (click)="sidenav.toggle()">reorder </mat-icon>
+
+  <!-- <a mat-list-item (click)="pruebaObs()">ProbarCosas
   </a>-->
 
-  <h1 class="example-app-name">Fact Checher
-  </h1>
+  <a class="example-app-name" href="/bienvenido">Fact Checker
+  </a>
+
+  <mat-icon class="link" *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
+  <mat-icon  class="link" aria-label="donar" (click)="donar()">attach_money</mat-icon>
+  <mat-icon *ngIf="aux2"  aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
+  <mat-icon class="link" aria-label="login-Mail" *ngIf="aux2" (click)="loginRedSocial()">mail_outline</mat-icon>
+
+
+
 </mat-toolbar>
-<mat-sidenav-container  class="sidenav-container">
+<mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-    <mat-nav-list *ngIf="aux | async">
-      <a mat-list-item (click)="gestionarMecanismosInternos()">Mecanismos Internos
+    <mat-nav-list *ngIf="aux">
+      <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Mecanismos Internos
       </a>
-      <a mat-list-item (click)="gestionarMecanismosExternos()">Mecanismos Externos
+      <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Mecanismos Externos
       </a>
-      <a mat-list-item (click)="suscripcion()">Suscribirse
+      <a *ngIf="citizen" mat-list-item (click)="suscripcion()">Suscribirse
       </a>
-      <a mat-list-item (click)="Usuario()">Usuario </a>
+      <a *ngIf="admin" mat-list-item (click)="Usuario()">Usuario </a>
 
-      <a mat-list-item (click)="Visitante()">Visitante </a>
+      <a *ngIf="citizen" mat-list-item (click)="Visitante()">Visitante </a>
 
-      <a mat-list-item (click)="Citizen()" >Citizen </a>
+      <a *ngIf="citizen" mat-list-item (click)="Citizen()">Citizen </a>
 
-      <a mat-list-item (click)="crearUsuario()" >crear Usuario admin </a>
+      <a *ngIf="admin" mat-list-item (click)="crearUsuario()">crear Usuario admin </a>
 
-      <a mat-list-item (click)="gestionNodos()" >Gestion perifericos admin </a>
+      <a *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion perifericos admin </a>
 
-      <a mat-list-item (click)="listarMecanismos()" >Listar Componentes admin </a>
+      <a *ngIf="admin" mat-list-item (click)="listarMecanismos()">Listar Componentes admin </a>
 
-      <a mat-list-item (click)="crearhecho()" >crear Hecho citizen </a>
+      <a *ngIf="citizen" mat-list-item (click)="crearhecho()">crear Hecho citizen </a>
 
-      <a mat-list-item (click)="listarHechosByChecker()" >listar hechos checker </a>
+      <a *ngIf="checker" mat-list-item (click)="listarHechosByChecker()">listar hechos checker </a>
 
-      <a mat-list-item (click)="asignarHecho()" >Asignar hechos submitter </a>
+      <a *ngIf="submiter" mat-list-item (click)="asignarHecho()">Asignar hechos submitter </a>
 
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+    <div class="selectWrapper" style="float: right">
+      <a mat-list-item (click)="pruebaObs()">Ver Rol
+        </a> 
+    </div>
+    <!-- <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>-->
 
-    <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
 
-  
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-</mat-sidenav-container>  
+</mat-sidenav-container>

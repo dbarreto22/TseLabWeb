@@ -80,8 +80,7 @@ export class UsuariosComponent implements OnInit {
 
       },
       err => {
-        console.error("Se rompe en hechos.component")
-        //this.apiService.mensajeConError(err);
+        console.error(err)
       }
     )
   }

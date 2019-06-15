@@ -17,15 +17,35 @@ export class SidenavBarComponent {
     .pipe(
       map(result => result.matches)
     );
-  
+
+  private rolElegido:String;
+  private admin:Boolean=false;
+  private checker:Boolean=false;
+  private submiter:Boolean=false;
+  private citizen:boolean=false;
   private aux:Boolean;
+  private aux2:Boolean;
   constructor(private breakpointObserver: BreakpointObserver,private storage : StorageService,private router: Router, private apiService : ApiServiceService) {
     this.storage.select$().subscribe(logueado=>{this.aux=logueado.valueOf();
+      this.aux2=!this.aux;
      console.log('sidenv-Bar logueado***************************')
     console.log(logueado)});
     this.aux=this.storage.usrLogged();
     console.log('**************Sidenav-Bar-Logueado*****************');
     console.log(this.aux);
+
+    this.storage.roles$().subscribe(rol=>{this.rolElegido=rol.valueOf();
+    console.log('sidenv-Bar rol***************************')
+    console.log(rol)
+    if(rol=='ADMIN')
+      this.admin=true;
+    else if(rol=='SUBMITER')
+      this.submiter=true;
+    else if(rol=='CHECKER')
+      this.checker=true;
+    else if(rol=='CITIZEN')
+      this.citizen=true;
+    });
   }
 
 
@@ -92,11 +112,30 @@ export class SidenavBarComponent {
 
 logOut(){
   this.storage.clearSession();
+  this.router.navigate(['/bienvenido']);
 }
 
-/*pruebaObs(){
-  this.storage.pruebaObs();
-}*/
 
+logIn(){
+  this.router.navigate(['']);
+}
+logInRedSocial(){
+  this.router.navigate(['/loginRedSocial']);
+}
+
+
+pruebaObs(){
+console.log('**********************Prueba obs****************');
+  console.log(this.rolElegido);
+  console.log(this.admin);
+  console.log(this.submiter);
+  console.log(this.checker);
+
+  this.storage.pruebaObs();
+}
+donar()
+{
+  this.storage.getAllHechos().subscribe(res=>console.log(res));
+}
 
 }

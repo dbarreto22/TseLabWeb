@@ -20,11 +20,10 @@ import { AuthorizatedGuard } from './authorizated.guard';
 
 
 const routes: Routes = [
-/*{ path: 'principal', component: PaginaPrincipalComponent, canActivate:[AuthorizatedGuard],
-  children:[  */    
-  {path: 'loginRedSocial', component: LoginRedSocialComponent},
+{ path: 'principal', component: HechosComponent, canActivate:[AuthorizatedGuard],
+  children:[  
   {path: 'crearUsuario', component: CrearUsuarioComponent},
-  {path: 'hechos', component: HechosComponent},
+ // {path: 'hechos', component: HechosComponent},
   {path: 'seleccionarHecho', component: SeleccionarHechoCheckerComponent},   
   {path: 'verificarHecho', component: VerificarHechoComponent},
   {path: 'usuarios', component: UsuariosComponent},
@@ -34,13 +33,14 @@ const routes: Routes = [
   {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent},
   {path: 'crearNodosPerifericos', component: CrearNodosPerifericosComponent},
   {path: 'modificarNodosPerifericos', component: ModificarNodosPerifericosComponent},
-/*],
+],
    
-},*/
+},
 { path: '', component: LoginComponent,
      children:[{path:'login',component:LoginComponent}]},
-{ path: 'hola', component: PrimerPaginaComponent,
+{ path: 'bienvenido', component: PrimerPaginaComponent,
      children:[{path:'login',component:LoginComponent}]},
+{path: 'loginRedSocial', component: LoginRedSocialComponent},
 { path: '**', redirectTo: 'login' }
 
 ];

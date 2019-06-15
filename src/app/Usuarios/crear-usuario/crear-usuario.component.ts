@@ -23,11 +23,11 @@ export class CrearUsuarioComponent implements OnInit {
   constructor(public http: HttpClient, private apiService: ApiServiceService,private router: Router) {}
 
   ngOnInit() {
-    /*let rolElegido = localStorage.getItem('rolElegido');
-    if (rolElegido != '1') {
-      alert('El rol actual no puede acceder a esta función.');
-      this.router.navigate(['/'])
-    }*/
+    if(localStorage.getItem('rol')!='ADMIN')
+    {
+      console.log('Mecanismos- El usuario no tiene los permisos suficientes para acceder a esta funcionalidad');
+      this.router.navigate(['/bienvenido'])
+    }
   }
 
   public crearUsuario(nombre,nickname, mail,telefono,password) {

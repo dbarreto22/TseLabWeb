@@ -50,7 +50,7 @@ public selectedValue: string;
     this.idMecanismo = localStorage.getItem("idMecanismo");
     this.idHecho = localStorage.getItem("idHecho");
 
-    this.hechos = this.apiService.getAllHechos();
+    //this.hechos = this.apiService.getAllHechos();
 
     this.hechos.subscribe(
       ()=> {

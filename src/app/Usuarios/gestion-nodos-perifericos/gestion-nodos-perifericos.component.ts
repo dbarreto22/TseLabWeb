@@ -42,6 +42,11 @@ export class GestionNodosPerifericosComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('rol')!='ADMIN')
+    {
+      console.log('Gestión Perifericos- El usuario no tiene los permisos suficientes para acceder a esta funcionalidad');
+      this.router.navigate(['/bienvenido'])
+    }
   }
 
   public setSelectableSettings(): void {

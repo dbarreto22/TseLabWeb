@@ -44,10 +44,15 @@ export class ApiServiceService {
 x
 
   getAllHechos(): Observable<Array<object>> {
+//    /*
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
     console.log('****************Token**********************')
-    console.log(sesion.token.jwt);
-    return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
+    console.log(sesion != null ? sesion.token.jwt : "No estas logueado");
+    return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);//*/
+  }
+
+  getHechosVisitante(){
+    return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);//*/
   }
 
   getHechosByChecker(): Observable<Array<object>> { 
@@ -61,7 +66,7 @@ x
   getAllUsuarios(): Observable<Array<object>> {
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
     console.log('****************Token**********************')
-    console.log(sesion.token.jwt);
+    console.log(sesion != null ? sesion.token.jwt : "No estas logueado");
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
   }
 /*

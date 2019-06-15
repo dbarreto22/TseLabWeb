@@ -48,6 +48,11 @@ export class MecanismosComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('rol')!='ADMIN')
+    {
+      console.log('Mecanismos- El usuario no tiene los permisos suficientes para acceder a esta funcionalidad');
+      this.router.navigate(['/bienvenido'])
+    }
   }
 
   accion() {
@@ -89,6 +94,6 @@ export class MecanismosComponent implements OnInit {
 
   }
   volver(){
-    this.router.navigate(['/paginaPrincipal']);
+    this.router.navigate(['/bienvenido']);
   }
 }

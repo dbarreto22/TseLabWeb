@@ -47,6 +47,7 @@ import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-p
 import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component';
 import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { AuthorizatedGuard } from './authorizated.guard';
 
 
 
@@ -118,6 +119,7 @@ export function getAuthServiceConfigs() {
               HttpClient,
               HttpClientModule,
               AuthenticationService,
+              AuthorizatedGuard,
               {
                 provide: AuthServiceConfig,
                 useFactory: getAuthServiceConfigs

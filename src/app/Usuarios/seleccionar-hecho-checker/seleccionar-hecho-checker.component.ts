@@ -50,6 +50,11 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('rol')!='CHECKER')
+    {
+      console.log('Mecanismos- El usuario no tiene los permisos suficientes para acceder a esta funcionalidad');
+      this.router.navigate(['/bienvenido'])
+    }
   }
 
   public setSelectableSettings(): void {
@@ -118,13 +123,8 @@ verificar(){
 
 
   cancelar() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/bienvenido']);
   }
-/*
-  public asignarCarreraAsignatura(){
-    this.selector=1;
-    this.carreraAsignatura();
-  }*/
 
   public hechoVerificar() {
     if (this.codigo != undefined) {
@@ -132,8 +132,7 @@ verificar(){
       //if(this.selector==1)
       this.router.navigate(['/verificarhecho']);
     }
-    //else
-     // alert('Debe seleccionar una carrera para continuar.');
+
   }
 
 }

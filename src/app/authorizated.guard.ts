@@ -8,11 +8,14 @@ export class AuthorizatedGuard implements CanActivate {
   constructor(private router: Router,private storage : StorageService) { }
 
   canActivate() {
-    if (this.storage.usrLogged) {
+    if (this.storage.usrLogged()) {
+      console.log('Authorizated geuard CanActivate')
       return true;
     }
- 
-    this.router.navigate(['/login']);
-    return false; 
+    else{
+      console.log('Authorizated geuard CantActivate')
+      return false;
+    }
+//    this.router.navigate(['/login']);
   }
 }
