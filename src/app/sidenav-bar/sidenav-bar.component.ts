@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './sidenav-bar.component.html',
   styleUrls: ['./sidenav-bar.component.scss']
 })                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-export class SidenavBarComponent {
+export class SidenavBarComponent implements OnInit{
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -48,10 +48,19 @@ export class SidenavBarComponent {
     });
   }
 
+  ngOnInit(){
 
+    this.storage.setRol(localStorage.getItem('rol'));
 
+  }
+
+  
   Usuario(){
-    this.router.navigate(['/login']);
+    console.log('Sidenav-Usuario')
+    console.log(localStorage.getItem('sesion'))
+    console.log(this.storage.usrLogged());
+    console.log(localStorage.getItem('rol'))
+    this.router.navigate(['/crearUsuario']);
   }
 
   Visitante(){
@@ -136,6 +145,22 @@ console.log('**********************Prueba obs****************');
 donar()
 {
   this.storage.getAllHechos().subscribe(res=>console.log(res));
+}
+
+irDonaciones(){
+  this.router.navigate(['/donaciones']);
+}
+
+irGraficas(){
+  this.router.navigate(['/graficas']);
+}
+
+irExportPDF(){
+  this.router.navigate(['/reportes']);
+}
+
+irPricipal(){
+  this.router.navigate(['/principalAdmin']);
 }
 
 }

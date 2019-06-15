@@ -9,7 +9,7 @@ export class AuthorizatedGuard implements CanActivate {
 
   canActivate() {
     if (this.storage.usrLogged()) {
-      console.log('Authorizated geuard CanActivate')
+      console.log('Authorizated guard CanActivate')
       return true;
     }
     else{

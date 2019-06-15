@@ -22,19 +22,27 @@
       </a>
       <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Mecanismos Externos
       </a>
-      <a *ngIf="citizen" mat-list-item (click)="suscripcion()">Suscribirse
-      </a>
       <a *ngIf="admin" mat-list-item (click)="Usuario()">Usuario </a>
-
-      <a *ngIf="citizen" mat-list-item (click)="Visitante()">Visitante </a>
-
-      <a *ngIf="citizen" mat-list-item (click)="Citizen()">Citizen </a>
 
       <a *ngIf="admin" mat-list-item (click)="crearUsuario()">crear Usuario admin </a>
 
       <a *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion perifericos admin </a>
 
       <a *ngIf="admin" mat-list-item (click)="listarMecanismos()">Listar Componentes admin </a>
+
+      <a *ngIf="admin" mat-list-item (click)="irDonaciones()">Donaciones</a>
+
+      <a *ngIf="admin" mat-list-item (click)="irPrincipal()">Principal</a>
+
+      <a *ngIf="admin" mat-list-item (click)="irGraficas()">Graficas</a>
+
+      <a *ngIf="admin" mat-list-item (click)="irExportPDF()">Reportes</a>
+
+      <a *ngIf="citizen" mat-list-item (click)="suscripcion()">Suscribirse</a>
+
+      <a *ngIf="citizen" mat-list-item (click)="Visitante()">Visitante </a>
+
+      <a *ngIf="citizen" mat-list-item (click)="Citizen()">Citizen </a>
 
       <a *ngIf="citizen" mat-list-item (click)="crearhecho()">crear Hecho citizen </a>
 

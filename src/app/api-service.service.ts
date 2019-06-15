@@ -218,4 +218,23 @@ getMecanismosExternos(): Observable<Array<object>> {
 }
 
 
+gethechosByEstados(estado :string){
+  console.log("ESTADO",estado)
+ // let estado = "VERIFICADO"
+  return this.http.get<Array<object>>(`${this.API_URL}/getHechosByEstado/` + estado);
+}
+
+
+gethechospaginado(nroPag, cantElemPag): Observable<object> {
+  
+  return this.http.get<object>(`${this.API_URL}/getHechosPag/` + nroPag + `/` + cantElemPag );
+}
+
+
+
+getFiltros(nroPag, cantElemPag, titulo, url, estado): Observable<object> {
+  
+  return this.http.get<object>(`${this.API_URL}/getHechosFiltros/` + nroPag + `/` + cantElemPag + `/` + titulo + `/` + url + `/` + estado);
+}
+
 }

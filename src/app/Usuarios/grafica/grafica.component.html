@@ -1,0 +1,14 @@
+<div class="jumbotron" style="background: aliceblue" >
+  <div class="example-config" >
+      <p class="font-weight-normal" style="color: dodgerblue; align-content: center">Grafica por Estado</p>
+  </div>
+</div>
+<kendo-chart>
+    <kendo-chart-series>
+      <kendo-chart-series-item
+          type="column" [data]="seriesData"
+          field="cantidad" categoryField="estado">
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart> 
+

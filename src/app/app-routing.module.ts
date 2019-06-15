@@ -16,14 +16,16 @@ import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perif
 import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
 import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
 import { AuthorizatedGuard } from './authorizated.guard';
+import { VerDonacionesComponent } from './Usuarios/ver-donaciones/ver-donaciones.component';
+import { GraficaComponent } from './Usuarios/grafica/grafica.component';
+import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
 
 
 
 const routes: Routes = [
-{ path: 'principal', component: HechosComponent, canActivate:[AuthorizatedGuard],
+{ path: 'princial', component: HechosComponent, canActivate:[AuthorizatedGuard],
   children:[  
   {path: 'crearUsuario', component: CrearUsuarioComponent},
- // {path: 'hechos', component: HechosComponent},
   {path: 'seleccionarHecho', component: SeleccionarHechoCheckerComponent},   
   {path: 'verificarHecho', component: VerificarHechoComponent},
   {path: 'usuarios', component: UsuariosComponent},
@@ -33,6 +35,10 @@ const routes: Routes = [
   {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent},
   {path: 'crearNodosPerifericos', component: CrearNodosPerifericosComponent},
   {path: 'modificarNodosPerifericos', component: ModificarNodosPerifericosComponent},
+  {path: 'donaciones', component: VerDonacionesComponent},
+  {path: 'reportes', component: ExportPDFComponent},
+  {path: 'graficas', component: GraficaComponent},
+  {path: 'principalAdmin', component: PaginaPrincipalComponent},
 ],
    
 },

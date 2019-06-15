@@ -48,6 +48,15 @@ import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component'
 import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AuthorizatedGuard } from './authorizated.guard';
+import { VerDonacionesComponent } from './Usuarios/ver-donaciones/ver-donaciones.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+import { GraficaComponent } from './Usuarios/grafica/grafica.component';
+import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
+
+
+
 
 
 
@@ -89,6 +98,9 @@ export function getAuthServiceConfigs() {
     ModificarNodosPerifericosComponent,
     DonacionesComponent,
     SidenavBarComponent,
+    VerDonacionesComponent,
+    GraficaComponent,
+    ExportPDFComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,7 +123,9 @@ export function getAuthServiceConfigs() {
     DateInputsModule,
     DropDownsModule,
     FormsModule,
-    LayoutModule
+    LayoutModule,
+    PDFExportModule,
+    ChartsModule
   ],
   providers: [
               

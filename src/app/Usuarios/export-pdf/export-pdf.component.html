@@ -1,0 +1,51 @@
+<div class="example-config" style="background-color: aliceblue">
+    <div class="example-config">
+        <p class="font-weight-normal" style="color: dodgerblue">Seleccione Estado para Crear Reporte</p>
+    </div>
+<div class="example-config">
+
+    <kendo-dropdownlist
+    [data]="estado"
+    textField="text"
+    valueField="value"
+    [valuePrimitive]="true"
+    [(ngModel)]="selectedValue"
+    [ngModelOptions]="{standalone: true}"
+    >
+    </kendo-dropdownlist>   
+  
+  <button kendo-button (click)="buscar()">
+    Buscar
+  </button>
+  </div>
+</div>
+
+<kendo-pdf-export #pdf paperSize="A4" margin="2cm"  [repeatHeaders]="repeatHeaders" >
+  <table class="table" style="background-color: white">
+    <thead>
+      <tr>
+        <th>Titulo</th>
+        <th>URL</th>
+        <th>Estado actual</th>
+        <th>Fecha de registro del Hecho</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of h">
+        <td>{{ row.titulo }}</td>
+        <td >{{ row.url }}</td>
+        <td>{{ row.estado }}</td>
+        <td>{{ row.fechaRegistroCalificacion }}</td>
+      </tr>
+    </tbody>
+  </table>
+</kendo-pdf-export>
+
+<div class="example-config">
+    <button kendo-button (click)="pdf.saveAs('Reporte.pdf')" *ngIf="mostrarBoton">
+      Crear Reporte
+    </button>
+</div>
+
+
+

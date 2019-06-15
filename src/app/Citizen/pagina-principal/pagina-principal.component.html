@@ -1,34 +1,70 @@
-<!--[ngStyle]="{'background-image':'url(' + fondo + ')'}"-->
-<div  style="width: 100%;
-height: 100%;
-text-align: center;">
- <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><i class="icon ion-md-reorder"></i></button>  
-  <h1 class="example-app-name">Fact Checher
-  </h1>
-</mat-toolbar>
-<mat-sidenav-container class="example-sidenav-container"
-[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-[fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-<mat-nav-list>
-        <a mat-list-item routerLink="/" (click)="onSidenavClose()">Inicio
-        </a>
-        <a mat-list-item routerLink="/login" (click)="onSidenavClose()">Login
-        </a>
+<div class="jumbotron" style="background: aliceblue" >
 
-</mat-nav-list>
-</mat-sidenav>
+  <div class="example-config">
+      <p class="font-weight-normal" style="color: dodgerblue">PRUEBA</p>
+  </div>
+  <div class="example-config">
+  <kendo-textbox-container floatingLabel="Filtrar por titulo">
+    <input #titulo kendoTextBox type="text"/>
+  </kendo-textbox-container>
+  <kendo-textbox-container floatingLabel="Filtrar por URL">
+    <input #url  kendoTextBox type="text" />
+  </kendo-textbox-container>
+  <kendo-dropdownlist
+    [data]="estado"
+    textField="text"
+    valueField="value"
+    [valuePrimitive]="true"
+    [(ngModel)]="selectedValue"
+    [ngModelOptions]="{standalone: true}"
+    >
+    </kendo-dropdownlist>   
+<button kendoButton [toggleable]="true"  (click)="buscar(titulo.value, url.value)">Buscar</button>        
+</div>
+  <kendo-grid     
+      [kendoGridBinding]=" listado.hechos" 
+      [pageSize]=10
+      [pageable]="false"
+      [resizable]="true"
+      [selectable]="selectableSettings" 
+      (selectionChange) = "change()"
+      [kendoGridSelectBy]="mySelectionKey"
+      [selectedKeys]="mySelection"
+      [skip]="skip"
+      [loading]="loading"
+      [height]="500"
+      (pageChange)="pageChange($event)"
+  >
+  <kendo-grid-column field="titulo" title="Titulo" width="100" >
+      </kendo-grid-column>
+  <kendo-grid-column field="url" title="URL">
+      </kendo-grid-column>
+  <kendo-grid-column field="estado" title="Estado actual">
+      </kendo-grid-column>
+  <kendo-grid-column field="fechaRegistroCalificacion" title="Fecha de registro del Hecho">
+      </kendo-grid-column>
+  <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
+</kendo-grid>
 
-      <main class="fondo-app">
-        <router-outlet></router-outlet>
-      </main>
 
-  </mat-sidenav-container>
+      <div style="text-align: center;">
+          <p style="margin: 20">{{page}} de  {{totalPaginas}}</p> 
+       
+        <button kendoButton [toggleable]="true" [disabled]=mostrarAnt (click)="trerDatosAnterior()" style="size: 3cm">Ant</button>
+        <button kendoButton [toggleable]="true" [disabled]=mostrarSig (click)="traerDatosSig()" >Sig</button>
 
+      </div>
+  
+<div></div>
+<div></div>
+  <div class="row">
+    <div class="col-sm-12 example-col">
+      <kendo-buttongroup  [selection]="'single'" [width]="'100%'">
+        <button kendoButton [toggleable]="true"  (click)="calificar()">Calificar Hecho</button>
+        <button kendoButton [toggleable]="true"  (click)="verificar()">Verificar Hecho Componentes</button>
+        <button kendoButton [toggleable]="true"  (click)="cancelar()">Cancelar</button>
+      </kendo-buttongroup>
+    </div>
+  </div>
 
 </div>
-  
-  
-  
-  
