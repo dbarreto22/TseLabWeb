@@ -1,3 +1,44 @@
-<p>
-  donaciones works!
-</p>
+<div class="jumbotron" style="background: aliceblue">
+
+  <div class="example-config">
+      <p class="font-weight-normal" style="color: dodgerblue">Donaciones</p>
+  </div>
+
+
+  <kendo-grid     
+      [data]="donacionMostrar" 
+      [pageSize]="10"
+      [pageable]="true"
+      [sortable]="true"
+      [filterable]="true"
+      [resizable]="true"
+      [selectable]="selectableSettings" 
+      (selectionChange) = "change()"
+      [kendoGridSelectBy]="mySelectionKey"
+      [selectedKeys]="mySelection"
+      [skip]="skip"
+      (pageChange)="pageChange($event)"
+      [loading]="loading"
+      [height]="500"
+  >
+  <kendo-grid-column field="id" title="Identificador" width="100" >
+      </kendo-grid-column>
+  <kendo-grid-column field="fecha" title="Fecha">
+      </kendo-grid-column>
+  <kendo-grid-column field="montoMoneda" title="Monto">
+      </kendo-grid-column>
+  <kendo-grid-column field="usuario" title="Usuario">
+      </kendo-grid-column>
+      </kendo-grid>
+
+
+      <label class="k-form-field" for="readOnlyInput">
+        <span>Total Montos en Pesos</span>
+        <input  value= {{pesos}} class="form-control"  type="text" readonly/>
+      </label>
+      <label class="k-form-field" for="readOnlyInput">
+        <span>Total Montos en Dolares</span>
+        <input  value= {{dolares}} class="form-control"  type="text" readonly/>
+      </label>
+
+</div>

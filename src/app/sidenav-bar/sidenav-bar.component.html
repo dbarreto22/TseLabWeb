@@ -40,6 +40,8 @@
     <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="irExportPDF()">Reportes</a>
     <hr *ngIf="admin"/>
+      <a *ngIf="admin" mat-list-item (click)="listarDonaciones()">Listar Donaciones</a>
+    <hr *ngIf="admin"/>
       <a *ngIf="citizen" mat-list-item (click)="suscripcion()">Suscribirse</a>
     <hr *ngIf="citizen"/>
       <a *ngIf="citizen" mat-list-item (click)="Visitante()">Visitante </a>

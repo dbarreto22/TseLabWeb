@@ -102,6 +102,10 @@ export class SidenavBarComponent implements OnInit {
     this.router.navigate(['/hechos']);
   }
 
+  listarDonaciones(){
+    this.router.navigate(['/listarDonaciones']);
+  }
+
   listarMecanismos() {
     this.router.navigate(['/listarComponentes']);
   }
