@@ -20,38 +20,38 @@
     <mat-nav-list *ngIf="aux">
       <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Mecanismos Internos
       </a>
-    <hr/>
+    <hr *ngIf="admin" />
       <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Mecanismos Externos
       </a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="Usuario()">Usuario </a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="crearUsuario()">crear Usuario admin </a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion perifericos admin </a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="listarMecanismos()">Listar Componentes admin </a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="irDonaciones()">Donaciones</a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="irPrincipal()">Principal</a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="irGraficas()">Graficas</a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="irExportPDF()">Reportes</a>
-    <hr/>
+    <hr *ngIf="admin"/>
       <a *ngIf="citizen" mat-list-item (click)="suscripcion()">Suscribirse</a>
-    <hr/>
+    <hr *ngIf="citizen"/>
       <a *ngIf="citizen" mat-list-item (click)="Visitante()">Visitante </a>
-    <hr/>
+    <hr *ngIf="citizen"/>
       <a *ngIf="citizen" mat-list-item (click)="Citizen()">Citizen </a>
-    <hr/>
+    <hr *ngIf="citizen"/>
       <a *ngIf="citizen" mat-list-item (click)="crearhecho()">crear Hecho citizen </a>
-    <hr/>
+    <hr *ngIf="citizen"/>
       <a *ngIf="checker" mat-list-item (click)="listarHechosByChecker()">listar hechos checker </a>
-    <hr/>
+    <hr *ngIf="checker"/>
       <a *ngIf="submiter" mat-list-item (click)="asignarHecho()">Asignar hechos submitter </a>
-    <hr/>
+    <hr *ngIf="submiter"/>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

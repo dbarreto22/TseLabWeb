@@ -124,7 +124,6 @@ export class SidenavBarComponent implements OnInit {
     this.router.navigate(['/bienvenido']);
   }
 
-
   logIn() {
     this.router.navigate(['login']);
   }

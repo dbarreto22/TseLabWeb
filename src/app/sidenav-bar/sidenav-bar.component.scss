@@ -38,6 +38,11 @@
   text-align: right;
 }
 
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+  display: block;
+  height: 11px;
+}
+
 a{
   text-decoration: none;
   width: auto;
