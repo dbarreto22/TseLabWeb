@@ -62,7 +62,7 @@ export class StorageService {
   setRol(aux){
     this.rol$.next(aux);
     this.rol=aux;
-    localStorage.setItem('rol',aux);
+    aux != null?localStorage.setItem('rol',aux):null;
     console.log('Storage-setRol-Rol*******************');
     console.log(this.rol);
   }

@@ -56,10 +56,6 @@ export class SidenavBarComponent implements OnInit{
 
   
   Usuario(){
-    console.log('Sidenav-Usuario')
-    console.log(localStorage.getItem('sesion'))
-    console.log(this.storage.usrLogged());
-    console.log(localStorage.getItem('rol'))
     this.router.navigate(['/crearUsuario']);
   }
 
@@ -126,7 +122,7 @@ logOut(){
 
 
 logIn(){
-  this.router.navigate(['']);
+  this.router.navigate(['login']);
 }
 logInRedSocial(){
   this.router.navigate(['/loginRedSocial']);

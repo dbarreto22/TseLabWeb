@@ -1,7 +1,8 @@
-import { Component, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { ApiServiceService } from './api-service.service';
 import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { StorageService } from './storage.service';
 
 @Component({
   selector: 'app-root',
@@ -9,24 +10,16 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnDestroy {
-  public conversionEncryptOutput;
-  title = 'presentacionRIA';
-  fondo = "";
-  mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+export class AppComponent implements OnInit {
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-//---------------------------------------------------_____-----------------------------____------------_____-------------
+
+  constructor(private storage:StorageService) {
 
 
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+  ngOnInit() {
+    this.storage.setRol(localStorage.getItem('rol'));
   }
 
 

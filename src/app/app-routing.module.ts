@@ -19,13 +19,15 @@ import { AuthorizatedGuard } from './authorizated.guard';
 import { VerDonacionesComponent } from './Usuarios/ver-donaciones/ver-donaciones.component';
 import { GraficaComponent } from './Usuarios/grafica/grafica.component';
 import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
+import { AppLayoutComponent } from './app-layout/app-layout.component';
 
 
 
 const routes: Routes = [
-{ path: 'princial', component: HechosComponent, canActivate:[AuthorizatedGuard],
+{ path: '', component: AppLayoutComponent, canActivate:[AuthorizatedGuard],
   children:[  
   {path: 'crearUsuario', component: CrearUsuarioComponent},
+  {path: 'hechos', component: HechosComponent},
   {path: 'seleccionarHecho', component: SeleccionarHechoCheckerComponent},   
   {path: 'verificarHecho', component: VerificarHechoComponent},
   {path: 'usuarios', component: UsuariosComponent},
@@ -42,10 +44,10 @@ const routes: Routes = [
 ],
    
 },
-{ path: '', component: LoginComponent,
-     children:[{path:'login',component:LoginComponent}]},
-{ path: 'bienvenido', component: PrimerPaginaComponent,
-     children:[{path:'login',component:LoginComponent}]},
+{ path: 'login', component: LoginComponent},
+     //children:[{path:'login',component:LoginComponent}]},
+{ path: 'bienvenido', component: PrimerPaginaComponent},
+     //children:[{path:'login',component:LoginComponent}]},
 {path: 'loginRedSocial', component: LoginRedSocialComponent},
 { path: '**', redirectTo: 'login' }
 

@@ -54,6 +54,7 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
 import { GraficaComponent } from './Usuarios/grafica/grafica.component';
 import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
+import { AppLayoutComponent } from './app-layout/app-layout.component';
 
 
 
@@ -101,6 +102,7 @@ export function getAuthServiceConfigs() {
     VerDonacionesComponent,
     GraficaComponent,
     ExportPDFComponent,
+    AppLayoutComponent,
   ],
   imports: [
     BrowserModule,
