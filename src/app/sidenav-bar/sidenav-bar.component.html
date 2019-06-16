@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="example-toolbar">
-    <mat-icon class="link" (click)="sidenav.toggle()">reorder </mat-icon>
+  <mat-icon *ngIf="aux" class="link" (click)="sidenav.toggle()">reorder </mat-icon>
 
   <!-- <a mat-list-item (click)="pruebaObs()">ProbarCosas
   </a>-->
@@ -8,8 +8,8 @@
   </a>
 
   <mat-icon class="link" *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
-  <mat-icon  class="link" aria-label="donar" (click)="donar()">attach_money</mat-icon>
-  <mat-icon *ngIf="aux2"  aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
+  <mat-icon class="link" aria-label="donar" (click)="donar()">attach_money</mat-icon>
+  <mat-icon *ngIf="aux2" aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
   <mat-icon class="link" aria-label="login-Mail" *ngIf="aux2" (click)="loginRedSocial()">mail_outline</mat-icon>
 
 
@@ -20,46 +20,45 @@
     <mat-nav-list *ngIf="aux">
       <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Mecanismos Internos
       </a>
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Mecanismos Externos
       </a>
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="Usuario()">Usuario </a>
-
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="crearUsuario()">crear Usuario admin </a>
-
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion perifericos admin </a>
-
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="listarMecanismos()">Listar Componentes admin </a>
-
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="irDonaciones()">Donaciones</a>
-
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="irPrincipal()">Principal</a>
-
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="irGraficas()">Graficas</a>
-
+    <hr/>
       <a *ngIf="admin" mat-list-item (click)="irExportPDF()">Reportes</a>
-
+    <hr/>
       <a *ngIf="citizen" mat-list-item (click)="suscripcion()">Suscribirse</a>
-
+    <hr/>
       <a *ngIf="citizen" mat-list-item (click)="Visitante()">Visitante </a>
-
+    <hr/>
       <a *ngIf="citizen" mat-list-item (click)="Citizen()">Citizen </a>
-
+    <hr/>
       <a *ngIf="citizen" mat-list-item (click)="crearhecho()">crear Hecho citizen </a>
-
+    <hr/>
       <a *ngIf="checker" mat-list-item (click)="listarHechosByChecker()">listar hechos checker </a>
-
+    <hr/>
       <a *ngIf="submiter" mat-list-item (click)="asignarHecho()">Asignar hechos submitter </a>
-
+    <hr/>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="selectWrapper" style="float: right">
       <a mat-list-item (click)="pruebaObs()">Ver Rol
-        </a> 
+      </a>
     </div>
-    <!-- <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>-->
-
-
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

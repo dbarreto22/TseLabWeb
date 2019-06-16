@@ -10,153 +10,156 @@ import { Router } from '@angular/router';
   selector: 'app-sidenav-bar',
   templateUrl: './sidenav-bar.component.html',
   styleUrls: ['./sidenav-bar.component.scss']
-})                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-export class SidenavBarComponent implements OnInit{
+})
+export class SidenavBarComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
 
-  private rolElegido:String;
-  private admin:Boolean=false;
-  private checker:Boolean=false;
-  private submiter:Boolean=false;
-  private citizen:boolean=false;
-  private aux:Boolean;
-  private aux2:Boolean;
-  constructor(private breakpointObserver: BreakpointObserver,private storage : StorageService,private router: Router, private apiService : ApiServiceService) {
-    this.storage.select$().subscribe(logueado=>{this.aux=logueado.valueOf();
-      this.aux2=!this.aux;
-     console.log('sidenv-Bar logueado***************************')
-    console.log(logueado)});
-    this.aux=this.storage.usrLogged();
+  private rolElegido: String;
+  private admin: Boolean = false;
+  private checker: Boolean = false;
+  private submiter: Boolean = false;
+  private citizen: boolean = false;
+  private aux: Boolean;
+  private aux2: Boolean;
+  constructor(private breakpointObserver: BreakpointObserver, private storage: StorageService, private router: Router, private apiService: ApiServiceService) {
+    this.storage.select$().subscribe(logueado => {
+    this.aux = logueado.valueOf();
+      this.aux2 = !this.aux;
+      console.log('sidenv-Bar logueado***************************')
+      console.log(logueado)
+    });
+    this.aux = this.storage.usrLogged();
     console.log('**************Sidenav-Bar-Logueado*****************');
     console.log(this.aux);
 
-    this.storage.roles$().subscribe(rol=>{this.rolElegido=rol.valueOf();
-    console.log('sidenv-Bar rol***************************')
-    console.log(rol)
-    if(rol=='ADMIN')
-      this.admin=true;
-    else if(rol=='SUBMITER')
-      this.submiter=true;
-    else if(rol=='CHECKER')
-      this.checker=true;
-    else if(rol=='CITIZEN')
-      this.citizen=true;
+    this.storage.roles$().subscribe(rol => {
+      if (rol != null && rol != "") {
+        this.rolElegido = rol.valueOf();
+        console.log('sidenv-Bar rol***************************')
+        console.log(rol)
+        if (rol == 'ADMIN')
+          this.admin = true;
+        else if (rol == 'SUBMITER')
+          this.submiter = true;
+        else if (rol == 'CHECKER')
+          this.checker = true;
+        else if (rol == 'CITIZEN')
+          this.citizen = true;
+      }
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
     this.storage.setRol(localStorage.getItem('rol'));
 
   }
 
-  
-  Usuario(){
+
+  Usuario() {
     this.router.navigate(['/crearUsuario']);
   }
 
-  Visitante(){
+  Visitante() {
     this.router.navigate(['/paginaPrincipal']);
   }
 
-  Citizen(){
+  Citizen() {
     this.router.navigate(['/loginRedSocial']);
   }
 
-  gestionarMecanismosInternos(){  
-    localStorage.setItem("funcion","gestionarMecanismosInternos");
+  gestionarMecanismosInternos() {
+    localStorage.setItem("funcion", "gestionarMecanismosInternos");
     this.router.navigate(['/listarComponentes'])
   }
 
-    gestionarMecanismosExternos(){  
-    localStorage.setItem("funcion","gestionarMecanismosExternos");
+  gestionarMecanismosExternos() {
+    localStorage.setItem("funcion", "gestionarMecanismosExternos");
     this.router.navigate(['/listarComponentes'])
   }
 
-  crearUsuario(){
+  crearUsuario() {
     this.router.navigate(['/crearUsuario']);
   }
 
-  crearhecho(){
+  crearhecho() {
     this.router.navigate(['/crearHecho']);
   }
 
-  listarHechosByChecker(){
+  listarHechosByChecker() {
     this.router.navigate(['/seleccionarHecho']);
   }
 
-  gestionNodos(){
+  gestionNodos() {
     this.router.navigate(['/gestionNodosPerifericos']);
   }
 
-  asignarHecho(){
+  asignarHecho() {
     this.router.navigate(['/hechos']);
   }
 
-  listarMecanismos(){
+  listarMecanismos() {
     this.router.navigate(['/listarComponentes']);
   }
 
-  suscripcion(){
+  suscripcion() {
     var aceptar;
-    aceptar=confirm("Desea suscribirse a las notificaciones").valueOf();
-    if(aceptar=true)
-    {
-      this.apiService.suscribirse().subscribe((res)=>{
+    aceptar = confirm("Desea suscribirse a las notificaciones").valueOf();
+    if (aceptar = true) {
+      this.apiService.suscribirse().subscribe((res) => {
         console.log(res);
       },
-      err=>{
-        console.log(err);
-      });
+        err => {
+          console.log(err);
+        });
     }
   }
 
-logOut(){
-  this.storage.clearSession();
-  this.router.navigate(['/bienvenido']);
-}
+  logOut() {
+    this.storage.clearSession();
+    this.router.navigate(['/bienvenido']);
+  }
 
 
-logIn(){
-  this.router.navigate(['login']);
-}
-logInRedSocial(){
-  this.router.navigate(['/loginRedSocial']);
-}
+  logIn() {
+    this.router.navigate(['login']);
+  }
+  logInRedSocial() {
+    this.router.navigate(['/loginRedSocial']);
+  }
 
 
-pruebaObs(){
-console.log('**********************Prueba obs****************');
-  console.log(this.rolElegido);
-  console.log(this.admin);
-  console.log(this.submiter);
-  console.log(this.checker);
+  pruebaObs() {
+    console.log('**********************Prueba obs****************');
+    console.log(this.rolElegido);
+    console.log(this.admin);
+    console.log(this.submiter);
+    console.log(this.checker);
 
-  this.storage.pruebaObs();
-}
-donar()
-{
-  this.storage.getAllHechos().subscribe(res=>console.log(res));
-}
+    this.storage.pruebaObs();
+  }
+  donar() {
+    this.storage.getAllHechos().subscribe(res => console.log(res));
+  }
 
-irDonaciones(){
-  this.router.navigate(['/donaciones']);
-}
+  irDonaciones() {
+    this.router.navigate(['/donaciones']);
+  }
 
-irGraficas(){
-  this.router.navigate(['/graficas']);
-}
+  irGraficas() {
+    this.router.navigate(['/graficas']);
+  }
 
-irExportPDF(){
-  this.router.navigate(['/reportes']);
-}
+  irExportPDF() {
+    this.router.navigate(['/reportes']);
+  }
 
-irPricipal(){
-  this.router.navigate(['/principalAdmin']);
-}
+  irPrincipal() {
+    this.router.navigate(['/principalAdmin']);
+  }
 
 }
