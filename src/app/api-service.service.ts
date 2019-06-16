@@ -237,4 +237,25 @@ getFiltros(nroPag, cantElemPag, titulo, url, estado): Observable<object> {
   return this.http.get<object>(`${this.API_URL}/getHechosFiltros/` + nroPag + `/` + cantElemPag + `/` + titulo + `/` + url + `/` + estado);
 }
 
+crearDonacion(){
+  var a: any = {};
+  a.transaccionId="DiegoProbando";
+  a.fecha = "14-06-2019T16:00";
+  a.monto = "1546";
+  a.moneda = "USD";
+  a.usuario = "angular" 
+  let json=JSON.stringify(a);
+  return this.http.post(`http://74e94101.ngrok.io/donacion`, json, httpOptions);
+}
+
+getAllDonaciones(): Observable<Array<object>> {
+  return this.http.get<Array<object>>(`http://c56df2c7.ngrok.io/donacion/getAll`);
+}
+
+getTotalHechosPorEstado(): Observable<object>{
+  
+  return this.http.get<object>(`${this.API_URL}/getCantHechosPorEstado`);
+
+}
+
 }

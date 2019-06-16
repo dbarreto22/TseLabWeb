@@ -20,6 +20,7 @@ import { VerDonacionesComponent } from './Usuarios/ver-donaciones/ver-donaciones
 import { GraficaComponent } from './Usuarios/grafica/grafica.component';
 import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path: 'reportes', component: ExportPDFComponent},
   {path: 'graficas', component: GraficaComponent},
   {path: 'principalAdmin', component: PaginaPrincipalComponent},
+  {path: 'listarDonaciones', component: DonacionesComponent}
 ],
    
 },

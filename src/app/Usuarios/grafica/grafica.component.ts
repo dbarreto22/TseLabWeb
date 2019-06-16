@@ -8,6 +8,11 @@ import { ApiServiceService } from 'src/app/api-service.service';
 
 interface Model {
   estado: string;
+  cantidad: string;
+}
+
+interface ModelMostrar {
+  estado: string;
   cantidad: number;
 }
 @Component({
@@ -19,68 +24,43 @@ export class GraficaComponent implements OnInit {
 
   public hechos : Observable<Array<any>>;
   public h  = new Array<Hechos>();
-  public seriesData: Model[];
+  public seriesData: ModelMostrar[];
  
 
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {
-    let cantNuevo =0;
-    let cantAcomprar = 0;
-    let cantEnproceso =0;
-    let cantVerificado=0;
-    let cantPublicado=0;
-    let cantCancelado=0;
 
-    this.hechos = this.apiService.getAllHechos();
-    this.hechos.subscribe(
-      (data: Array<Hechos>)=> {
-        data.forEach(asig=>{
-          
-          if(asig.estado === "A_COMPROBAR"){
-            cantAcomprar= cantAcomprar + 1;
-          }else if(asig.estado ==="NUEVO"){
-            cantNuevo =  cantNuevo +1;
-            
-          }else if(asig.estado === "EN_PROCESO"){
-            cantEnproceso = cantEnproceso +1;
-          }else if (asig.estado === "VERIFICADO"){
-            cantVerificado = cantVerificado +1;
-          }else if(asig.estado === "PUBLICADO"){
-            cantPublicado = cantVerificado+1;
-          }else if (asig.estado === "CANCELADO"){
-            cantCancelado = cantVerificado+1;
-          }
-        })
-        console.log(cantEnproceso)
-        console.log(data)
+    this.apiService.getTotalHechosPorEstado().subscribe(
+      (data: Model)=> {
+        
         this.seriesData = [{
           estado: "A comprobar",
-          cantidad: cantAcomprar
+          cantidad: parseInt(data.cantidad)
         }, {
           estado: "Nuevo",
-          cantidad: cantNuevo
+          cantidad: parseInt(data.cantidad)
         },{
           estado: "En proceso",
-          cantidad: cantEnproceso
+          cantidad: parseInt(data.cantidad)
         },
         {
           estado: "Verificado",
-          cantidad: cantVerificado
+          cantidad: parseInt(data.cantidad)
         },
         {
           estado: "Publicado",
-          cantidad: cantPublicado
+          cantidad: parseInt(data.cantidad)
         },
         {
           estado: "Cancelado",
-          cantidad: cantCancelado
+          cantidad: parseInt(data.cantidad)
         },
         ];
-      },
+        })       
       err=>{
         console.log(err);
        // this.apiService.mensajeConError(err);
       }
-    )
+    
 
    }
 
