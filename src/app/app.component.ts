@@ -11,16 +11,38 @@ import { StorageService } from './storage.service';
 })
 
 export class AppComponent implements OnInit {
+  private aux: Boolean;
+  private aux2: Boolean;
 
 
-  constructor(private storage:StorageService) {
+  constructor(private storage:StorageService, private router:Router) {
+    this.storage.select$().subscribe(logueado => {
+      this.aux = logueado.valueOf();
+        this.aux2 = !this.aux;
+        console.log('sidenv-Bar logueado***************************')
+        console.log(logueado)
+      });
+      this.aux = this.storage.usrLogged();
+  }
 
-
+  logOut() {
+    this.storage.clearSession();
+    this.router.navigate(['/bienvenido']);
   }
 
   ngOnInit() {
     this.storage.setRol(localStorage.getItem('rol'));
   }
 
+  logIn() {
+    this.router.navigate(['login']);
+  }
+  logInRedSocial() {
+    this.router.navigate(['/loginRedSocial']);
+  }
+
+  donar() {
+    this.storage.getAllHechos().subscribe(res => console.log(res));
+  }
 
 }
