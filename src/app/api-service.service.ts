@@ -252,4 +252,10 @@ getAllDonaciones(): Observable<Array<object>> {
   return this.http.get<Array<object>>(`http://c56df2c7.ngrok.io/donacion/getAll`);
 }
 
+getTotalHechosPorEstado(): Observable<object>{
+  
+  return this.http.get<object>(`${this.API_URL}/getCantHechosPorEstado`);
+
+}
+
 }
