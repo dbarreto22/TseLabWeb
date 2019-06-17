@@ -37,7 +37,7 @@ export class DonacionesComponent implements OnInit {
             d.montoMoneda="$U " + d.monto;
             this.pesos = this.pesos +parseInt(d.monto);
           }else if(d.moneda == "USD"){
-            d.montoMoneda="USD " + d.moneda;
+            d.montoMoneda="USD " + d.monto;
             this.dolares = this.dolares +parseInt(d.monto);
           }
           

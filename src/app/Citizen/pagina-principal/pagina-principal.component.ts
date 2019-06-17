@@ -33,7 +33,7 @@ export class PaginaPrincipalComponent {
   public loading;
   public skip = 0;
   public hecho : Hechos;
-  public hechos :any;  
+  public hechos = new Array<Hechos>(); 
   public listadoGeneral :  Observable<object>;
   public listado : listadoHechos;
   public canthechos  = 10;
@@ -43,6 +43,7 @@ export class PaginaPrincipalComponent {
   public totalPaginas : number;
   public mostrarSig : boolean = false;
   public mostrarAnt : boolean = false;
+
     public estado: Array<Item> = [
       { text: "", value: "" },
       { text: "A comprobar", value: "A_COMPROBAR" },
@@ -83,6 +84,8 @@ export class PaginaPrincipalComponent {
     this.totalPaginas=  Math.trunc(this.cantElementos/this.canthechos)
   }
   console.log(this.totalPaginas)
+
+  
     },
     err=>{
       this.loading=false;
@@ -218,8 +221,9 @@ buscar(titulo, url){
   this.url= url;
   this.activo = true;
   
-  if(this.selectedValue == undefined){
+  if(this.selectedValue == undefined || this.selectedValue == "" ){
     alert("Debe seleccionar almenos un Estado");
+    this.activo = false;
     this.iniciarListado();
   }else{
   

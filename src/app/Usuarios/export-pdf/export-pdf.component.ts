@@ -53,10 +53,27 @@ public mostrarGrid : boolean = false;
     this.hechos.subscribe(
       (data: Array<Hechos>)=> {
         data.forEach(asig=>{
+         
           this.h.push(asig);
         })
         console.log(data)
+        this.h.forEach(r =>{
+          if(r.estado == "A_COMPROBAR"){
+            r.estado = "A Comprobar";
+          }else if(r.estado == "NUEVO"){
+            r.estado = "Nuevo";
+          }else if(r.estado == "EN_PROCESO"){
+            r.estado = "En proceso";
+          }else if(r.estado == "VERIFICADO"){
+            r.estado = "Verificado";
+          }else if(r.estado == "PUBLICADO"){
+            r.estado = "Publicado";
+          }else if(r.estado == "CANCELADO"){
+            r.estado = "Cancelado";
+          }
+        })
         
+            
         
       },
       err=>{

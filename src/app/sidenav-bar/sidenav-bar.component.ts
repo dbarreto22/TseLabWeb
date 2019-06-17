@@ -61,11 +61,6 @@ export class SidenavBarComponent implements OnInit {
 
   }
 
-
-  Usuario() {
-    this.router.navigate(['/crearUsuario']);
-  }
-
   Visitante() {
     this.router.navigate(['/paginaPrincipal']);
   }

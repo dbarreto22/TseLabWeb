@@ -19,12 +19,9 @@
                   <span>Email</span>
                   <input #mail    class="form-control"type="email" placeholder="Ej.: usuario@servidor.com" (ngModelChange)="onChange($event)" />
                 </label>
-                <label class="k-form-field" for="readOnlyInput" *ngIf="!validEmail">
-                    <legend>Ingrese email correcto.</legend>
-                  </label>
                 <label class="k-form-field" for="readOnlyInput">
                   <span>Telefono</span>
-                  <input #telefono    class="form-control"  type="text"  />
+                  <input value="Ej. 098611555" #telefono  class="form-control"  type="text"  />
                 </label>
                 
                 <label class="k-form-field">
