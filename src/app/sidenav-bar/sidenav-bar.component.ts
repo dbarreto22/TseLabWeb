@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { StorageService } from '../storage.service';
 import { ApiServiceService } from '../api-service.service';
 import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-sidenav-bar',
@@ -25,6 +26,7 @@ export class SidenavBarComponent implements OnInit {
   private citizen: boolean = false;
   private aux: Boolean;
   private aux2: Boolean;
+  private sidenav:MatSidenav;
   constructor(private breakpointObserver: BreakpointObserver, private storage: StorageService, private router: Router, private apiService: ApiServiceService) {
     this.storage.select$().subscribe(logueado => {
     this.aux = logueado.valueOf();
@@ -163,6 +165,10 @@ export class SidenavBarComponent implements OnInit {
 
   irPrincipal() {
     this.router.navigate(['/principalAdmin']);
+  }
+
+  toggle(){
+    this.sidenav.toggle();
   }
 
 }

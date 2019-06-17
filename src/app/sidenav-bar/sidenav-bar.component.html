@@ -1,20 +1,3 @@
-<mat-toolbar color="primary" class="example-toolbar">
-  <mat-icon *ngIf="aux" class="link" (click)="sidenav.toggle()">reorder </mat-icon>
-
-  <!-- <a mat-list-item (click)="pruebaObs()">ProbarCosas
-  </a>-->
-
-  <a class="example-app-name" href="/bienvenido">Fact Checker
-  </a>
-
-  <mat-icon class="link" *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
-  <mat-icon class="link" aria-label="donar" (click)="donar()">attach_money</mat-icon>
-  <mat-icon *ngIf="aux2" aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
-  <mat-icon class="link" aria-label="login-Mail" *ngIf="aux2" (click)="loginRedSocial()">mail_outline</mat-icon>
-
-
-
-</mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     <mat-nav-list *ngIf="aux">
@@ -57,10 +40,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="selectWrapper" style="float: right">
-      <a mat-list-item (click)="pruebaObs()">Ver Rol
-      </a>
-    </div>
+    <mat-icon *ngIf="aux" class="link" (click)="sidenav.toggle()">reorder </mat-icon>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
