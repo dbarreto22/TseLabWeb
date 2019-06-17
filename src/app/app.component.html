@@ -1,13 +1,15 @@
 <mat-toolbar color="primary" class="example-toolbar">
-    <a class="example-app-name" href="/bienvenido">Fact Checker
-    </a>
+  <a class="example-app-name" href="/bienvenido">Fact Checker
+  </a>
+
+  <mat-icon class="link" *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
+  <mat-icon class="link" aria-label="donar" (click)="donar()">attach_money</mat-icon>
+  <mat-icon *ngIf="aux2" aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
+  <mat-icon class="link" aria-label="login-Mail" *ngIf="aux2" (click)="loginRedSocial()">mail_outline</mat-icon>
   
-    <mat-icon class="link" *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
-    <mat-icon class="link" aria-label="donar" (click)="donar()">attach_money</mat-icon>
-    <mat-icon *ngIf="aux2" aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
-    <mat-icon class="link" aria-label="login-Mail" *ngIf="aux2" (click)="loginRedSocial()">mail_outline</mat-icon>
-    
-  </mat-toolbar>
-<app-app-layout></app-app-layout>
+</mat-toolbar>
+<app-sidenav-bar></app-sidenav-bar>
+<!--<router-outlet></router-outlet>-->
+
 
 

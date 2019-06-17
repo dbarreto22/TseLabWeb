@@ -21,35 +21,35 @@ import { GraficaComponent } from './Usuarios/grafica/grafica.component';
 import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component';
+import { AppComponent } from './app.component';
 
 
 
 const routes: Routes = [
-{ path: '', component: AppLayoutComponent, canActivate:[AuthorizatedGuard],
-  children:[  
-  {path: 'crearUsuario', component: CrearUsuarioComponent},
-  {path: 'hechos', component: HechosComponent},
-  {path: 'seleccionarHecho', component: SeleccionarHechoCheckerComponent},   
-  {path: 'verificarHecho', component: VerificarHechoComponent},
-  {path: 'usuarios', component: UsuariosComponent},
-  {path: 'listarComponentes', component: ListadoComponentesComponent},
-  {path: 'mecanismos', component: MecanismosComponent},
-  {path: 'crearHecho', component: CrearHechoComponent},
-  {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent},
-  {path: 'crearNodosPerifericos', component: CrearNodosPerifericosComponent},
-  {path: 'modificarNodosPerifericos', component: ModificarNodosPerifericosComponent},
-  {path: 'donaciones', component: VerDonacionesComponent},
-  {path: 'reportes', component: ExportPDFComponent},
-  {path: 'graficas', component: GraficaComponent},
-  {path: 'principalAdmin', component: PaginaPrincipalComponent},
-  {path: 'listarDonaciones', component: DonacionesComponent}
-],
+{ path: '', component: AppLayoutComponent, canActivate:[AuthorizatedGuard]},
+/*{ path: '', component: AppLayoutComponent, canActivate:[AuthorizatedGuard],
+children:[*/  
+  {path: 'crearUsuario', component: CrearUsuarioComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'hechos', component: HechosComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'seleccionarHecho', component: SeleccionarHechoCheckerComponent, canActivate:[AuthorizatedGuard]},   
+  {path: 'verificarHecho', component: VerificarHechoComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'usuarios', component: UsuariosComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'listarComponentes', component: ListadoComponentesComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'mecanismos', component: MecanismosComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'crearHecho', component: CrearHechoComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'crearNodosPerifericos', component: CrearNodosPerifericosComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'modificarNodosPerifericos', component: ModificarNodosPerifericosComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'donaciones', component: VerDonacionesComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'reportes', component: ExportPDFComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'graficas', component: GraficaComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'principalAdmin', component: PaginaPrincipalComponent, canActivate:[AuthorizatedGuard]},
+  {path: 'listarDonaciones', component: DonacionesComponent, canActivate:[AuthorizatedGuard]}
+/*],
    
-},
+}*/,
 { path: 'login', component: LoginComponent},
-     //children:[{path:'login',component:LoginComponent}]},
 { path: 'bienvenido', component: PrimerPaginaComponent},
-     //children:[{path:'login',component:LoginComponent}]},
 {path: 'loginRedSocial', component: LoginRedSocialComponent},
 { path: '**', redirectTo: 'login' }
 

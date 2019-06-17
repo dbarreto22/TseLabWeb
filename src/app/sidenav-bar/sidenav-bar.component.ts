@@ -63,6 +63,7 @@ export class SidenavBarComponent implements OnInit {
 
 
   Usuario() {
+    console.log('****************************Esto funca');
     this.router.navigate(['/crearUsuario']);
   }
 
