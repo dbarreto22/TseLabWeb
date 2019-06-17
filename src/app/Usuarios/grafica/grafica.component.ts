@@ -6,11 +6,6 @@ import { Router } from '@angular/router';
 import { Hechos } from '../clases/hechos';
 import { ApiServiceService } from 'src/app/api-service.service';
 
-interface Model {
-  estado: string;
-  cantidad: string;
-}
-
 interface ModelMostrar {
   estado: string;
   cantidad: number;
@@ -30,38 +25,13 @@ export class GraficaComponent implements OnInit {
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {
 
     this.apiService.getTotalHechosPorEstado().subscribe(
-      (data: Model)=> {
-        
-        this.seriesData = [{
-          estado: "A comprobar",
-          cantidad: parseInt(data.cantidad)
-        }, {
-          estado: "Nuevo",
-          cantidad: parseInt(data.cantidad)
-        },{
-          estado: "En proceso",
-          cantidad: parseInt(data.cantidad)
-        },
-        {
-          estado: "Verificado",
-          cantidad: parseInt(data.cantidad)
-        },
-        {
-          estado: "Publicado",
-          cantidad: parseInt(data.cantidad)
-        },
-        {
-          estado: "Cancelado",
-          cantidad: parseInt(data.cantidad)
-        },
-        ];
+      (data : ModelMostrar[])=> {
+        console.log(data)
+        this.seriesData = data;
         })       
       err=>{
         console.log(err);
-       // this.apiService.mensajeConError(err);
       }
-    
-
    }
 
   ngOnInit() {
