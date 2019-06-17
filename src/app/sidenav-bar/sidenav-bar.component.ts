@@ -121,8 +121,7 @@ export class SidenavBarComponent implements OnInit {
   }
 
   logOut() {
-    this.storage.clearSession();
-    this.router.navigate(['']);
+    this.limpiarTodo();
   }
 
   logIn() {
@@ -162,4 +161,12 @@ export class SidenavBarComponent implements OnInit {
     this.sidenav.toggle();
   }
 
+  limpiarTodo(){
+    this.storage.clearSession();
+    this.rolElegido='';
+    this.checker=false;
+    this.submiter=false;
+    this.admin=false;
+    this.router.navigate(['']);
+  }
 }
