@@ -45,7 +45,7 @@ export class SidenavBarComponent implements OnInit {
         console.log(rol)
         if (rol == 'ADMIN')
           this.admin = true;
-        else if (rol == 'SUBMITER')
+        else if (rol == 'SUBMITTER')
           this.submiter = true;
         else if (rol == 'CHECKER')
           this.checker = true;
