@@ -12,10 +12,10 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     <mat-nav-list *ngIf="aux">
-      <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Listar Mecanismos Internos
+      <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Gestion Mecanismos Internos
       </a>
     <hr *ngIf="admin" />
-      <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Listar Mecanismos Externos
+      <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Gestion Mecanismos Externos
       </a>
     <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="irPrincipal()">Listado de Hechos General</a>
@@ -24,7 +24,7 @@
     <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion de Perifericos</a>
     <hr *ngIf="admin"/>
-      <a *ngIf="admin" mat-list-item (click)="listarMecanismos()">Listar Componentes</a>
+      <a *ngIf="admin" mat-list-item (click)="listarMecanismos()">Gestión de Mecanismos Internos</a>
     <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="irGraficas()">Grafica por Estado</a>
     <hr *ngIf="admin"/>
