@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="example-toolbar">
   <mat-icon *ngIf="aux" class="link" (click)="sidenav.toggle()">reorder </mat-icon>
-  <a class="example-app-name" href="/bienvenido">Fact Checker
+  <a class="link" href="/bienvenido">Fact Checker
   </a>
 
   <mat-icon class="link" *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
@@ -47,8 +47,8 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-  
-    <!--<app-app-layout></app-app-layout>-->
+   <!-- <a mat-list-item (click)="pruebaObs()">Ver ROl</a>
+    <app-app-layout></app-app-layout>-->
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
