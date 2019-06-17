@@ -61,11 +61,6 @@ export class SidenavBarComponent implements OnInit {
 
   }
 
-
-  Usuario() {
-    this.router.navigate(['/crearUsuario']);
-  }
-
   Visitante() {
     this.router.navigate(['/paginaPrincipal']);
   }
@@ -149,10 +144,6 @@ export class SidenavBarComponent implements OnInit {
   }
   donar() {
     this.storage.getAllHechos().subscribe(res => console.log(res));
-  }
-
-  irDonaciones() {
-    this.router.navigate(['/donaciones']);
   }
 
   irGraficas() {
