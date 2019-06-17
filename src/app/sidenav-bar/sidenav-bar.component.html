@@ -24,8 +24,8 @@
     <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion de Perifericos</a>
     <hr *ngIf="admin"/>
-      <a *ngIf="admin" mat-list-item (click)="listarMecanismos()">Gestión de Mecanismos Internos</a>
-    <hr *ngIf="admin"/>
+      <a *ngIf="checker" mat-list-item (click)="listarMecanismos()">Verificar Hechos</a>
+    <hr *ngIf="checker"/>
       <a *ngIf="admin" mat-list-item (click)="irGraficas()">Grafica por Estado</a>
     <hr *ngIf="admin"/>
       <a *ngIf="admin" mat-list-item (click)="irExportPDF()">Reportes por Estado</a>
