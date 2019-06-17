@@ -53,7 +53,7 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
     if(localStorage.getItem('rol')!='CHECKER')
     {
       console.log('Mecanismos- El usuario no tiene los permisos suficientes para acceder a esta funcionalidad');
-      this.router.navigate(['/bienvenido'])
+      this.router.navigate(['/'])
     }
   }
 
@@ -123,7 +123,7 @@ verificar(){
 
 
   cancelar() {
-    this.router.navigate(['/bienvenido']);
+    this.router.navigate(['/']);
   }
 
   public hechoVerificar() {

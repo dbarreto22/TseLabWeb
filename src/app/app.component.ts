@@ -11,23 +11,13 @@ import { StorageService } from './storage.service';
 })
 
 export class AppComponent implements OnInit {
-  private aux: Boolean;
-  private aux2: Boolean;
-
 
   constructor(private storage:StorageService, private router:Router) {
-    this.storage.select$().subscribe(logueado => {
-      this.aux = logueado.valueOf();
-        this.aux2 = !this.aux;
-        console.log('sidenv-Bar logueado***************************')
-        console.log(logueado)
-      });
-      this.aux = this.storage.usrLogged();
   }
 
   logOut() {
     this.storage.clearSession();
-    this.router.navigate(['/bienvenido']);
+    this.router.navigate(['/']);
   }
 
   ngOnInit() {

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     if(this.storage.usrLogged())
-      this.router.navigate(['/bienvenido']);
+      this.router.navigate(['/']);
   }
 
 
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       console.log("******************** resultado de login*******************************");
       console.log(resultado);
       if(this.storage.getSession)
-        this.router.navigate(['/bienvenido']);
+        this.router.navigate(['/']);
   },
   error => {
       console.log(<any>error);
