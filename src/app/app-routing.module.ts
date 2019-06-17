@@ -26,7 +26,7 @@ import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
-{ path: '', component: AppLayoutComponent, canActivate:[AuthorizatedGuard]},
+  { path: '', component: PrimerPaginaComponent},
 /*{ path: '', component: AppLayoutComponent, canActivate:[AuthorizatedGuard],
 children:[*/  
   {path: 'crearUsuario', component: CrearUsuarioComponent, canActivate:[AuthorizatedGuard]},
@@ -49,7 +49,6 @@ children:[*/
    
 }*/,
 { path: 'login', component: LoginComponent},
-{ path: 'bienvenido', component: PrimerPaginaComponent},
 {path: 'loginRedSocial', component: LoginRedSocialComponent},
 { path: '**', redirectTo: 'login' }
 

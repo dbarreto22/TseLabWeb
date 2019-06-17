@@ -51,7 +51,7 @@ export class MecanismosComponent implements OnInit {
     if(localStorage.getItem('rol')!='ADMIN')
     {
       console.log('Mecanismos- El usuario no tiene los permisos suficientes para acceder a esta funcionalidad');
-      this.router.navigate(['/bienvenido'])
+      this.router.navigate(['/'])
     }
   }
 
@@ -94,6 +94,6 @@ export class MecanismosComponent implements OnInit {
 
   }
   volver(){
-    this.router.navigate(['/bienvenido']);
+    this.router.navigate(['/']);
   }
 }

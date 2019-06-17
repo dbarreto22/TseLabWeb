@@ -63,7 +63,6 @@ export class SidenavBarComponent implements OnInit {
 
 
   Usuario() {
-    console.log('****************************Esto funca');
     this.router.navigate(['/crearUsuario']);
   }
 
@@ -128,7 +127,7 @@ export class SidenavBarComponent implements OnInit {
 
   logOut() {
     this.storage.clearSession();
-    this.router.navigate(['/bienvenido']);
+    this.router.navigate(['']);
   }
 
   logIn() {
