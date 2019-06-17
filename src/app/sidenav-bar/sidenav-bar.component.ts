@@ -152,10 +152,6 @@ export class SidenavBarComponent implements OnInit {
     this.storage.getAllHechos().subscribe(res => console.log(res));
   }
 
-  irDonaciones() {
-    this.router.navigate(['/donaciones']);
-  }
-
   irGraficas() {
     this.router.navigate(['/graficas']);
   }

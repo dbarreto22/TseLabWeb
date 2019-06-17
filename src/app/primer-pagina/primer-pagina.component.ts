@@ -30,7 +30,7 @@ export class PrimerPaginaComponent implements OnInit {
   public selectableSettings: SelectableSettings;
   public dialogOpened = false;
   constructor(  private apiService: ApiServiceService, private storage:StorageService) {
-      this.hechos = this.apiService.getAllHechos();
+      this.hechos = this.apiService.gethechosByEstados("VERIFICADO");
       this.hechos.subscribe(
         (res) =>{ console.log(res)},
         ee => {
