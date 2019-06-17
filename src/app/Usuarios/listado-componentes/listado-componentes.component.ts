@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/api-service.service';
 import { Mecanismos } from '../clases/mecanismos';
 import { MecanismosCompleto } from '../clases/mecanismoCompleto';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-listado-componentes',
@@ -33,111 +34,85 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
   public descripcion;
   public url;
   public estado;
-  public mecanismosGestionInterno : Observable<Array<any>>;
-  public mecanismosGestionExterno : Observable<Array<any>>;
-  public mecanismosGestionPerifericos : Observable<Array<any>>;
-  public mecanismosMostrar = new Array<MecanismosCompleto>() ;
+  public mecanismosGestionInterno: Observable<Array<any>>;
+  public mecanismosGestionExterno: Observable<Array<any>>;
+  public mecanismosGestionPerifericos: Observable<Array<any>>;
+  public mecanismosMostrar = new Array<MecanismosCompleto>();
 
-  constructor(public http: HttpClient, private router: Router, private apiService: ApiServiceService) {
+  constructor(public http: HttpClient, private router: Router,
+    private apiService: ApiServiceService, private storage: StorageService) {
 
+    this.storage.funciones$().subscribe(func => {
+      this.funcion = func.valueOf();
+      console.log('++++++++++++++++Fucnion');
+      console.log(this.funcion);
+      this.funcion == "gestionarMecanismosInternos" ? this.cargarInternos() : this.cargarExternos();
+    }
+    );
     this.setSelectableSettings();
 
     //********** */Inicailizo el componente de acuerdo a la funcion a realizar
-    this.funcion = localStorage.getItem("funcion");
+    //    this.funcion = localStorage.getItem("funcion");
     if (this.funcion == "gestionarMecanismosInternos") {
-      this.gestionar = true;
-      this.titulo = "Gestión de mecanismos Internos";
-      this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
-      this.mecanismos = this.apiService.getMecanismosInternos();
-      this.mecanismos.subscribe(
-        (res) => {
-          this.loading = false
-          console.log("*******************mecanismos");
-          console.log(this.mecanismos);
-          console.log(res);
-  
-        },
-        err => {
-          this.loading = false;
-          //this.apiService.mensajeConError(err);
-        }
-      )
-      this.change();
-  
+      this.cargarInternos();
+
     }
     else if (this.funcion == "gestionarMecanismosExternos") {
-      this.gestionar = true;
-      this.titulo = "Gestión de mecanismos Externos";
-      this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
-      this.mecanismos = this.apiService.getMecanismosExternos();
-      this.mecanismos.subscribe(
-        (res) => {
-          this.loading = false
-          console.log("*******************mecanismos");
-          console.log(this.mecanismos);
-          console.log(res);
-  
-        },
-        err => {
-          this.loading = false;
-          //this.apiService.mensajeConError(err);
-        }
-      )
-      this.change();
-  
+      this.cargarExternos();
+
     }
     else {
       this.verificar = true;
       this.titulo = "Seleccione mecanismo para Verificar";
       this.encabezado = "Si desea verificar con un mecanismo, seleccione uno y click en Siguiente.\n De lo contrario click en Cancelar."
       //acá deberías programar la lógica que trae todos los componentes
-   
 
-    this.idHecho = localStorage.getItem("idHecho");
-    this.mecanismosGestionExterno = this.apiService.getMecanismosExternos();
-    this.mecanismosGestionInterno = this.apiService.getMecanismosInternos();
-    this.mecanismosGestionPerifericos = this.apiService.getNodosPerifericos();
-    this.mecanismosGestionExterno.subscribe(
-      (res) => {
-        this.loading = false
-        console.log("*******************mecanismos");
-        console.log(this.mecanismos);
-        console.log(res);
 
-      },
-      err => {
-        this.loading = false;
-        //this.apiService.mensajeConError(err);
-      }
-    )
-    this.mecanismosGestionInterno.subscribe(
-      (res) => {
-        this.loading = false
-        console.log("*******************mecanismos");
-        console.log(this.mecanismos);
-        console.log(res);
+      this.idHecho = localStorage.getItem("idHecho");
+      this.mecanismosGestionExterno = this.apiService.getMecanismosExternos();
+      this.mecanismosGestionInterno = this.apiService.getMecanismosInternos();
+      this.mecanismosGestionPerifericos = this.apiService.getNodosPerifericos();
+      this.mecanismosGestionExterno.subscribe(
+        (res) => {
+          this.loading = false
+          console.log("*******************mecanismos");
+          console.log(this.mecanismos);
+          console.log(res);
 
-      },
-      err => {
-        this.loading = false;
-        //this.apiService.mensajeConError(err);
-      }
-    )
-    this.mecanismosGestionPerifericos.subscribe(
-      (res) => {
-        this.loading = false
-        console.log("*******************mecanismos");
-        console.log(this.mecanismos);
-        console.log(res);
+        },
+        err => {
+          this.loading = false;
+          //this.apiService.mensajeConError(err);
+        }
+      )
+      this.mecanismosGestionInterno.subscribe(
+        (res) => {
+          this.loading = false
+          console.log("*******************mecanismos");
+          console.log(this.mecanismos);
+          console.log(res);
 
-      },
-      err => {
-        this.loading = false;
-        //this.apiService.mensajeConError(err);
-      }
-    )
-   
-  }
+        },
+        err => {
+          this.loading = false;
+          //this.apiService.mensajeConError(err);
+        }
+      )
+      this.mecanismosGestionPerifericos.subscribe(
+        (res) => {
+          this.loading = false
+          console.log("*******************mecanismos");
+          console.log(this.mecanismos);
+          console.log(res);
+
+        },
+        err => {
+          this.loading = false;
+          //this.apiService.mensajeConError(err);
+        }
+      )
+
+    }
 
   }
 
@@ -183,10 +158,10 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
             this.url = asig.url;
             //********* */Dependiendo de la funcionalidad elegida es el tipo de mecanismo que considero
             if (this.funcion == "gestionarMecanismosInternos") {
-              this.tipoMecanismo="INTERNO"
+              this.tipoMecanismo = "INTERNO"
             }
             else if (this.funcion == "gestionarMecanismosExternos") {
-              this.tipoMecanismo="EXTERNO"
+              this.tipoMecanismo = "EXTERNO"
             }
           }
           console.log('codigo ', this.codigo)
@@ -202,13 +177,13 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
 
   }
 
-CargaMecanismoCompletos() {
+  CargaMecanismoCompletos() {
     this.mecanismosGestionExterno.subscribe(
       (data: Array<MecanismosCompleto>) => {
         data.forEach(asig => {
-          if (asig.habilitado ){
-          asig.mecanismo = "Externo";
-          this.mecanismosMostrar.push(asig);
+          if (asig.habilitado) {
+            asig.mecanismo = "Externo";
+            this.mecanismosMostrar.push(asig);
           }
         })
 
@@ -221,9 +196,9 @@ CargaMecanismoCompletos() {
     this.mecanismosGestionInterno.subscribe(
       (data: Array<MecanismosCompleto>) => {
         data.forEach(asig => {
-          if (asig.habilitado ){
-          asig.mecanismo = "Interno";
-          this.mecanismosMostrar.push(asig);
+          if (asig.habilitado) {
+            asig.mecanismo = "Interno";
+            this.mecanismosMostrar.push(asig);
           }
         })
 
@@ -236,10 +211,10 @@ CargaMecanismoCompletos() {
     this.mecanismosGestionPerifericos.subscribe(
       (data: Array<MecanismosCompleto>) => {
         data.forEach(asig => {
-        if (asig.habilitado ){
-          asig.mecanismo = "Periferico";
-          this.mecanismosMostrar.push(asig);
-        }
+          if (asig.habilitado) {
+            asig.mecanismo = "Periferico";
+            this.mecanismosMostrar.push(asig);
+          }
 
         })
 
@@ -249,14 +224,14 @@ CargaMecanismoCompletos() {
         // this.apiService.mensajeConError(err);
       }
     )
-      console.log(this.mecanismosMostrar);
+    console.log(this.mecanismosMostrar);
   }
-public idMecanismoVerificar;
-  mecanismoSeleccionado(){
+  public idMecanismoVerificar;
+  mecanismoSeleccionado() {
     this.mecanismosMostrar.forEach(asig => {
-      if(asig.id  == this.mySelection[0] ){
+      if (asig.id == this.mySelection[0]) {
         this.idMecanismoVerificar = asig.id;
-        
+
         console.log(this.idMecanismoVerificar);
       }
     })
@@ -295,7 +270,7 @@ public idMecanismoVerificar;
     this.router.navigate(['/paginaPrincipal']);
   }
 
-//*********** */Funciones especificas de gestión de mecanismos
+  //*********** */Funciones especificas de gestión de mecanismos
   modificar() {
     if (this.codigo != undefined) {
       var a: any = {};
@@ -304,7 +279,7 @@ public idMecanismoVerificar;
       a.descripcion = this.descripcion;
       a.url = this.url;
       a.habilitado = this.estado;
-      a.mecanismo=this.tipoMecanismo;
+      a.mecanismo = this.tipoMecanismo;
       localStorage.setItem("mecanismo", JSON.stringify(a));
       this.router.navigate(['/mecanismos']);
     } else {
@@ -314,9 +289,51 @@ public idMecanismoVerificar;
 
   alta() {
     localStorage.setItem("funcion", "alta");
-    localStorage.setItem("tipoMecanismo",this.tipoMecanismo);
+    localStorage.setItem("tipoMecanismo", this.tipoMecanismo);
     this.router.navigate(['/mecanismos']);
   }
 
+  cargarInternos() {
+    this.gestionar = true;
+    this.titulo = "Gestión de mecanismos Internos";
+    this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
+    this.mecanismos = this.apiService.getMecanismosInternos();
+    this.mecanismos.subscribe(
+      (res) => {
+        this.loading = false
+        console.log("*******************mecanismos");
+        console.log(this.mecanismos);
+        console.log(res);
+
+      },
+      err => {
+        this.loading = false;
+        //this.apiService.mensajeConError(err);
+      }
+    )
+    this.change();
+
+  }
+
+  cargarExternos() {
+    this.gestionar = true;
+    this.titulo = "Gestión de mecanismos Externos";
+    this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
+    this.mecanismos = this.apiService.getMecanismosExternos();
+    this.mecanismos.subscribe(
+      (res) => {
+        this.loading = false
+        console.log("*******************mecanismos");
+        console.log(this.mecanismos);
+        console.log(res);
+
+      },
+      err => {
+        this.loading = false;
+        //this.apiService.mensajeConError(err);
+      }
+    )
+    this.change();
+  }
 
 }

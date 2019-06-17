@@ -13,12 +13,18 @@ export class StorageService {
   private loged$=new BehaviorSubject<Boolean>(this.usrLogged());
   private rol;
   private rol$=new BehaviorSubject<String>('');
+  private funcion;
+  private funcion$=new BehaviorSubject<String>('');
   public select$():Observable<Boolean>{ 
     return this.loged$.asObservable();
   }
 
   public roles$():Observable<String>{ 
     return this.rol$.asObservable();
+  }
+
+  public funciones$():Observable<String>{
+    return this.funcion$.asObservable();
   }
 
   constructor(private http: HttpClient) { 
@@ -77,11 +83,15 @@ export class StorageService {
     a.usuario='consola';
     let json=JSON.stringify(a);
     return this.http.post(`http://98fefa78.ngrok.io/donacion`,json);
-    /*
-    var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
-    console.log('****************Token**********************')
-    console.log(sesion.token.jwt);
-    return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);*/
+    
+  }
+
+  setFuncion(func){
+    this.funcion$.next(func);
+    this.funcion=func;
+    localStorage.setItem('funcion',func);
+    console.log('****************Storage--Funcion--');
+    console.log(func);
 
     
   }

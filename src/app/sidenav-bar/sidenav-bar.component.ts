@@ -75,12 +75,12 @@ export class SidenavBarComponent implements OnInit {
   }
 
   gestionarMecanismosInternos() {
-    localStorage.setItem("funcion", "gestionarMecanismosInternos");
+    this.storage.setFuncion("gestionarMecanismosInternos");
     this.router.navigate(['/listarComponentes'])
   }
 
   gestionarMecanismosExternos() {
-    localStorage.setItem("funcion", "gestionarMecanismosExternos");
+    this.storage.setFuncion("gestionarMecanismosExternos");
     this.router.navigate(['/listarComponentes'])
   }
 
