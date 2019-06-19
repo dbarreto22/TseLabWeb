@@ -1,0 +1,33 @@
+
+<h4 *ngIf="paypalLoad">Conectando con Paypal, por favor aguarde...</h4>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+
+<div class="wrapper">
+  <div class="payment">
+    <div class="payment-logo">
+      <p>FactCheck</p>
+    </div>
+    
+    
+    <h2>DONACIONES</h2>
+    <div class="form">
+   		<p class="label">Nombre</p>
+      <div class="card space icon-relative">
+         <input type="text" class="input" [(ngModel)]="finalName">
+        <i class="fas fa-user"></i>
+      </div>
+      <p class="label">Monto (USD)*</p>
+      <div class="card space icon-relative">
+        
+        <input type="number" class="input" [(ngModel)]="finalAmount">
+        <i class="fas fa-dollar-sign"></i>
+      </div>  
+      <div class="btn">
+       	<div id="paypal-checkout-btn"></div>
+      </div> 
+      
+    </div>
+  </div>
+</div>
+

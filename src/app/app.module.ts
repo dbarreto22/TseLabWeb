@@ -45,6 +45,7 @@ import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perif
 import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
 import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
 import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component';
+import { DonarComponent } from './Usuarios/donar/donar.component';
 import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AuthorizatedGuard } from './authorizated.guard';
@@ -98,6 +99,7 @@ export function getAuthServiceConfigs() {
     CrearNodosPerifericosComponent,
     ModificarNodosPerifericosComponent,
     DonacionesComponent,
+    DonarComponent,
     SidenavBarComponent,
     VerDonacionesComponent,
     GraficaComponent,

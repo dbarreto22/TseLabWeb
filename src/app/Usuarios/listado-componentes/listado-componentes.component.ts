@@ -63,6 +63,7 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
     }
     else {
       this.verificar = true;
+      this.gestionar=false;
       this.titulo = "Seleccione Mecanismo para Verificar";
       this.encabezado = "Si desea verificar con un mecanismo, seleccione uno y click en Siguiente.\n De lo contrario click en Cancelar."
       //acá deberías programar la lógica que trae todos los componentes
@@ -316,6 +317,7 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
   }
 
   cargarExternos() {
+    this.verificar = true;
     this.gestionar = true;
     this.titulo = "Gestión de Mecanismos Externos";
     this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
