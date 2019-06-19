@@ -10,7 +10,7 @@ declare let paypal: any;
   templateUrl: './donar.component.html',
   styleUrls: ['./donar.component.scss']
 })
-export class DonarComponent {
+export class DonarComponent  {
   
 	addScript: boolean = false;
 	paypalLoad: boolean = true;

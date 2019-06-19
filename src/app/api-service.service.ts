@@ -237,13 +237,13 @@ getFiltros(nroPag, cantElemPag, titulo, url, estado): Observable<object> {
   return this.http.get<object>(`${this.API_URL}/getHechosFiltros/` + nroPag + `/` + cantElemPag + `/` + titulo + `/` + url + `/` + estado);
 }
 
-registrardonacion(tid, fecha, monto, usuario, moneda){
+registrardonacion(id,time,monto,usuario,moneda){
   var a: any = {};
-  a.transaccionId=tid;
-  a.fecha = fecha;
+  a.transaccionId=id;
+  a.fecha = time;
   a.monto = monto;
-  a.moneda = usuario;
-  a.usuario = moneda;
+  a.moneda = moneda;
+  a.usuario = usuario;
   let json=JSON.stringify(a);
   return this.http.post(`http://e499ed4c.ngrok.io/donacion`, json, httpOptions);
 }
