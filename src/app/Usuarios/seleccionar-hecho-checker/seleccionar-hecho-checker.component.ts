@@ -29,13 +29,6 @@ export class SeleccionarHechoCheckerComponent implements OnInit {
     this.setSelectableSettings();
 
     this.hechos = this.apiService.getHechosByChecker();
-   //this.hechos = this.apiService.getAllHechos();
-  /* A_COMPROBAR	("A comprobar"),
-   NUEVO	("Nuevo"),
-   EN_PROCESO	("En proceso"),
-   VERIFICADO	("Verificado"),
-   PUBLICADO	("Publicado"),
-   CANCELADO	("Cancelado");*/
     this.hechos.subscribe(
       ()=> {
         console.log(this.hechos)

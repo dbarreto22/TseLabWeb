@@ -8,7 +8,7 @@ import { RowArgs, PageChangeEvent, SelectableSettings } from '@progress/kendo-an
 import { Observable } from 'rxjs';
 import { Hechos } from '../clases/hechos';
 import { Mecanismos } from '../clases/mecanismos';
-import { getNow } from '@progress/kendo-angular-dateinputs/dist/es2015/util';
+
 
 interface Item {
   text: string,
@@ -24,7 +24,7 @@ interface Item {
 })
 export class VerificarHechoComponent implements OnInit {
 
-  public hechos : Observable<Array<any>>;
+  public hechos : Observable<any>;
   public idMecanismo;
   public loading;
   public idHecho : string;
@@ -50,57 +50,29 @@ public selectedValue: string;
     this.idMecanismo = localStorage.getItem("idMecanismo");
     this.idHecho = localStorage.getItem("idHecho");
 
-    //this.hechos = this.apiService.getAllHechos();
+    this.hechos = this.apiService.gethechoById(this.idHecho);
 
     this.hechos.subscribe(
-      ()=> {
+      (data:Hechos)=> {
+        this.hecho = data;
         this.loading=false
-
+        this.hecho.resultadosMecanismos.forEach(r=>{
+          r.mecanismo.calificacion = r.calificacion;
+          this.mecanismos.push(r.mecanismo);
+        }) 
+        if(this.mecanismos.length > 0){
+          this.mostrar = true;
+        }
       },
       err=>{
         this.loading=false;
         //this.apiService.mensajeConError(err);
       }
     )
-
-    this.change();
-
    }
 
   ngOnInit() {
   }
-
-  change() {
-   
-    this.hechos.subscribe(
-    (data: Array<Hechos>)=> {
-      data.forEach(asig=>{
-        if(asig.id == this.idHecho){
-          console.log("asig",asig)
-          
-          this.hecho =  asig;
-          asig.resultadosMecanismos.forEach(r=>{
-            r.mecanismo.calificacion = r.calificacion;
-            this.mecanismos.push(r.mecanismo);
-          }) 
-
-          }
-        if(this.mecanismos.length > 0){
-          this.mostrar = true;
-        }
-        
-        console.log('mecanismo ',this.mecanismos)
-    })
-      
-    },
-    err=>{
-      console.log(err);
-     // this.apiService.mensajeConError(err);
-    }
-  )
-}
-
-
 
 verificar(justificacion){ 
    this.apiService.calificarHecho(this.hecho.id, this.selectedValue,justificacion).subscribe((res)=> {
@@ -117,11 +89,9 @@ verificar(justificacion){
 
 }
 
+
 cancelar(){
   this.router.navigate(['/seleccionarHecho']);
 }
-  
-
-
 
 }

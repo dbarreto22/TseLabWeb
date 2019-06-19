@@ -69,21 +69,18 @@ export class PaginaPrincipalComponent {
     this.listadoGeneral.subscribe(
     (res : listadoHechos)=> {
       console.log(res);
+      
       this.listado = res;
-      console.log(this.listado)
-      this.cantElementos = parseInt(res.cantElementos)
-      console.log(res.cantElementos)
-      console.log(this.cantElementos)
-  console.log(this.canthechos)
-
-  this.totalPaginas= this.cantElementos/this.canthechos;
-  console.log(this.totalPaginas - Math.floor(this.totalPaginas))
-  if (this.totalPaginas - Math.floor(this.totalPaginas) > 0){
-    this.totalPaginas=  Math.trunc(this.cantElementos/this.canthechos) + 1 ;
-  }else {
-    this.totalPaginas=  Math.trunc(this.cantElementos/this.canthechos)
-  }
-  console.log(this.totalPaginas)
+      console.log(this.listado);
+      this.cantElementos = parseInt(res.cantElementos);
+      this.totalPaginas= this.cantElementos/this.canthechos;
+      console.log(this.totalPaginas - Math.floor(this.totalPaginas))
+      if (this.totalPaginas - Math.floor(this.totalPaginas) > 0){
+      this.totalPaginas=  Math.trunc(this.cantElementos/this.canthechos) + 1 ;
+    }else {
+      this.totalPaginas=  Math.trunc(this.cantElementos/this.canthechos)
+    }
+    console.log(this.totalPaginas)
 
   
     },

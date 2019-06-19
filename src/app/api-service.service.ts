@@ -249,13 +249,17 @@ crearDonacion(){
 }
 
 getAllDonaciones(): Observable<Array<object>> {
-  return this.http.get<Array<object>>(`http://c56df2c7.ngrok.io/donacion/getAll`);
+  return this.http.get<Array<object>>(`http://e499ed4c.ngrok.io/donacion/getAll`);
 }
 
 getTotalHechosPorEstado(): Observable<object>{
   
   return this.http.get<object>(`${this.API_URL}/getCantHechosPorEstado`);
 
+}
+
+gethechoById(id : string):Observable<object>{
+  return this.http.get<object>(`${this.API_URL}/getHechoById/` + id);
 }
 
 }

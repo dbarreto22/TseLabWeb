@@ -1,48 +1,46 @@
 <mat-toolbar color="primary" class="example-toolbar">
-  <mat-icon *ngIf="aux" class="link" (click)="sidenav.toggle()">reorder </mat-icon>
+  <mat-icon *ngIf="aux" style="cursor: pointer" class="link" (click)="sidenav.toggle()">reorder </mat-icon>
   <a class="link" href="/bienvenido">Fact Checker
   </a>
 
-  <mat-icon class="link" *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
-  <mat-icon class="link" aria-label="donar" (click)="donar()">attach_money</mat-icon>
-  <mat-icon *ngIf="aux2" aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
-  <mat-icon class="link" aria-label="login-Mail" *ngIf="aux2" (click)="loginRedSocial()">mail_outline</mat-icon>
+  <mat-icon class="link" style="cursor: pointer" *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
+  <mat-icon class="link" style="cursor: pointer" aria-label="donar" (click)="donar()">attach_money</mat-icon>
+  <mat-icon *ngIf="aux2" style="cursor: pointer" aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
+  <mat-icon class="link" style="cursor: pointer" aria-label="login-Mail" *ngIf="aux2" (click)="loginRedSocial()">mail_outline</mat-icon>
   
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     <mat-nav-list *ngIf="aux">
-      <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Gestion Mecanismos Internos
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Gestion Mecanismos Internos
       </a>
     <hr *ngIf="admin" />
-      <a *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Gestion Mecanismos Externos
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Gestion Mecanismos Externos
       </a>
     <hr *ngIf="admin"/>
-      <a *ngIf="admin" mat-list-item (click)="irPrincipal()">Listado de Hechos General</a>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="irPrincipal()">Listado de Hechos General</a>
     <hr *ngIf="admin"/>
-      <a *ngIf="admin" mat-list-item (click)="crearUsuario()">Crear Usuario</a>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="crearUsuario()">Crear Usuario</a>
     <hr *ngIf="admin"/>
-      <a *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion de Perifericos</a>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion de Perifericos</a>
     <hr *ngIf="admin"/>
-      <a *ngIf="checker" mat-list-item (click)="listarMecanismos()">Verificar Hechos</a>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="irGraficas()">Grafica por Estado</a>
+    <hr *ngIf="admin"/>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="irExportPDF()">Reportes por Estado</a>
+    <hr *ngIf="admin"/>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="listarDonaciones()">Listar Donaciones</a>
+    <hr *ngIf="admin"/>
+      <a style="cursor: pointer" *ngIf="citizen" mat-list-item (click)="suscripcion()">Suscribirse</a>
+    <hr *ngIf="citizen"/>
+      <a style="cursor: pointer" *ngIf="citizen" mat-list-item (click)="Visitante()">Visitante</a>
+    <hr *ngIf="citizen"/>
+      <a style="cursor: pointer" *ngIf="citizen" mat-list-item (click)="Citizen()">Citizen </a>
+    <hr *ngIf="citizen"/>
+      <a style="cursor: pointer" *ngIf="citizen" mat-list-item (click)="crearhecho()">Crear Hecho</a>
+    <hr *ngIf="citizen"/>
+      <a style="cursor: pointer" *ngIf="checker" mat-list-item (click)="listarHechosByChecker()">Listar Hechos</a>
     <hr *ngIf="checker"/>
-      <a *ngIf="admin" mat-list-item (click)="irGraficas()">Grafica por Estado</a>
-    <hr *ngIf="admin"/>
-      <a *ngIf="admin" mat-list-item (click)="irExportPDF()">Reportes por Estado</a>
-    <hr *ngIf="admin"/>
-      <a *ngIf="admin" mat-list-item (click)="listarDonaciones()">Listar Donaciones</a>
-    <hr *ngIf="admin"/>
-      <a *ngIf="citizen" mat-list-item (click)="suscripcion()">Suscribirse</a>
-    <hr *ngIf="citizen"/>
-      <a *ngIf="citizen" mat-list-item (click)="Visitante()">Visitante</a>
-    <hr *ngIf="citizen"/>
-      <a *ngIf="citizen" mat-list-item (click)="Citizen()">Citizen </a>
-    <hr *ngIf="citizen"/>
-      <a *ngIf="citizen" mat-list-item (click)="crearhecho()">Crear Hecho</a>
-    <hr *ngIf="citizen"/>
-      <a *ngIf="checker" mat-list-item (click)="listarHechosByChecker()">Listar Hechos</a>
-    <hr *ngIf="checker"/>
-      <a *ngIf="submiter" mat-list-item (click)="asignarHecho()">Asignar Hechos</a>
+      <a style="cursor: pointer" *ngIf="submiter" mat-list-item (click)="asignarHecho()">Asignar Hechos</a>
     <hr *ngIf="submiter"/>
     </mat-nav-list>
   </mat-sidenav>

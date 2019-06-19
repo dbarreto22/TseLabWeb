@@ -81,9 +81,7 @@ export class CrearUsuarioComponent implements OnInit {
   }
 
   public cancelar(){
-    this.router.navigate(['/']);
-
-
+    this.router.navigate(['/principalAdmin']);
   }
 
   
