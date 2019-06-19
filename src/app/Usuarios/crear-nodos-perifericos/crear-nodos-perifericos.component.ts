@@ -35,7 +35,6 @@ export class CrearNodosPerifericosComponent implements OnInit {
    if(descripcion!= undefined && url!= undefined && usuario!= undefined && password!= undefined && this.habilita != undefined){
 
     this.nodoPeriferico.descripcion = descripcion;
-    this.nodoPeriferico.url = url,
     this.nodoPeriferico.usuario = usuario;
     /*
     var crypto = require('crypto'); //Libreria de criptografia

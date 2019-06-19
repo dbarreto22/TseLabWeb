@@ -11,10 +11,6 @@
                 <span>Descripcion</span>
                 <input #descripcion   class="form-control"  type="text" />
               </label>
-                <label class="k-form-field" for="readOnlyInput">
-                  <span>Url</span>
-                  <input #url   class="form-control"  type="text" />
-                </label>
                 <label class="k-form-field">
                   <span>Habilitar</span>
                   <kendo-dropdownlist  [data]="habilitados" [(ngModel)]="habilita" [ngModelOptions]="{standalone: true}">
@@ -31,7 +27,7 @@
 
             </fieldset>
             <div class="text-center">
-              <button type="button" class="btn btn-primary btn-lg" (click)="crearNodo(descripcion.value,url.value,usuario.value, password.value)">
+              <button type="button" class="btn btn-primary btn-lg" (click)="crearNodo(descripcion.value,usuario.value, password.value)">
                   Aceptar</button>
               <button type="button" class="btn btn-secondary disable btn-lg" (click)="cancelar()">Cancelar</button>
             </div>
