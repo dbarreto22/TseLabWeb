@@ -5832,8 +5832,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/diego/Escritorio/TseLabWeb/src/polyfills.ts */"./src/polyfills.ts");
-module.exports = __webpack_require__(/*! /home/diego/Escritorio/TseLabWeb/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+__webpack_require__(/*! /media/carlox/Datos/Datos/Tecnologo/TSE2019/TseLabWeb/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /media/carlox/Datos/Datos/Tecnologo/TSE2019/TseLabWeb/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 
 /***/ })
