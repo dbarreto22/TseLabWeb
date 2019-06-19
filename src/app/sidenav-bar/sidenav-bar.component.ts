@@ -6,6 +6,8 @@ import { StorageService } from '../storage.service';
 import { ApiServiceService } from '../api-service.service';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material';
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sidenav-bar',
@@ -27,7 +29,14 @@ export class SidenavBarComponent implements OnInit {
   private aux: Boolean;
   private aux2: Boolean;
   private sidenav:MatSidenav;
-  constructor(private breakpointObserver: BreakpointObserver, private storage: StorageService, private router: Router, private apiService: ApiServiceService) {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,private breakpointObserver: BreakpointObserver, private storage: StorageService, private router: Router, private apiService: ApiServiceService) {
+    
+    iconRegistry.addSvgIcon(
+      'google',
+      sanitizer.bypassSecurityTrustResourceUrl('../../assets/google-plus.svg'));
+
+    
+    
     this.storage.select$().subscribe(logueado => {
     this.aux = logueado.valueOf();
       this.aux2 = !this.aux;
