@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
 import { Sesion } from '../../Usuarios/clases/sesion.model';
+import { StorageService } from 'src/app/storage.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { Sesion } from '../../Usuarios/clases/sesion.model';
 export class LoginRedSocialComponent implements OnInit {
 
   public socialPlatformProvider;
-  constructor( private socialAuthService: AuthService , private router: Router, private apiservice:AuthenticationService) { }
+  constructor( private storage:StorageService, private socialAuthService: AuthService ,
+     private router: Router, private apiservice:AuthenticationService) { }
 
 
 
@@ -44,7 +46,8 @@ export class LoginRedSocialComponent implements OnInit {
           //localStorage.setItem('session',JSON.stringify(new Sesion(res,null)));
           if(resultado.jwt!= null)
           {
-            localStorage.setItem('session',JSON.stringify(new Sesion(resultado,null)));
+            this.storage.setSession(resultado,null);
+            this.storage.setRol(resultado.rol);
           }
           console.log("******************** resultado de login por red social*******************************");
           console.log(resultado);
@@ -52,13 +55,9 @@ export class LoginRedSocialComponent implements OnInit {
       error => {
           console.log(<any>error);
       });
-            
       }
     );
+    this.router.navigate(['/bienvenido']);
   }
-
-
-  
-
 
 }
