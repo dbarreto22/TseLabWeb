@@ -143,7 +143,7 @@ export class SidenavBarComponent implements OnInit {
     this.storage.pruebaObs();
   }
   donar() {
-    this.storage.getAllHechos().subscribe(res => console.log(res));
+    this.router.navigate(['/donar']);
   }
 
   irGraficas() {

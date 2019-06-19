@@ -43,14 +43,16 @@ html {
   
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
-    border-radius: 10px 10px 10px 10px;
-    background:grey;
+    border-radius: 6px 6px 6px 6px;
+    border-top: 1px solid black;
+    background: white;
+    border: 3px solid black;
     width: 60%;
     max-width: 547px;
     width: 100%;
     height: 100%;
     position: relative;
-    padding: 2%;
+    padding: 3%;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     text-align: center;
@@ -158,6 +160,7 @@ html {
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
+
   }
   
   @-webkit-keyframes fadeInDown {
@@ -257,4 +260,26 @@ html {
   *:focus {
       outline: none;
   } 
-  
+  .class1{
+    color: cadetblue;
+    text-shadow:black 1px;
+   background-color: white;
+   border:2px solid black; 
+   border-radius: 6px 6px 6px 6px;
+   margin-top: -3%;
+   padding-top: 3%;
+   font-weight: bolder;
+   font-size: 165%;
+   width: inherit;
+  }
+
+  .btnStyle{
+    color:red;
+    //background-color: ;
+    width:90%;
+  }
+  button{
+    color: cadetblue;
+    background-color: black;
+    width: inherit;
+  }
