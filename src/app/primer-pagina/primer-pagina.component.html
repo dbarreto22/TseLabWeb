@@ -4,15 +4,15 @@
     <p class="font-weight-normal" style="color: dodgerblue">Asignar hechos</p>
   </div>
 
-  <kendo-grid [kendoGridBinding]="hechos | async" [pageSize]="10" [pageable]="true" [sortable]="true"
+  <kendo-grid [kendoGridBinding]="hechos | async" [pageSize]="10" [pageable]="true" [filterable]="true"  [sortable]="true"
     [loading]="loading" [filterable]="true" [resizable]="true" [selectable]="selectableSettings"
     (selectionChange)="change()" [kendoGridSelectBy]="mySelectionKey" [selectedKeys]="mySelection" [skip]="skip"
     (pageChange)="pageChange($event)" [height]="500">
-    <kendo-grid-column field="id" title="Id" width="100" [filterable]="false">
+    <kendo-grid-column field="id" title="Id" >
     </kendo-grid-column>
     <kendo-grid-column field="titulo" title="Titulo">
     </kendo-grid-column>
-    <kendo-grid-column field="url" title="URL" width="100" [filterable]="false">
+    <kendo-grid-column field="url" title="URL"  >
     </kendo-grid-column>
 
     <kendo-grid-checkbox-column></kendo-grid-checkbox-column>

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { SelectableSettings, RowArgs, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { StorageService } from 'src/app/storage.service';
   templateUrl: './listado-componentes.component.html',
   styleUrls: ['./listado-componentes.component.scss']
 })
-export class ListadoComponentesComponent implements OnInit, AfterContentChecked {
+export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterContentChecked {
   public tipoMecanismo;
   public funcion;
   public titulo;
@@ -55,11 +55,12 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
     //    this.funcion = localStorage.getItem("funcion");
     if (this.funcion == "gestionarMecanismosInternos") {
       this.cargarInternos();
+      this.verificar = false;
 
     }
     else if (this.funcion == "gestionarMecanismosExternos") {
       this.cargarExternos();
-
+      this.verificar = false;
     }
     else {
       this.verificar = true;
@@ -122,6 +123,11 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
   }
   ngOnInit() {
     this.CargaMecanismoCompletos();
+  }
+
+  ngOnDestroy(){
+    this.verificar = false;
+    this.gestionar = false;
   }
   public setSelectableSettings(): void {
     this.selectableSettings = {
@@ -295,6 +301,7 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
   }
 
   cargarInternos() {
+    this.verificar = false;
     this.gestionar = true;
     this.titulo = "Gestión de Mecanismos Internos";
     this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."
@@ -317,7 +324,7 @@ export class ListadoComponentesComponent implements OnInit, AfterContentChecked 
   }
 
   cargarExternos() {
-    this.verificar = true;
+    this.verificar = false;
     this.gestionar = true;
     this.titulo = "Gestión de Mecanismos Externos";
     this.encabezado = "Si desea modificar con un mecanismo, seleccione uno y click en modificar.\n De lo contrario click en Cancelar."

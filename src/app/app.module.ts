@@ -49,7 +49,6 @@ import { DonarComponent } from './Usuarios/donar/donar.component';
 import { SidenavBarComponent } from './sidenav-bar/sidenav-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AuthorizatedGuard } from './authorizated.guard';
-import { VerDonacionesComponent } from './Usuarios/ver-donaciones/ver-donaciones.component';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
@@ -100,7 +99,6 @@ export function getAuthServiceConfigs() {
     DonacionesComponent,
     DonarComponent,
     SidenavBarComponent,
-    VerDonacionesComponent,
     GraficaComponent,
     ExportPDFComponent,
     AppLayoutComponent,

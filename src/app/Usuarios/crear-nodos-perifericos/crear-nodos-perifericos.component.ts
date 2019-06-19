@@ -56,6 +56,8 @@ export class CrearNodosPerifericosComponent implements OnInit {
     this.apiService.crearMecanismoVerificacionPeriferico(this.nodoPeriferico ).subscribe((res)=> {
       console.log("RESP",res);
       console.log(this.nodoPeriferico);
+      this.router.navigate(['/']);
+    
     },
     err=>{
       console.log("ERROR",err);

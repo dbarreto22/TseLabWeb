@@ -25,6 +25,7 @@ export class UsuariosComponent implements OnInit {
   constructor(  private apiService: ApiServiceService,
     private router: Router
   ) {
+    this.setSelectableSettings();
       this.usuarios = this.apiService.getCheckers();
       this.usuarios.subscribe(
         (res) =>{ console.log(res)},

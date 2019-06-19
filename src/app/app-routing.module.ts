@@ -16,7 +16,6 @@ import { GestionNodosPerifericosComponent } from './Usuarios/gestion-nodos-perif
 import { CrearNodosPerifericosComponent } from './Usuarios/crear-nodos-perifericos/crear-nodos-perifericos.component';
 import { ModificarNodosPerifericosComponent } from './Usuarios/modificar-nodos-perifericos/modificar-nodos-perifericos.component';
 import { AuthorizatedGuard } from './authorizated.guard';
-import { VerDonacionesComponent } from './Usuarios/ver-donaciones/ver-donaciones.component';
 import { GraficaComponent } from './Usuarios/grafica/grafica.component';
 import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
@@ -41,7 +40,6 @@ children:[*/
   {path: 'gestionNodosPerifericos', component: GestionNodosPerifericosComponent, canActivate:[AuthorizatedGuard]},
   {path: 'crearNodosPerifericos', component: CrearNodosPerifericosComponent, canActivate:[AuthorizatedGuard]},
   {path: 'modificarNodosPerifericos', component: ModificarNodosPerifericosComponent, canActivate:[AuthorizatedGuard]},
-  {path: 'donaciones', component: VerDonacionesComponent, canActivate:[AuthorizatedGuard]},
   {path: 'reportes', component: ExportPDFComponent, canActivate:[AuthorizatedGuard]},
   {path: 'graficas', component: GraficaComponent, canActivate:[AuthorizatedGuard]},
   {path: 'principalAdmin', component: PaginaPrincipalComponent, canActivate:[AuthorizatedGuard]},

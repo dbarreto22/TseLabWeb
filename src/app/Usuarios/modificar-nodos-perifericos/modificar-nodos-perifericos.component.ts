@@ -89,6 +89,7 @@ export class ModificarNodosPerifericosComponent implements OnInit {
     this.apiService.modificarMecanismoVerificacionPeriferico(nodoEnviar ).subscribe((res)=> {
       console.log("RESP",res);
       console.log(nodoEnviar);
+      this.router.navigate(['/']);
     },
     err=>{
       console.log("ERROR",err);

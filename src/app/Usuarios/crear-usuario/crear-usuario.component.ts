@@ -68,6 +68,7 @@ export class CrearUsuarioComponent implements OnInit {
       this.apiService.crearUser(this.user).subscribe((res)=> {
         console.log("RESP",res);
         console.log(this.user);
+        this.router.navigate(['/principalAdmin']);
       },
       err=>{
         console.log("ERROR",err);

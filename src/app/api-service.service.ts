@@ -245,11 +245,11 @@ registrardonacion(id,time,monto,usuario,moneda){
   a.moneda = moneda;
   a.usuario = usuario;
   let json=JSON.stringify(a);
-  return this.http.post(`http://e499ed4c.ngrok.io/donacion`, json, httpOptions);
+  return this.http.post(`http://a12bb00c.ngrok.io/donacion`, json, httpOptions);
 }
 
 getAllDonaciones(): Observable<Array<object>> {
-  return this.http.get<Array<object>>(`http://e499ed4c.ngrok.io/donacion/getAll`);
+  return this.http.get<Array<object>>(`http://a12bb00c.ngrok.io/donacion/getAll`);
 }
 
 getTotalHechosPorEstado(): Observable<object>{
