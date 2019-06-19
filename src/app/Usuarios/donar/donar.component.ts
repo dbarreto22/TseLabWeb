@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { ApiServiceService } from '../../api-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Http } from '@angular/http';
+
 
 declare let paypal: any;
 @Component({
@@ -10,7 +10,7 @@ declare let paypal: any;
   templateUrl: './donar.component.html',
   styleUrls: ['./donar.component.scss']
 })
-export class DonarComponent implements OnInit {
+export class DonarComponent {
   
 	addScript: boolean = false;
 	paypalLoad: boolean = true;

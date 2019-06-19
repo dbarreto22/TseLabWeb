@@ -100,7 +100,7 @@ export class SidenavBarComponent implements OnInit {
   }
 
   listarDonaciones(){
-    this.router.navigate(['/listarDonaciones']);
+    this.router.navigate(['/donar']);
   }
 
   listarMecanismos() {
@@ -128,6 +128,7 @@ export class SidenavBarComponent implements OnInit {
     this.router.navigate(['login']);
   }
   logInRedSocial() {
+    console.log("ACA ESTOY")
     this.router.navigate(['/loginRedSocial']);
   }
 

@@ -20,7 +20,7 @@ import {
   LinkedinLoginProvider,
 } from "angular-6-social-login-v2";
 
-import { GestionComponenetesComponent } from './Usuarios/gestion-componenetes/gestion-componenetes.component';
+
 import { CrearUsuarioComponent } from './Usuarios/crear-usuario/crear-usuario.component';
 import { PrimerPaginaComponent } from './primer-pagina/primer-pagina.component';
 import { PaginaPrincipalComponent } from './Citizen/pagina-principal/pagina-principal.component';
@@ -84,7 +84,6 @@ export function getAuthServiceConfigs() {
     AppComponent,
     LoginComponent,
     PaginaPrincipalComponent,
-    GestionComponenetesComponent,
     CrearUsuarioComponent,
     PrimerPaginaComponent,
     LoginRedSocialComponent,
