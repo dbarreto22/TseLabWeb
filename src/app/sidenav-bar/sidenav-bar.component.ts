@@ -33,6 +33,7 @@ export class SidenavBarComponent implements OnInit {
     
     iconRegistry.addSvgIcon(
       'google',
+      
       sanitizer.bypassSecurityTrustResourceUrl('../../assets/google-plus.svg'));
 
     
@@ -149,6 +150,7 @@ export class SidenavBarComponent implements OnInit {
     console.log(this.submiter);
     console.log(this.checker);
 
+
     this.storage.pruebaObs();
   }
   donar() {
@@ -177,6 +179,7 @@ export class SidenavBarComponent implements OnInit {
     this.checker=false;
     this.submiter=false;
     this.admin=false;
+    this.citizen=false;
     this.router.navigate(['']);
   }
 }

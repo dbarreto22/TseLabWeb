@@ -92,7 +92,16 @@ export class UsuariosComponent implements OnInit {
     console.log("mailUsuario");
     console.log(localStorage.getItem("mailUsuario"));
     console.log("llamada al servicio");
-    this.apiService.asignarUsuario().subscribe(msg=>{console.log(msg)},err=>{console.log(err)});
+    this.apiService.asignarUsuario().subscribe(msg=>{console.log(msg)
+    
+    
+    },err=>{console.log(err)
+    });
+    this.router.navigate([''])
+  }
+
+  cancelar(){
+    this.router.navigate([''])
   }
 
 }

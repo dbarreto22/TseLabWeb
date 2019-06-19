@@ -6,7 +6,7 @@
 
 
   <kendo-grid     
-      [data]="donacionMostrar" 
+        [kendoGridBinding]="donaciones | async" 
       [pageSize]="10"
       [pageable]="true"
       [sortable]="true"

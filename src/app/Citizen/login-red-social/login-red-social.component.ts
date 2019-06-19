@@ -57,7 +57,7 @@ export class LoginRedSocialComponent implements OnInit {
       });
       }
     );
-    this.router.navigate(['/bienvenido']);
+    this.router.navigate(['/']);
   }
 
 }
