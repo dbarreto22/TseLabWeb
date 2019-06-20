@@ -35,15 +35,16 @@
       </kendo-grid>
 
 
-  <kendo-grid  *ngIf="verificar"   
-      [data]="mecanismosMostrar" 
-      [pageSize]="15"
+  <kendo-grid  *ngIf="verificar" 
+   
+      [kendoGridBinding]="mecanismosMostrar | async" 
+      [pageSize]="10"
       [pageable]="true"
       [sortable]="true"
       [filterable]="true"
       [resizable]="true"
       [selectable]="selectableSettings" 
-      (selectionChange) = "mecanismoSeleccionado()"
+      (selectionChange) = "mecanismoSelected()" 
       [kendoGridSelectBy]="mySelectionKey"
       [selectedKeys]="mySelection"
       [skip]="skip"
@@ -58,8 +59,6 @@
   <kendo-grid-column field="url" title="Url">
       </kendo-grid-column>
   <kendo-grid-column field="habilitado" editor="boolean" title="Habilitado">
-      </kendo-grid-column>
-  <kendo-grid-column field="mecanismo" title="Tipo de mecanismo">
       </kendo-grid-column>
   <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
       </kendo-grid>

@@ -55,6 +55,7 @@ import 'hammerjs';
 import { GraficaComponent } from './Usuarios/grafica/grafica.component';
 import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { PublicarComponent } from './Usuarios/publicar/publicar.component';
 
 
 
@@ -102,6 +103,7 @@ export function getAuthServiceConfigs() {
     GraficaComponent,
     ExportPDFComponent,
     AppLayoutComponent,
+    PublicarComponent,
   ],
   imports: [
     BrowserModule,

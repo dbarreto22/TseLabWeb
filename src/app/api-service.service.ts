@@ -217,6 +217,11 @@ getMecanismosExternos(): Observable<Array<object>> {
   return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosExternos`);
 }
 
+getAllMecanismos(): Observable<Array<object>>{
+  
+  return this.http.get<Array<object>>(`${this.API_URL}/admin/getMecanismosVerificacion`);
+}
+
 
 gethechosByEstados(estado :string){
   console.log("ESTADO",estado)
@@ -260,6 +265,14 @@ getTotalHechosPorEstado(): Observable<object>{
 
 gethechoById(id : string):Observable<object>{
   return this.http.get<object>(`${this.API_URL}/getHechoById/` + id);
+}
+
+setEstadoHechos(id, estado){
+  var a: any = {};
+  a.id=id;
+  a.estado = estado;
+  let json=JSON.stringify(a);
+  return this.http.post(`${this.API_URL}/submitter/setEstadoHecho` , json, httpOptions);
 }
 
 }

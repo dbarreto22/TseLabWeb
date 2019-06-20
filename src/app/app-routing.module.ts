@@ -22,6 +22,7 @@ import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component';
 import { DonarComponent } from './Usuarios/donar/donar.component';
 import { AppComponent } from './app.component';
+import { PublicarComponent } from './Usuarios/publicar/publicar.component';
 
 
 
@@ -44,7 +45,8 @@ children:[*/
   {path: 'graficas', component: GraficaComponent, canActivate:[AuthorizatedGuard]},
   {path: 'principalAdmin', component: PaginaPrincipalComponent, canActivate:[AuthorizatedGuard]},
   {path: 'listarDonaciones', component: DonacionesComponent, canActivate:[AuthorizatedGuard]},
-  {path: 'donar', component: DonarComponent}
+  {path: 'donar', component: DonarComponent},
+  {path: 'publicar', component: PublicarComponent}
 /*],
    
 }*/,

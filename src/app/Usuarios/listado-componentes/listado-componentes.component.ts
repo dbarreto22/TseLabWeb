@@ -37,7 +37,8 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
   public mecanismosGestionInterno: Observable<Array<any>>;
   public mecanismosGestionExterno: Observable<Array<any>>;
   public mecanismosGestionPerifericos: Observable<Array<any>>;
-  public mecanismosMostrar = new Array<MecanismosCompleto>();
+  public mecanismosMostrar: Observable<Array<any>>;
+  public idMecanismoVerificar;
 
   constructor(public http: HttpClient, private router: Router,
     private apiService: ApiServiceService, private storage: StorageService) {
@@ -71,48 +72,16 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
 
 
       this.idHecho = localStorage.getItem("idHecho");
-      this.mecanismosGestionExterno = this.apiService.getMecanismosExternos();
-      this.mecanismosGestionInterno = this.apiService.getMecanismosInternos();
-      this.mecanismosGestionPerifericos = this.apiService.getNodosPerifericos();
-      this.mecanismosGestionExterno.subscribe(
-        (res) => {
-          this.loading = false
-          console.log("*******************mecanismos");
-          console.log(this.mecanismos);
-          console.log(res);
-
-        },
+      this.mecanismosMostrar = this.apiService.getAllMecanismos();
+      this.mecanismosMostrar.subscribe(
+        (data: Array<MecanismosCompleto>) => {
+         
+          })
         err => {
-          this.loading = false;
-          //this.apiService.mensajeConError(err);
+          console.log(err);
+          // this.apiService.mensajeConError(err);
         }
-      )
-      this.mecanismosGestionInterno.subscribe(
-        (res) => {
-          this.loading = false
-          console.log("*******************mecanismos");
-          console.log(this.mecanismos);
-          console.log(res);
-
-        },
-        err => {
-          this.loading = false;
-          //this.apiService.mensajeConError(err);
-        }
-      )
-      this.mecanismosGestionPerifericos.subscribe(
-        (res) => {
-          this.loading = false
-          console.log("*******************mecanismos");
-          console.log(this.mecanismos);
-          console.log(res);
-
-        },
-        err => {
-          this.loading = false;
-          //this.apiService.mensajeConError(err);
-        }
-      )
+      console.log(this.mecanismosMostrar);
 
     }
 
@@ -122,7 +91,6 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
     localStorage.setItem("funcion", "");
   }
   ngOnInit() {
-    this.CargaMecanismoCompletos();
   }
 
   ngOnDestroy(){
@@ -184,14 +152,17 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
 
   }
 
-  CargaMecanismoCompletos() {
-    this.mecanismosGestionExterno.subscribe(
+  mecanismoSelected() {
+
+    this.mecanismosMostrar.subscribe(
       (data: Array<MecanismosCompleto>) => {
         data.forEach(asig => {
-          if (asig.habilitado) {
-            asig.mecanismo = "Externo";
-            this.mecanismosMostrar.push(asig);
+          if (asig.id == this.mySelection[0]) {
+            this.idMecanismoVerificar = asig.id;
+
           }
+          console.log(this.idMecanismoVerificar);
+        
         })
 
       },
@@ -200,48 +171,7 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
         // this.apiService.mensajeConError(err);
       }
     )
-    this.mecanismosGestionInterno.subscribe(
-      (data: Array<MecanismosCompleto>) => {
-        data.forEach(asig => {
-          if (asig.habilitado) {
-            asig.mecanismo = "Interno";
-            this.mecanismosMostrar.push(asig);
-          }
-        })
-
-      },
-      err => {
-        console.log(err);
-        // this.apiService.mensajeConError(err);
-      }
-    )
-    this.mecanismosGestionPerifericos.subscribe(
-      (data: Array<MecanismosCompleto>) => {
-        data.forEach(asig => {
-          if (asig.habilitado) {
-            asig.mecanismo = "Periferico";
-            this.mecanismosMostrar.push(asig);
-          }
-
-        })
-
-      },
-      err => {
-        console.log(err);
-        // this.apiService.mensajeConError(err);
-      }
-    )
-    console.log(this.mecanismosMostrar);
-  }
-  public idMecanismoVerificar;
-  mecanismoSeleccionado() {
-    this.mecanismosMostrar.forEach(asig => {
-      if (asig.id == this.mySelection[0]) {
-        this.idMecanismoVerificar = asig.id;
-
-        console.log(this.idMecanismoVerificar);
-      }
-    })
+ 
   }
 
   siguiente() {

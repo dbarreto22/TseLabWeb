@@ -42,6 +42,8 @@
     <hr *ngIf="checker"/>
       <a style="cursor: pointer" *ngIf="submiter" mat-list-item (click)="asignarHecho()">Asignar Hechos</a>
     <hr *ngIf="submiter"/>
+    <a style="cursor: pointer" *ngIf="submiter" mat-list-item (click)="publicar()">Publicar Hechos</a>
+    <hr *ngIf="submiter"/>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

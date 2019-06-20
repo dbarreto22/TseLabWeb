@@ -27,11 +27,13 @@ export class HechosComponent implements OnInit {
   public checkboxOnly = true;
   public selectableSettings: SelectableSettings;
   public dialogOpened = false;
+
+  
   constructor(  private apiService: ApiServiceService,
     private router: Router
   ) {
     this.setSelectableSettings();
-      this.hechos = this.apiService.getAllHechos();
+      this.hechos = this.apiService.gethechosByEstados("NUEVO");
       this.hechos.subscribe(
         (res) =>{ console.log(res)},
         ee => {

@@ -173,6 +173,10 @@ export class SidenavBarComponent implements OnInit {
     this.sidenav.toggle();
   }
 
+  publicar(){
+    this.router.navigate(['/publicar']);
+  }
+
   limpiarTodo(){
     this.storage.clearSession();
     this.rolElegido='';

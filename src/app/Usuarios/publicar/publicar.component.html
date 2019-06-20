@@ -1,0 +1,47 @@
+<div class="jumbotron" style="background: aliceblue">
+
+    <div class="example-config">
+        <p class="font-weight-normal" style="color: dodgerblue">Publicar Hechos</p>
+    </div>
+    
+    <kendo-grid     
+        [kendoGridBinding]="hechos | async" 
+        [pageSize]="10"
+        [pageable]="true"
+        [sortable]="true"
+        [filterable]="true"
+        [resizable]="true"
+        [selectable]="selectableSettings" 
+        (selectionChange) = "change()"
+        [kendoGridSelectBy]="mySelectionKey"
+        [selectedKeys]="mySelection"
+        [skip]="skip"
+        (pageChange)="pageChange($event)"
+        [loading]="loading"
+        [height]="500"
+    >
+    <kendo-grid-column field="titulo" title="Titulo">
+        </kendo-grid-column>
+    <kendo-grid-column field="url" title="URL">
+        </kendo-grid-column>
+    <kendo-grid-column field="estado" title="Estado actual">
+        </kendo-grid-column>
+    <kendo-grid-column field="fechaRegistroCalificacion" title="Fecha de registro del Hecho">
+        </kendo-grid-column>
+    <kendo-grid-checkbox-column ></kendo-grid-checkbox-column>
+        </kendo-grid>
+  
+    <div class="row">
+      <div class="col-sm-12 example-col">
+        <kendo-buttongroup  [selection]="'single'" [width]="'100%'">
+          <button kendoButton [toggleable]="true"  (click)="publicar()">Publicar</button>
+          <button kendoButton [toggleable]="true"  (click)="cancelar()">Cancelar</button>
+        </kendo-buttongroup>
+      </div>
+    </div>
+  
+  </div>
+  
+  
+  
+  
