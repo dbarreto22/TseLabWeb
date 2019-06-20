@@ -177,6 +177,11 @@ export class SidenavBarComponent implements OnInit {
     this.router.navigate(['/publicar']);
   }
 
+  
+  gestionarParametros(){
+    this.router.navigate(['/gestionParametros']);
+  }
+
   limpiarTodo(){
     this.storage.clearSession();
     this.rolElegido='';

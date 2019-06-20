@@ -23,6 +23,9 @@ import { DonacionesComponent } from './Usuarios/donaciones/donaciones.component'
 import { DonarComponent } from './Usuarios/donar/donar.component';
 import { AppComponent } from './app.component';
 import { PublicarComponent } from './Usuarios/publicar/publicar.component';
+import { GestionParametrosComponent } from './Usuarios/gestion-parametros/gestion-parametros.component';
+import { CrearParametroComponent } from './Usuarios/crear-parametro/crear-parametro.component';
+import { ModificarParametroComponent } from './Usuarios/modificar-parametro/modificar-parametro.component';
 
 
 
@@ -46,7 +49,11 @@ children:[*/
   {path: 'principalAdmin', component: PaginaPrincipalComponent, canActivate:[AuthorizatedGuard]},
   {path: 'listarDonaciones', component: DonacionesComponent, canActivate:[AuthorizatedGuard]},
   {path: 'donar', component: DonarComponent},
-  {path: 'publicar', component: PublicarComponent}
+  {path: 'publicar', component: PublicarComponent},
+  {path: 'gestionParametros', component: GestionParametrosComponent},
+  {path: 'crearParametro', component: CrearParametroComponent},
+  {path: 'modificarParametro', component: ModificarParametroComponent}
+
 /*],
    
 }*/,

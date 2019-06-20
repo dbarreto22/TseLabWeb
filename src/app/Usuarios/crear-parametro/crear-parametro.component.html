@@ -1,0 +1,31 @@
+<div class="jumbotron" style="background: aliceblue">
+
+    <div class="row example-wrapper">
+    <div class="col-xs-60 col-sm-6 offset-sm-3 example-col">
+        <div class="card">
+          <div class="card-block">
+            <form class="k-form">
+              <fieldset>
+                <legend>Crear Parametro</legend>
+                <label class="k-form-field" for="readOnlyInput">
+                  <span>Nombre</span>
+                  <input #name   class="form-control"  type="text" />
+                </label>
+                  <label class="k-form-field" for="readOnlyInput">
+                    <span>Valor</span>
+                    <input #valor   class="form-control"  type="text" />
+                  </label>
+              </fieldset>
+              <div class="text-center">
+                <button type="button" class="btn btn-primary btn-lg" (click)="crearParametro(name.value,valor.value)">
+                    Aceptar</button>
+                <button type="button" class="btn btn-secondary disable btn-lg" (click)="cancelar()">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  

@@ -18,7 +18,9 @@
       </a>
     <hr *ngIf="admin" />
       <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Gestion Mecanismos Externos
-      </a>
+      </a> 
+    <hr *ngIf="admin"/>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarParametros()">Gestio de Parametros del Sistema</a>
     <hr *ngIf="admin"/>
       <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="irPrincipal()">Listado de Hechos General</a>
     <hr *ngIf="admin"/>

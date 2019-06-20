@@ -56,10 +56,10 @@ import { GraficaComponent } from './Usuarios/grafica/grafica.component';
 import { ExportPDFComponent } from './Usuarios/export-pdf/export-pdf.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { PublicarComponent } from './Usuarios/publicar/publicar.component';
-
-
-
-
+import { GestionParametrosComponent } from './Usuarios/gestion-parametros/gestion-parametros.component';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { CrearParametroComponent } from './Usuarios/crear-parametro/crear-parametro.component';
+import { ModificarParametroComponent } from './Usuarios/modificar-parametro/modificar-parametro.component';
 
 
 
@@ -104,6 +104,9 @@ export function getAuthServiceConfigs() {
     ExportPDFComponent,
     AppLayoutComponent,
     PublicarComponent,
+    GestionParametrosComponent,
+    CrearParametroComponent,
+    ModificarParametroComponent,
   ],
   imports: [
     BrowserModule,
@@ -128,7 +131,8 @@ export function getAuthServiceConfigs() {
     FormsModule,
     LayoutModule,
     PDFExportModule,
-    ChartsModule
+    ChartsModule,
+    DialogsModule
   ],
   providers: [
               

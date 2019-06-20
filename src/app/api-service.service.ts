@@ -275,4 +275,38 @@ setEstadoHechos(id, estado){
   return this.http.post(`${this.API_URL}/submitter/setEstadoHecho` , json, httpOptions);
 }
 
+
+agregarParametro(name, value){
+  var a: any = {};
+  a.name=name;
+  a.value = value;
+  let json=JSON.stringify(a);
+  return this.http.post(`${this.API_URL}/admin/addParametro` , json, httpOptions);
 }
+
+modificarParametro(name, value){
+  var a: any = {};
+  a.name=name;
+  a.value = value;
+  let json=JSON.stringify(a);
+  return this.http.post(`${this.API_URL}/admin/updateParametro` , json, httpOptions);
+
+}
+
+borrarParametro(name, value){
+  var a: any = {};
+  a.name=name;
+  a.value = value;
+  let json=JSON.stringify(a);
+  return this.http.post(`${this.API_URL}/admin/deleteParametro` , json, httpOptions);
+
+}
+
+getParametros(): Observable<Array<object>> {
+  return this.http.get<Array<object>>(`${this.API_URL}/admin/getParametros`);
+}
+
+}
+
+
+
