@@ -1,13 +1,13 @@
   
 <mat-toolbar color="primary" class="example-toolbar">
   <mat-icon *ngIf="aux" style="cursor: pointer" class="link" (click)="sidenav.toggle()">reorder </mat-icon>
-  <a class="link" href="/">Fact Checker
+  <a class="link" href="/bienvenido">Fact Checker
   </a>
 
   <mat-icon class="link" style="cursor: pointer"  *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
   <mat-icon class="link" style="cursor: pointer" *ngIf="checker" aria-label="donar" (click)="donar()">attach_money</mat-icon>
   <mat-icon *ngIf="aux2" style="cursor: pointer" aria-label="login" class="link" (click)="logIn()">account_circle</mat-icon>
-  <mat-icon class="link" svgIcon="google"  aria-hidden="false" aria-label="Login Google" style="cursor: pointer" *ngIf="aux2" (click)="logInRedSocial()"></mat-icon>
+  <mat-icon class="google" svgIcon="google" aria-hidden="false" aria-label="Login Google" style="cursor: pointer" *ngIf="aux2" (click)="logInRedSocial()"></mat-icon>
 
   
 </mat-toolbar>

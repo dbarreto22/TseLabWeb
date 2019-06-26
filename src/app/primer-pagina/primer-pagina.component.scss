@@ -250,7 +250,27 @@ html {
     width: 100%;
   }
   
-  
+  .card{
+    min-width: 300px;
+    min-height:443px;
+    width:30%;
+    float:left;
+    margin-right: 2%;
+    margin-bottom: 1%;
+  }
+
+  .title{
+    display: block;
+    height: 11px;
+      color: cadetblue;
+    font-weight: bold;
+  }
+  .imagen{
+    width:80%;
+    height:80%;
+    padding-top:3%;
+    padding-left: 11%
+  }
   
   /* OTHERS */
   
@@ -258,3 +278,30 @@ html {
       outline: none;
   } 
   
+  .content{
+    margin-left: 11%;
+    margin-bottom: 1%;
+    
+  }
+
+  .mat-card-header{
+    color: cadetblue;
+    font-weight: bold;
+    background: bisque;
+  }
+
+  a{
+    color:blue;
+    width:80%;
+  }
+
+  .footer{
+    position:absolute;
+    bottom:5%;
+  }
+
+  .url{
+    position:absolute;
+    right:14%;
+    bottom:10%;
+  }
