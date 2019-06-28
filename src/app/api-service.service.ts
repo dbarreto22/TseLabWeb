@@ -253,11 +253,11 @@ registrardonacion(id,time,monto,usuario,moneda){
   a.moneda = moneda;
   a.usuario = usuario;
   let json=JSON.stringify(a);
-  return this.http.post(`https://r179-27-99-70.ir-static.anteldata.net.uy:8443/donaciones-rest-api-0.0.1-SNAPSHOT/donacion`, json, httpOptions);
+  return this.http.post(`http://179.27.99.70:8080/donaciones-rest-api-0.0.1-SNAPSHOT/donacion`, json, httpOptions);
 }
 
 getAllDonaciones(): Observable<Array<object>> {
-  return this.http.get<Array<object>>(`https://r179-27-99-70.ir-static.anteldata.net.uy:8443/donaciones-rest-api-0.0.1-SNAPSHOT/donacion/getall`);
+  return this.http.get<Array<object>>(`http://179.27.99.70:8080/donaciones-rest-api-0.0.1-SNAPSHOT/donacion/getAll`);
 }
 
   getFiltros(nroPag, cantElemPag, titulo, url, estado): Observable<object> {
