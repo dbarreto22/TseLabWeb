@@ -30,7 +30,11 @@ export class DonacionesComponent implements OnInit {
 
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
     this.donaciones = this.apiService.getAllDonaciones();
-    this.donaciones.subscribe(
+    this.donaciones.subscribe((res)=>{
+      console.log(res)
+    }
+    )
+   /* this.donaciones.subscribe(
       (data : Array<Donacion>)=> {
         data.forEach(d =>{
           if (d.moneda == "pesos"){
@@ -50,7 +54,7 @@ export class DonacionesComponent implements OnInit {
         this.loading=false;
         //this.apiService.mensajeConError(err);
       }
-    )
+    )*/
       
   }
 

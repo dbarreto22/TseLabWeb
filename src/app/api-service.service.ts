@@ -250,11 +250,11 @@ registrardonacion(id,time,monto,usuario,moneda){
   a.moneda = moneda;
   a.usuario = usuario;
   let json=JSON.stringify(a);
-  return this.http.post(`http://a12bb00c.ngrok.io/donacion`, json, httpOptions);
+  return this.http.post(`https://r179-27-99-70.ir-static.anteldata.net.uy:8443/donaciones-rest-api-0.0.1-SNAPSHOT/donacion`, json, httpOptions);
 }
 
 getAllDonaciones(): Observable<Array<object>> {
-  return this.http.get<Array<object>>(`http://a12bb00c.ngrok.io/donacion/getAll`);
+  return this.http.get<Array<object>>(`https://r179-27-99-70.ir-static.anteldata.net.uy:8443/donaciones-rest-api-0.0.1-SNAPSHOT/donacion/getall`);
 }
 
 getTotalHechosPorEstado(): Observable<object>{
