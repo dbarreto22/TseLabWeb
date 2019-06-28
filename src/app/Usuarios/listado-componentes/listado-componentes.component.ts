@@ -9,6 +9,10 @@ import { Mecanismos } from '../clases/mecanismos';
 import { MecanismosCompleto } from '../clases/mecanismoCompleto';
 import { StorageService } from 'src/app/storage.service';
 
+interface Item {
+  resultado: string,
+}
+
 @Component({
   selector: 'app-listado-componentes',
   templateUrl: './listado-componentes.component.html',
@@ -39,6 +43,7 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
   public mecanismosGestionPerifericos: Observable<Array<any>>;
   public mecanismosMostrar: Observable<Array<any>>;
   public idMecanismoVerificar;
+  public resultado: Item;
 
   constructor(public http: HttpClient, private router: Router,
     private apiService: ApiServiceService, private storage: StorageService) {
@@ -175,19 +180,28 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
   }
 
   siguiente() {
-
-    //FALTA HACER EL DE API DE GOOGLE
     if (this.idMecanismoVerificar != undefined) {
-      this.apiService.verificarHechoMecanismoSinApi(this.idMecanismoVerificar, this.idHecho).subscribe((res) => {
-        console.log("RESP", res);
+      this.apiService.verificarHechoMecanismoSinApi(this.idMecanismoVerificar, this.idHecho).subscribe(
+        (res) => {
+         this.resultado= JSON.parse(res)
+          console.log("RESP", res);
+        if(this.resultado.resultado == "ASYNC"){
+          console.log("RESP", res);
+          alert("El mecanismo utilizado es asyncrono, el resultado lo obtendra a la brevedad");
+          this.router.navigate(['/seleccionarHecho']);
+        }else {
+          console.log("RESP", res);
+          alert("El resultado es: " + this.resultado.resultado );
+          this.router.navigate(['/seleccionarHecho']);
+        }
+        
       },
-        err => {
+       ( err )=> {
           console.log("ERROR", err);
           //this.apiService.mensajeConError(err);
         }
       );
-      alert("Se ha enviado correctamente")
-      this.router.navigate(['/seleccionarHecho']);
+      
     } else {
       alert("Debe seleccionar un mecanismo para verificar")
     }

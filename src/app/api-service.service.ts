@@ -12,6 +12,9 @@ import { Mecanismos } from './Usuarios/clases/mecanismos';
 import { Perifericos } from './Usuarios/clases/perifericos';
 import { HechosImg } from './Usuarios/clases/hechosImg';
 
+interface Item {
+  resultado: string,
+}
 
 const httpOptions: {
   headers?: HttpHeaders,
