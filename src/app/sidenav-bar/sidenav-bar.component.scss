@@ -1,5 +1,6 @@
 .sidenav-container {
-  height: 100%;
+  background-color: aliceblue;
+  padding-left: 3%;
 }
 
 .sidenav .mat-toolbar{
@@ -26,7 +27,9 @@
   align-self:inherit;
   font-weight: bold;
   color:white;
-  text-shadow: 3px 3px 11px rgb(101, 191, 241);  
+  text-shadow: 3px 3px 11px rgb(101, 191, 241);
+  -moz-text-shadow: 3px 3px 11px rgb(101, 191, 241);
+  -webkit-text-shadow: 3px 3px 11px rgb(101, 191, 241);  
 }
 
 .posicion{
@@ -65,8 +68,10 @@ a{
     padding: 0;
 }
 
-googles {
-  background-image: url("../../assets/google-plus.svg");
-  width: 30%;
-  height: 10%;
+.google {
+  width: 5%;
+  height: 56%;
+  text-shadow: 3px 3px 11px rgb(101, 191, 241);
+  -moz-text-shadow: 3px 3px 11px rgb(101, 191, 241);
+  -webkit-text-shadow: 3px 3px 11px rgb(101, 191, 241); 
 }

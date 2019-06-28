@@ -1,20 +1,21 @@
-<div class="jumbotron" style="background: aliceblue">
+<div class="jumbotron" style="background: aliceblue; height: 100%" fxLayout="row" fxLayoutWrap>
 
-  <div class="example-config">
-    <p class="font-weight-normal" style="color: dodgerblue">Asignar hechos</p>
-  </div>
-
-  <kendo-grid [kendoGridBinding]="hechos | async" [pageSize]="10" [pageable]="true" [filterable]="true"  [sortable]="true"
-    [loading]="loading" [filterable]="true" [resizable]="true" [selectable]="selectableSettings"
-    (selectionChange)="change()" [kendoGridSelectBy]="mySelectionKey" [selectedKeys]="mySelection" [skip]="skip"
-    (pageChange)="pageChange($event)" [height]="500">
-    <kendo-grid-column field="id" title="Id" >
-    </kendo-grid-column>
-    <kendo-grid-column field="titulo" title="Titulo">
-    </kendo-grid-column>
-    <kendo-grid-column field="url" title="URL"  >
-    </kendo-grid-column>
-
-    <kendo-grid-checkbox-column></kendo-grid-checkbox-column>
-  </kendo-grid>
+  <mat-card class="card" fxFlex.lg="33" fxFlex.lt-lg="50" fxFlex.xs="100" *ngFor="let h of hechosCard">
+    <mat-card-header>
+      <mat-card-title>
+        {{h.titulo}}
+        {{h.image}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{h.justificacion}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <img class="imagen" src="{{h.img}}">
+      <a class="url" href="{{h.url}}">{{h.url}}</a>
+    </mat-card-content>
+    <mat-card-footer class="footer">
+      {{h.calificacion}}
+    </mat-card-footer>
+  </mat-card>
 </div>

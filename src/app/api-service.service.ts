@@ -10,9 +10,10 @@ import { Checker } from './Usuarios/clases/checker';
 import { observe } from '@progress/kendo-angular-grid/dist/es2015/utils';
 import { Mecanismos } from './Usuarios/clases/mecanismos';
 import { Perifericos } from './Usuarios/clases/perifericos';
+import { HechosImg } from './Usuarios/clases/hechosImg';
 
 
-const httpOptions:{
+const httpOptions: {
   headers?: HttpHeaders,
   observe?: 'body',
   params?: HttpParams,
@@ -26,7 +27,7 @@ const httpOptions:{
 };
 
 const mailUser = new HttpParams().append('mail', localStorage.getItem("userMail"));
-const headersget= new HttpHeaders({'Content-Type': 'application/json'});
+const headersget = new HttpHeaders({ 'Content-Type': 'application/json' });
 //headersget.append('Content-Type': 'application/json');
 
 //const options = new httpOptions({headers: new Headers({'Content-Type': 'application/json'}), params:mailUser});
@@ -41,25 +42,25 @@ export class ApiServiceService {
   API_URL = 'https://r179-27-99-70.ir-static.anteldata.net.uy:8443/FakeNews-web/RESTServices'
 
   constructor(private http: HttpClient) { }
-x
+  x
 
   getAllHechos(): Observable<Array<object>> {
-//    /*
+    //    /*
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
     console.log('****************Token**********************')
     console.log(sesion != null ? sesion.token.jwt : "No estas logueado");
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);//*/
   }
 
-  getHechosVisitante(){
+  getHechosVisitante() {
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);//*/
   }
 
-  getHechosByChecker(): Observable<Array<object>> { 
-   // { headers:headersget, params:mailUser}
-    
-    let mail=localStorage.getItem("userMail");;
-    
+  getHechosByChecker(): Observable<Array<object>> {
+    // { headers:headersget, params:mailUser}
+
+    let mail = localStorage.getItem("userMail");;
+
     return this.http.get<Array<object>>(`${this.API_URL}/getHechosByChecker/` + mail);
   }
 
@@ -69,33 +70,37 @@ x
     console.log(sesion != null ? sesion.token.jwt : "No estas logueado");
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
   }
-/*
-  getAllMecanismos(): Observable<Array<object>> {
-
-    return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosVerificacion`);
-  }
-*/
+  /*
+    getAllMecanismos(): Observable<Array<object>> {
+  
+      return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosVerificacion`);
+    }
+  */
   getCheckers(): Observable<Array<object>> {
     return this.http.get<Array<object>>(`${this.API_URL}/backend/getCheckers`);
-}
+  }
 
   getNodosPerifericos(): Observable<Array<object>> {
-  
-  return this.http.get<Array<object>>(`${this.API_URL}/admin/getNodosPerifericos`);
-}
 
-  asignarUsuario(){
-    var idHecho=localStorage.getItem("idHecho");
-    var mailUsuario=localStorage.getItem("mailUsuario");
+    return this.http.get<Array<object>>(`${this.API_URL}/admin/getNodosPerifericos`);
+  }
+
+  getPreview(link): Observable<object> {
+    return this.http.get<Observable<object>>(`https://api.linkpreview.net/?key=5d11ab4ca678c19068f5b0c1f2f09776a8a1fd7f907bc&q=` + link);
+  }
+
+  asignarUsuario() {
+    var idHecho = localStorage.getItem("idHecho");
+    var mailUsuario = localStorage.getItem("mailUsuario");
     var a: any = {};
-    a.idHecho=idHecho;
-    a.mail=mailUsuario;
-    let json=JSON.stringify(a);
-    return this.http.post(`${this.API_URL}/submitter/asignarHecho`,json,httpOptions);
+    a.idHecho = idHecho;
+    a.mail = mailUsuario;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/submitter/asignarHecho`, json, httpOptions);
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    request = request.clone({                                                                         
+    request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.getToken()}`
       }
@@ -110,137 +115,132 @@ x
   }
 
 
-  calificarHecho(id, calificacion, justificacion){
+  calificarHecho(id, calificacion, justificacion) {
     var a: any = {};
-    a.id=id;
-    a.calificacion=calificacion;
-    a.justificacion=justificacion;
-    let json=JSON.stringify(a);
-    return this.http.post(`${this.API_URL}/checker/verificarHecho` , json, httpOptions);
+    a.id = id;
+    a.calificacion = calificacion;
+    a.justificacion = justificacion;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/checker/verificarHecho`, json, httpOptions);
   }
 
-  altaMecanismo(descripcion,url,tipoMecanismo)
-  {
+  altaMecanismo(descripcion, url, tipoMecanismo) {
     var a: any = {};
-    a.usuario="";
-    a.password="";
-    a.descripcion=descripcion;
-    a.url=url;
-    a.habilitado="true";
-    a.mecanismo=tipoMecanismo;
-    let json=JSON.stringify(a);
-    return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion`,json,httpOptions);    
+    a.usuario = "";
+    a.password = "";
+    a.descripcion = descripcion;
+    a.url = url;
+    a.habilitado = "true";
+    a.mecanismo = tipoMecanismo;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion`, json, httpOptions);
   }
 
-  modificarMecanismo(id,descripcion,url,habilitado,tipoMecanismo)
-  {
+  modificarMecanismo(id, descripcion, url, habilitado, tipoMecanismo) {
     var a: any = {};
-    a.id=id;
-    a.descripcion=descripcion;
-    a.url=url;
-    a.habilitado=habilitado;
-    a.usuario="";
-    a.password="";
-    a.mecanismo=tipoMecanismo;
-    let json=JSON.stringify(a);
-    return this.http.post(`${this.API_URL}/admin/modificarMecanismoVerificacion`,json,httpOptions);    
+    a.id = id;
+    a.descripcion = descripcion;
+    a.url = url;
+    a.habilitado = habilitado;
+    a.usuario = "";
+    a.password = "";
+    a.mecanismo = tipoMecanismo;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/admin/modificarMecanismoVerificacion`, json, httpOptions);
   }
-  crearUser(usuario:Usuario){
-   
-    return this.http.post(`${this.API_URL}/backend/registro` , usuario, httpOptions);
+  crearUser(usuario: Usuario) {
+
+    return this.http.post(`${this.API_URL}/backend/registro`, usuario, httpOptions);
   }
 
-verificarHechoMecanismoSinApi(idMecanismo, idHecho){
+  verificarHechoMecanismoSinApi(idMecanismo, idHecho) {
 
     var a: any = {};
-    a.idHecho=idHecho;
-    a.idMecanismoVerificacion=idMecanismo;
-    let json=JSON.stringify(a);
+    a.idHecho = idHecho;
+    a.idMecanismoVerificacion = idMecanismo;
+    let json = JSON.stringify(a);
 
 
-  return this.http.post(`${this.API_URL}/checker/verificarHechoMecanismo` , json, httpOptions);
-}
+    return this.http.post(`${this.API_URL}/checker/verificarHechoMecanismo`, json, httpOptions);
+  }
 
-verificarHechoMecanismoConApi(idMecanismo, idHecho, calificacion){
- 
-  var a: any = {};
-  a.idHecho=idHecho;
-  a.idMecanismo=idMecanismo;
-  a.calificacion = calificacion;
-  let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/checker/verificarHechoMecanismo` , json, httpOptions);
-}
+  verificarHechoMecanismoConApi(idMecanismo, idHecho, calificacion) {
 
-
-suscribirse()
-{
-  var mail = localStorage.getItem('userMail');
-  var a: any = {};
-  a=JSON.stringify(mail);
-  return this.http.post(`${this.API_URL}/citizen/suscripcion` , a, httpOptions);
-}
+    var a: any = {};
+    a.idHecho = idHecho;
+    a.idMecanismo = idMecanismo;
+    a.calificacion = calificacion;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/checker/verificarHechoMecanismo`, json, httpOptions);
+  }
 
 
-
-
-crearhecho(titulo: string,url :string){
-  var a: any = {};
-  a.titulo=titulo;
-  a.url=url;
-  let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/citizen/addHecho` , json, httpOptions);
-}
-
-
-crearMecanismoVerificacionPeriferico(mec:Perifericos){
-  var a: any = {};
-  a.MecanismoVerificacion=mec;
-  let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion` , mec, httpOptions);
-}
-
-modificarMecanismoVerificacionPeriferico(mec:Perifericos){
-  var a: any = {};
-  a.MecanismoVerificacion=mec;
-  let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/admin/modificarMecanismoVerificacion`, mec, httpOptions);
-  
-}
-
-getMecanismosInternos(): Observable<Array<object>> {
-
-  return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosInternos`);
-}
-
-getMecanismosExternos(): Observable<Array<object>> {
-
-  return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosExternos`);
-}
-
-getAllMecanismos(): Observable<Array<object>>{
-  
-  return this.http.get<Array<object>>(`${this.API_URL}/admin/getMecanismosVerificacion`);
-}
-
-
-gethechosByEstados(estado :string){
-  console.log("ESTADO",estado)
- // let estado = "VERIFICADO"
-  return this.http.get<Array<object>>(`${this.API_URL}/getHechosByEstado/` + estado);
-}
-
-
-gethechospaginado(nroPag, cantElemPag): Observable<object> {
-  
-  return this.http.get<object>(`${this.API_URL}/getHechosPag/` + nroPag + `/` + cantElemPag );
-}
+  suscribirse() {
+    var mail = localStorage.getItem('userMail');
+    var a: any = {};
+    a = JSON.stringify(mail);
+    return this.http.post(`${this.API_URL}/citizen/suscripcion`, a, httpOptions);
+  }
 
 
 
-getFiltros(nroPag, cantElemPag, titulo, url, estado): Observable<object> {
-  
-  return this.http.get<object>(`${this.API_URL}/getHechosFiltros/` + nroPag + `/` + cantElemPag + `/` + titulo + `/` + url + `/` + estado);
-}
+
+  crearhecho(titulo: string, url: string) {
+    var a: any = {};
+    a.titulo = titulo;
+    a.url = url;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/citizen/addHecho`, json, httpOptions);
+  }
+
+
+  crearMecanismoVerificacionPeriferico(mec: Perifericos) {
+    var a: any = {};
+    a.MecanismoVerificacion = mec;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/admin/addMecanismoVerificacion`, mec, httpOptions);
+  }
+
+  modificarMecanismoVerificacionPeriferico(mec: Perifericos) {
+    var a: any = {};
+    a.MecanismoVerificacion = mec;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/admin/modificarMecanismoVerificacion`, mec, httpOptions);
+
+  }
+
+  getMecanismosInternos(): Observable<Array<object>> {
+
+    return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosInternos`);
+  }
+
+  getMecanismosExternos(): Observable<Array<object>> {
+
+    return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosExternos`);
+  }
+
+  getAllMecanismos(): Observable<Array<object>> {
+
+    return this.http.get<Array<object>>(`${this.API_URL}/admin/getMecanismosVerificacion`);
+  }
+
+  gethechosByEstadosImg(estado: string) {
+    console.log("ESTADO", estado)
+    // let estado = "VERIFICADO"
+    return this.http.get<Array<HechosImg>>(`${this.API_URL}/getHechosByEstado/` + estado);
+  }
+
+  gethechosByEstados(estado: string) {
+    console.log("ESTADO", estado)
+    // let estado = "VERIFICADO"
+    return this.http.get<Array<object>>(`${this.API_URL}/getHechosByEstado/` + estado);
+  }
+
+
+  gethechospaginado(nroPag, cantElemPag): Observable<object> {
+
+    return this.http.get<object>(`${this.API_URL}/getHechosPag/` + nroPag + `/` + cantElemPag);
+  }
 
 registrardonacion(id,time,monto,usuario,moneda){
   var a: any = {};
@@ -257,54 +257,59 @@ getAllDonaciones(): Observable<Array<object>> {
   return this.http.get<Array<object>>(`https://r179-27-99-70.ir-static.anteldata.net.uy:8443/donaciones-rest-api-0.0.1-SNAPSHOT/donacion/getall`);
 }
 
-getTotalHechosPorEstado(): Observable<object>{
-  
-  return this.http.get<object>(`${this.API_URL}/getCantHechosPorEstado`);
+  getFiltros(nroPag, cantElemPag, titulo, url, estado): Observable<object> {
 
-}
+    return this.http.get<object>(`${this.API_URL}/getHechosFiltros/` + nroPag + `/` + cantElemPag + `/` + titulo + `/` + url + `/` + estado);
+  }
 
-gethechoById(id : string):Observable<object>{
-  return this.http.get<object>(`${this.API_URL}/getHechoById/` + id);
-}
+  getTotalHechosPorEstado(): Observable<object> {
 
-setEstadoHechos(id, estado){
-  var a: any = {};
-  a.id=id;
-  a.estado = estado;
-  let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/submitter/setEstadoHecho` , json, httpOptions);
-}
+    return this.http.get<object>(`${this.API_URL}/getCantHechosPorEstado`);
+
+  }
+
+  gethechoById(id: string): Observable<object> {
+    return this.http.get<object>(`${this.API_URL}/getHechoById/` + id);
+  }
+
+  setEstadoHechos(id, estado) {
+    var a: any = {};
+    a.id = id;
+    a.estado = estado;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/submitter/setEstadoHecho`, json, httpOptions);
+  }
 
 
-agregarParametro(name, value){
-  var a: any = {};
-  a.name=name;
-  a.value = value;
-  let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/admin/addParametro` , json, httpOptions);
-}
+  agregarParametro(name, value) {
+    var a: any = {};
+    a.name = name;
+    a.value = value;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/admin/addParametro`, json, httpOptions);
+  }
 
-modificarParametro(name, value){
-  var a: any = {};
-  a.name=name;
-  a.value = value;
-  let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/admin/updateParametro` , json, httpOptions);
+  modificarParametro(name, value) {
+    var a: any = {};
+    a.name = name;
+    a.value = value;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/admin/updateParametro`, json, httpOptions);
 
-}
+  }
 
-borrarParametro(name, value){
-  var a: any = {};
-  a.name=name;
-  a.value = value;
-  let json=JSON.stringify(a);
-  return this.http.post(`${this.API_URL}/admin/deleteParametro` , json, httpOptions);
+  borrarParametro(name, value) {
+    var a: any = {};
+    a.name = name;
+    a.value = value;
+    let json = JSON.stringify(a);
+    return this.http.post(`${this.API_URL}/admin/deleteParametro`, json, httpOptions);
 
-}
+  }
 
-getParametros(): Observable<Array<object>> {
-  return this.http.get<Array<object>>(`${this.API_URL}/admin/getParametros`);
-}
+  getParametros(): Observable<Array<object>> {
+    return this.http.get<Array<object>>(`${this.API_URL}/admin/getParametros`);
+  }
 
 }
 

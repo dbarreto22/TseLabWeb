@@ -22,5 +22,22 @@ export class Hechos {
     public calificacion : string;
     public resultadosMecanismos : Array<ResultadosMecanismos>;
     public estado : string;
+    public img : string;
     
+    clear(){
+        this.id='';
+        this.titulo='';
+        this.submiter=null;
+        this.checkers=null;
+        this.url='';
+        this.mailUserAlta='';
+        this.usuarioAlta=null;
+        this.justificacion='';
+        this.validado=false;
+        this.mecanismos = new Array<Mecanismos>();
+        this.calificacion='';
+        this.resultadosMecanismos =new Array<ResultadosMecanismos>();
+        this.estado='';
+        this.img='';
+    }
 }
