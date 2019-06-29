@@ -12,6 +12,9 @@ import { Mecanismos } from './Usuarios/clases/mecanismos';
 import { Perifericos } from './Usuarios/clases/perifericos';
 import { HechosImg } from './Usuarios/clases/hechosImg';
 
+interface Item {
+  resultado: string,
+}
 
 const httpOptions: {
   headers?: HttpHeaders,
@@ -242,26 +245,24 @@ export class ApiServiceService {
     return this.http.get<object>(`${this.API_URL}/getHechosPag/` + nroPag + `/` + cantElemPag);
   }
 
+registrardonacion(id,time,monto,usuario,moneda){
+  var a: any = {};
+  a.transaccionId=id;
+  a.fecha = time;
+  a.monto = monto;
+  a.moneda = moneda;
+  a.usuario = usuario;
+  let json=JSON.stringify(a);
+  return this.http.post(`https://r179-27-99-70.ir-static.anteldata.net.uy:8443/donaciones-rest-api-0.0.1-SNAPSHOT/donacion`, json, httpOptions);
+}
 
+getAllDonaciones(): Observable<Array<object>> {
+  return this.http.get<Array<object>>(`https://r179-27-99-70.ir-static.anteldata.net.uy:8443/donaciones-rest-api-0.0.1-SNAPSHOT/donacion/getAll`);
+}
 
   getFiltros(nroPag, cantElemPag, titulo, url, estado): Observable<object> {
 
     return this.http.get<object>(`${this.API_URL}/getHechosFiltros/` + nroPag + `/` + cantElemPag + `/` + titulo + `/` + url + `/` + estado);
-  }
-
-  registrardonacion(id, time, monto, usuario, moneda) {
-    var a: any = {};
-    a.transaccionId = id;
-    a.fecha = time;
-    a.monto = monto;
-    a.moneda = moneda;
-    a.usuario = usuario;
-    let json = JSON.stringify(a);
-    return this.http.post(`http://a12bb00c.ngrok.io/donacion`, json, httpOptions);
-  }
-
-  getAllDonaciones(): Observable<Array<object>> {
-    return this.http.get<Array<object>>(`http://a12bb00c.ngrok.io/donacion/getAll`);
   }
 
   getTotalHechosPorEstado(): Observable<object> {

@@ -32,7 +32,7 @@ export class DonacionesComponent implements OnInit {
     this.donaciones = this.apiService.getAllDonaciones();
     this.donaciones.subscribe(
       (data : Array<Donacion>)=> {
-        data.forEach(d =>{
+          data.forEach(d =>{
           if (d.moneda == "pesos"){
             d.montoMoneda="$U " + d.monto;
             this.pesos = this.pesos +parseInt(d.monto);
@@ -52,7 +52,8 @@ export class DonacionesComponent implements OnInit {
       }
     )
       
-  }
+    }
+  
 
   ngOnInit() {
   }
