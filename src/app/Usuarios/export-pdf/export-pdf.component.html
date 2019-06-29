@@ -1,18 +1,29 @@
+<div class="fondo">
 <div class="example-config" style="background-color: aliceblue">
     <div class="example-config">
-        <p class="font-weight-normal" style="color: dodgerblue">Seleccione Estado para Crear Reporte</p>
+        <p class="font-weight-normal" style="color: dodgerblue">Reporte de usuarios</p>
     </div>
 <div class="example-config">
 
     <kendo-dropdownlist
-    [data]="estado"
+    [data]="cantDias"
     textField="text"
     valueField="value"
     [valuePrimitive]="true"
-    [(ngModel)]="selectedValue"
+    [(ngModel)]="cantDiasSelected"
     [ngModelOptions]="{standalone: true}"
     >
-    </kendo-dropdownlist>   
+    </kendo-dropdownlist>  
+    <kendo-dropdownlist [data]="listUsr"
+      [textField]="'nickname'"
+      [valueField]="'email'"
+      [defaultItem]="placeHolder" 
+      [valuePrimitive]="true"
+      [(ngModel)]="userSelected"
+      [ngModelOptions]="{standalone: true}"
+      >
+      
+    </kendo-dropdownlist> 
   
   <button kendo-button (click)="buscar()">
     Buscar
@@ -21,31 +32,33 @@
 </div>
 
 <kendo-pdf-export #pdf paperSize="A4" margin="2cm"  [repeatHeaders]="repeatHeaders" >
+  <h4 style="padding-left: 40%">Reporte por Usuario</h4>
   <table class="table" style="background-color: white">
+
     <thead>
+     
+      <p>Usuario: {{nickname}}</p>
       <tr>
-        <th>Titulo</th>
-        <th>URL</th>
-        <th>Estado actual</th>
-        <th>Fecha de registro del Hecho</th>
-      </tr>
+        <th>Calificacion</th>
+        <th>Cantidad</th>
     </thead>
     <tbody>
-      <tr *ngFor="let row of h">
-        <td>{{ row.titulo }}</td>
-        <td >{{ row.url }}</td>
-        <td>{{ row.estado }}</td>
-        <td>{{ row.fechaRegistroCalificacion }}</td>
+      <tr *ngFor="let row of calificaciones">
+        <td>{{ row.calificacion }}</td>
+        <td >{{ row.cantidad }}</td>
       </tr>
     </tbody>
+    <P>Total de Hechos calificados: {{total}}</P>
   </table>
+
+  <p>*Informe calificacion de Hechos verificados por usuario</p>
 </kendo-pdf-export>
 
 <div class="example-config">
-    <button kendo-button (click)="pdf.saveAs('Reportes por Estado.pdf')" *ngIf="mostrarBoton">
+    <button kendo-button (click)="pdf.saveAs('Reportes por Usuario.pdf')" *ngIf="mostrarBoton">
       Crear Reporte
     </button>
 </div>
 
-
+</div>
 

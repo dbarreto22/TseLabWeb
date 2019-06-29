@@ -314,6 +314,11 @@ getAllDonaciones(): Observable<Array<object>> {
     return this.http.get<Array<object>>(`${this.API_URL}/admin/getParametros`);
   }
 
+  servicioPDF(mail, cantdias): Observable<Array<object>> {
+
+    return this.http.get<Array<object>>(`${this.API_URL}/backend/getCalificacionesChecker/` + mail + `/` + cantdias );
+  }
+
 }
 
 

@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Hechos } from '../clases/hechos';
 import { ApiServiceService } from 'src/app/api-service.service';
+import { Usuario } from '../clases/usuario';
+import { CalificacionPDF } from '../clases/calificacionPDF';
+import { utimes } from 'fs';
 
 interface Item {
   text: string,
@@ -17,6 +20,7 @@ interface Item {
 export class ExportPDFComponent implements OnInit {
 
   public hechos : Observable<Array<any>>;
+  public calificaciones = new Array<CalificacionPDF>();
   public h  = new Array<Hechos>();
   public estado: Array<Item> = [
     { text: "", value: "" },
@@ -27,64 +31,87 @@ export class ExportPDFComponent implements OnInit {
     { text: "Publicado", value: "PUBLICADO" },
     { text: "Cancelado", value: "CANCELADO" },
 ];
+public cantDias: Array<Item> = [
+  { text: "", value: "" },
+  { text: "30 Dias", value: "30" },
+  { text: "60 Dias", value: "60" },
+  { text: "90 Dias", value: "90" },
+];
+public listUsr = new Array<Usuario>();
 
-public selectedValue: string;
+public cantDiasSelected: string;
+public userSelected : string;
+public nickname : string;
 public mostrarBoton : boolean = false;
 public mostrarGrid : boolean = false;
+public usuarios: Observable<Array<Object>>;
+public total : number = 0;
 
-  constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {}
+  constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {
+    
+    this.usuarios = this.apiService.getCheckers();
+    this.usuarios.subscribe(
+      (res : Array<Usuario>) =>{ 
+        res.forEach(u=>{
+          this.listUsr.push(u);
+        })
+        console.log(res)},
+      ee => {
+         console.log(ee)
+      }
+    )
+
+  }
 
   ngOnInit() {
+  }
+
+  buscar(){
+    console.log("cant",this.cantDiasSelected)
+    console.log("Mail", this.userSelected)
+    if(this.cantDiasSelected == "" || this.cantDiasSelected == undefined || this.userSelected  == "" || this.userSelected == undefined){
+      alert("Debe seleccionar Cantidad de Dias y Usuario")
+    }else{
+    this.usuarios.subscribe(
+      (res : Array<Usuario>) =>{ 
+        res.forEach(u=>{
+          if (u.email == this.userSelected){
+            this.nickname = u.nickname;
+            console.log(this.nickname)
+          }
+        })
+        console.log(res)},
+      ee => {
+         console.log(ee)
+      }
+    )
+    console.log(this.nickname)
+
+
+      this.mostrarBoton = true;
+      this.apiService.servicioPDF(this.userSelected , this.cantDiasSelected).subscribe((res: Array<CalificacionPDF>)=>{
+        if (res.length == 0){
+          alert("No existen datos para los parametros seleccionados.")
+        }else{
+          this.calificaciones = res;
+          this.calificaciones.forEach(c =>{
+            this.total = this.total + parseInt(c.cantidad);
+          })
+        }
+        
+      
+        console.log(res)
+
+      })
+      
+    }
+    
+
+
   }
   
   public repeatHeaders = true;
 
-  buscar(){
-    
-    console.log(this.selectedValue)
-    if(this.selectedValue == "" || this.selectedValue == undefined){
-      alert("Debe seleccionar almenos un Estado");
-    }else{
-      this.mostrarBoton = true;
-      this.mostrarGrid = true;
-      this.h = new Array<Hechos>();
-
-    this.hechos = this.apiService.gethechosByEstados(this.selectedValue);
-    this.hechos.subscribe(
-      (data: Array<Hechos>)=> {
-        data.forEach(asig=>{
-         
-          this.h.push(asig);
-        })
-        console.log(data)
-        this.h.forEach(r =>{
-          if(r.estado == "A_COMPROBAR"){
-            r.estado = "A Comprobar";
-          }else if(r.estado == "NUEVO"){
-            r.estado = "Nuevo";
-          }else if(r.estado == "EN_PROCESO"){
-            r.estado = "En proceso";
-          }else if(r.estado == "VERIFICADO"){
-            r.estado = "Verificado";
-          }else if(r.estado == "PUBLICADO"){
-            r.estado = "Publicado";
-          }else if(r.estado == "CANCELADO"){
-            r.estado = "Cancelado";
-          }
-        })
-        
-            
-        
-      },
-      err=>{
-        console.log(err);
-       // this.apiService.mensajeConError(err);
-      }
-    )
-
-    }
-  }
   
-
 
 }

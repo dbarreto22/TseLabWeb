@@ -29,6 +29,9 @@ export class DonacionesComponent implements OnInit {
   public dolares : number = 0;
 
   constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
+    this.apiService.getCheckers().subscribe(res =>{
+      console.log("Chechers" ,res)
+    })
     this.donaciones = this.apiService.getAllDonaciones();
     this.donaciones.subscribe(
       (data : Array<Donacion>)=> {
