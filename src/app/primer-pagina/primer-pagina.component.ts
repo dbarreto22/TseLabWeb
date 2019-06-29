@@ -45,7 +45,7 @@ export class PrimerPaginaComponent implements OnInit {
       this.hechosCard=items;
     },err=>console.log(err))
   //  this.inicializarlista(this.hechosImagenes);
-    this.hechos = this.apiService.gethechosByEstadosImg("VERIFICADO");
+    this.hechos = this.apiService.gethechosByEstadosImg("PUBLICADO");
     this.hechos.subscribe
     (
       (res) => 
