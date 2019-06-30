@@ -86,7 +86,7 @@ export class PaginaPrincipalComponent {
     },
     err=>{
       this.loading=false;
-      //this.apiService.mensajeConError(err);
+    
     }
   )      
   }

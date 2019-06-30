@@ -67,14 +67,10 @@ export class UsuariosComponent implements OnInit {
     this.usuarios.subscribe(
       (data: Array<Usuario>) => {
         data.forEach(usr => {
-          console.log("usr: ");
-          console.log(usr.nickname);
           console.log(this.mySelection[0]);
           if (usr.nickname == this.mySelection[0]) {
             this.nombre = usr.nickname;
             this.mail = usr.email;
-            console.log("***************NombreUsuario********************");
-            console.log(this.nombre);
             localStorage.setItem("mailUsuario",this.mail);
           }
         })
@@ -87,11 +83,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   asignarUsuarios(){
-    console.log("idHecho");
-    console.log(localStorage.getItem("idHecho"));
-    console.log("mailUsuario");
-    console.log(localStorage.getItem("mailUsuario"));
-    console.log("llamada al servicio");
     this.apiService.asignarUsuario().subscribe(msg=>{console.log(msg)
     
     

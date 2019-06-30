@@ -56,8 +56,6 @@ export class MecanismosComponent implements OnInit {
   }
 
   accion() {
-    console.log("*************Accion")
-    console.log(this.funcion);
     if (this.funcion == "modificar") {
         this.apiService.modificarMecanismo(this.id,this.descripcion,this.url,this.estado,this.mecanismo.mecanismo).subscribe(
          (res)=>{
@@ -67,12 +65,6 @@ export class MecanismosComponent implements OnInit {
            console.log(err);
          }
        );
-     
-      console.log("modificar mecanismo:")
-      console.log(this.descripcion);
-      console.log(this.url);
-      console.log(this.estado);
-      console.log(this.id);
 
     }
     else {

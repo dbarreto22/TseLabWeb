@@ -184,13 +184,10 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
       this.apiService.verificarHechoMecanismoSinApi(this.idMecanismoVerificar, this.idHecho).subscribe(
         (res) => {
          this.resultado= JSON.parse(res)
-          console.log("RESP", res);
         if(this.resultado.resultado == "ASYNC"){
-          console.log("RESP", res);
           alert("El mecanismo utilizado es asyncrono, el resultado lo obtendra a la brevedad");
           this.router.navigate(['/seleccionarHecho']);
         }else {
-          console.log("RESP", res);
           alert("El resultado es: " + this.resultado.resultado );
           this.router.navigate(['/seleccionarHecho']);
         }
@@ -198,7 +195,6 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
       },
        ( err )=> {
           console.log("ERROR", err);
-          //this.apiService.mensajeConError(err);
         }
       );
       
@@ -253,14 +249,9 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
     this.mecanismos.subscribe(
       (res) => {
         this.loading = false
-        console.log("*******************mecanismos");
-        console.log(this.mecanismos);
-        console.log(res);
-
       },
       err => {
         this.loading = false;
-        //this.apiService.mensajeConError(err);
       }
     )
     this.change();
@@ -275,15 +266,11 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
     this.mecanismos = this.apiService.getMecanismosExternos();
     this.mecanismos.subscribe(
       (res) => {
-        this.loading = false
-        console.log("*******************mecanismos");
-        console.log(this.mecanismos);
-        console.log(res);
+        this.loading = false;
 
       },
       err => {
         this.loading = false;
-        //this.apiService.mensajeConError(err);
       }
     )
     this.change();

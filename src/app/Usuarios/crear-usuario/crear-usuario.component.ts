@@ -49,10 +49,12 @@ export class CrearUsuarioComponent implements OnInit {
       
       this.apiService.crearUser(this.user).subscribe((res)=> {
         console.log("RESP",res);
+        alert("Se ha creado correctamente.");
+        this.router.navigate(['/principalAdmin']);
       },
       err=>{
         console.log("ERROR",err);
-        //this.apiService.mensajeConError(err);
+        
       }
       )
       
@@ -66,14 +68,13 @@ export class CrearUsuarioComponent implements OnInit {
       console.log(this.user)
       
       this.apiService.crearUser(this.user).subscribe((res)=> {
-        console.log("RESP",res);
-        console.log(this.user);
+        alert("Se ha creado correctamente.")
         this.router.navigate(['/principalAdmin']);
       },
       err=>{
         console.log("ERROR",err);
-        console.log(this.user);
-        //this.apiService.mensajeConError(err);
+       
+        
       }
       );
 

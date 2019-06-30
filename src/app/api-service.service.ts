@@ -31,9 +31,6 @@ const httpOptions: {
 
 const mailUser = new HttpParams().append('mail', localStorage.getItem("userMail"));
 const headersget = new HttpHeaders({ 'Content-Type': 'application/json' });
-//headersget.append('Content-Type': 'application/json');
-
-//const options = new httpOptions({headers: new Headers({'Content-Type': 'application/json'}), params:mailUser});
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +57,7 @@ export class ApiServiceService {
   }
 
   getHechosByChecker(): Observable<Array<object>> {
-    // { headers:headersget, params:mailUser}
+   
 
     let mail = localStorage.getItem("userMail");;
 
@@ -73,12 +70,7 @@ export class ApiServiceService {
     console.log(sesion != null ? sesion.token.jwt : "No estas logueado");
     return this.http.get<Array<object>>(`${this.API_URL}/getHechos`);
   }
-  /*
-    getAllMecanismos(): Observable<Array<object>> {
-  
-      return this.http.get<Array<object>>(`${this.API_URL}/backend/getMecanismosVerificacion`);
-    }
-  */
+
   getCheckers(): Observable<Array<object>> {
     return this.http.get<Array<object>>(`${this.API_URL}/backend/getCheckers`);
   }
@@ -89,7 +81,7 @@ export class ApiServiceService {
   }
 
   getPreview(link): Observable<object> {
-    return this.http.get<Observable<object>>(`https://api.linkpreview.net/?key=5d11ab4ca678c19068f5b0c1f2f09776a8a1fd7f907bc&q=` + link);
+    return this.http.get<Observable<object>>(`https://api.linkpreview.net/?key=5d18d774cfb26b6bf0bd978e378e1d2090c9b74859d43` + link);
   }
 
   asignarUsuario() {
@@ -113,7 +105,6 @@ export class ApiServiceService {
 
   public getToken() {
     var sesion: Sesion = JSON.parse(localStorage.getItem('session'));
-    console.log(sesion);
     return sesion != null ? sesion.token.jwt : null;
   }
 
@@ -228,14 +219,12 @@ export class ApiServiceService {
   }
 
   gethechosByEstadosImg(estado: string) {
-    console.log("ESTADO", estado)
-    // let estado = "VERIFICADO"
+
     return this.http.get<Array<HechosImg>>(`${this.API_URL}/getHechosByEstado/` + estado);
   }
 
   gethechosByEstados(estado: string) {
-    console.log("ESTADO", estado)
-    // let estado = "VERIFICADO"
+
     return this.http.get<Array<object>>(`${this.API_URL}/getHechosByEstado/` + estado);
   }
 

@@ -29,8 +29,6 @@ export class ModificarParametroComponent implements OnInit {
        })
       },
       err=>{
-        
-        //this.apiService.mensajeConError(err);
       }
     )
 
@@ -50,7 +48,7 @@ export class ModificarParametroComponent implements OnInit {
       alert("Se ha modificado correctamente");
       this.router.navigate(['/gestionParametros']);
     }else{
-      alert("")
+      alert("Debe completar todos los campos")
     }
 
   }

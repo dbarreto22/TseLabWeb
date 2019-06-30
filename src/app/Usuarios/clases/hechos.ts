@@ -23,6 +23,8 @@ export class Hechos {
     public resultadosMecanismos : Array<ResultadosMecanismos>;
     public estado : string;
     public img : string;
+    public fechaInicioVerificacionStr : string;
+    public fechaFinVerificacionStr : string;
     
     clear(){
         this.id='';
@@ -39,5 +41,7 @@ export class Hechos {
         this.resultadosMecanismos =new Array<ResultadosMecanismos>();
         this.estado='';
         this.img='';
+        this.fechaFinVerificacionStr='';
+        this.fechaInicioVerificacionStr='';
     }
 }

@@ -39,34 +39,16 @@ export class PrimerPaginaComponent implements OnInit {
   constructor(private apiService: ApiServiceService, private storage: StorageService) 
   {
     this.hechosImagenes.subscribe(items=>{
-      console.log('LPM');
       console.log(items);
       console.log(this.hechosCard);
       this.hechosCard=items;
     },err=>console.log(err))
-  //  this.inicializarlista(this.hechosImagenes);
     this.hechos = this.apiService.gethechosByEstadosImg("PUBLICADO");
     this.hechos.subscribe
     (
       (res) => 
     { console.log('servicio getHEchos')
-    console.log(res);
-      /*   res.forEach(element => {
-          this.apiService.getPreview(element.url).subscribe(
-            (respuesta: Preview) => {
-              console.log(element);
-              console.log('Entre al preview');
-              console.log(respuesta.image);
-              if(respuesta.image=="")
-                element.img="assets/1024px-No_image_available.svg.png";
-              else
-                element.img = respuesta.image;
-          console.log('element.image after load');
-          console.log(element.img);
-         });
-        },err=>
-        console.log(err)*/
-// /*        
+    console.log(res);        
         this.hecho.clear();
         res.forEach(element => {
           console.log('elemento de hechos');
@@ -79,7 +61,6 @@ export class PrimerPaginaComponent implements OnInit {
               else
                 element.img = respuesta.image;
                 console.log('adding element')
-                //this.addElement(element);
                 this.hechosImagenes.next(res);
             },
             err=>{console.log(err);
@@ -102,7 +83,7 @@ export class PrimerPaginaComponent implements OnInit {
     )
     console.log('********PrimerPagina- getHechos : hechosImagenes - FIN ');
     console.log(this.hechos);
-    // this.cargarPreview()
+
       }
     
 

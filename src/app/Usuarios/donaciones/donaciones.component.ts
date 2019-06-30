@@ -44,14 +44,13 @@ export class DonacionesComponent implements OnInit {
             this.dolares = this.dolares +parseInt(d.monto);
           }
           
-        //  this.donacionMostrar.push(d);
-
+      
         })
         console.log(this.donacionMostrar);
       },
       err=>{
         this.loading=false;
-        //this.apiService.mensajeConError(err);
+       
       }
     )
       

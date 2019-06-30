@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiServiceService } from './api-service.service';
 import {APP_BASE_HREF} from '@angular/common';
 import { LoginComponent } from './Usuarios/login/login.component';
-// MDB Angular Free
+
 import {  MDBBootstrapModule, MdbCardHeaderComponent } from 'angular-bootstrap-md'
 import {
   SocialLoginModule,

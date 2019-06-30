@@ -42,27 +42,8 @@ export class DonarComponent  {
 				console.log('moneda: '+payment.transactions[0].amount.currency);
 				console.log('fecha: '+payment.create_time);
 				console.log('*******  GRACIAS POR DONAR  ******');
-		//		var data = {"transaccionId":payment.id, "fecha":payment.create_time, "monto":payment.transactions[0].amount.total, "usuario":this.finalName, "moneda":payment.transactions[0].amount.currency};
-/*					$http({
-						url: "http://a4fa73f7.ngrok.io/donacion",
-						method: "POST",
-						params: data
-					}) */
-
-					//this.http.post("http://a4fa73f7.ngrok.io/donacion", data);
-
 					this.apiService.registrardonacion(payment.id,payment.create_time,payment.transactions[0].amount.total,this.finalName,payment.transactions[0].amount.currency).subscribe(res => console.log(res));
 
-				 /* 	var env: any = {};
-  					env.transaccionId=payment.id;
-  					env.fecha=payment.create_time;
-  					env.monto=payment.transactions[0].amount.total;
-  					env.usuario=this.finalName;
-  					env.moneda=payment.transactions[0].amount.currency;
-  					let json= JSON.stringify(env);
-  					console.log(json);
-                    this.http.post("http://a4fa73f7.ngrok.io/donacion", json);
-				this.guardarDonacion(payment.id, payment.create_time, payment.transactions[0].amount.total, this.finalName, payment.transactions[0].amount.currency); */
 			})
 		}
 	};

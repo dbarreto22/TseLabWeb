@@ -37,13 +37,9 @@ export class LoginComponent implements OnInit {
     cipher.update(data, 'utf8', 'hex'); // cifro la contraseña
     var cip = cipher.final('hex'); //Cifrado
     console.log("Encrypted data = " + cip);
-
-    //Descomentar la siguiente linea para pasar la pass cifrada
       this.apiservice.loginUsuario(mail, cip).subscribe( result => {
-     //  this.apiservice.loginUsuario(mail, password).subscribe( result => {
       localStorage.setItem('userMail',mail);
       var resultado=JSON.parse(result);
-      //localStorage.setItem('session',JSON.stringify(new Sesion(res,null)));
       if(resultado.jwt!= null   && resultado.jwt!= "")
       {
         this.storage.setSession(resultado,null);
@@ -51,8 +47,6 @@ export class LoginComponent implements OnInit {
       }
       else
         alert('Usuario o contraseña incorrectos');
-      console.log("******************** resultado de login*******************************");
-      console.log(resultado);
       if(this.storage.getSession)
         this.router.navigate(['/']);
   },

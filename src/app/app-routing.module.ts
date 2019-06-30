@@ -31,8 +31,6 @@ import { ModificarParametroComponent } from './Usuarios/modificar-parametro/modi
 
 const routes: Routes = [
   { path: '', component: PrimerPaginaComponent},
-/*{ path: '', component: AppLayoutComponent, canActivate:[AuthorizatedGuard],
-children:[*/  
   {path: 'crearUsuario', component: CrearUsuarioComponent, canActivate:[AuthorizatedGuard]},
   {path: 'hechos', component: HechosComponent, canActivate:[AuthorizatedGuard]},
   {path: 'seleccionarHecho', component: SeleccionarHechoCheckerComponent, canActivate:[AuthorizatedGuard]},   
@@ -52,11 +50,7 @@ children:[*/
   {path: 'publicar', component: PublicarComponent},
   {path: 'gestionParametros', component: GestionParametrosComponent},
   {path: 'crearParametro', component: CrearParametroComponent},
-  {path: 'modificarParametro', component: ModificarParametroComponent}
-
-/*],
-   
-}*/,
+  {path: 'modificarParametro', component: ModificarParametroComponent},
 { path: 'login', component: LoginComponent},
 {path: 'loginRedSocial', component: LoginRedSocialComponent},
 { path: '**', redirectTo: 'login' }

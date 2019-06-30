@@ -1,7 +1,7 @@
   
 <mat-toolbar color="primary" class="example-toolbar">
   <mat-icon *ngIf="aux" style="cursor: pointer" class="link" (click)="sidenav.toggle()">reorder </mat-icon>
-  <a class="link" href="/bienvenido">Fact Checker
+  <a class="link" href="">Fact Checker
   </a>
 
   <mat-icon class="link" style="cursor: pointer"  *ngIf="aux" aria-label="logout" (click)="logOut()">exit_to_app</mat-icon>
@@ -14,19 +14,19 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     <mat-nav-list *ngIf="aux">
-      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Gestion Mecanismos Internos
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarMecanismosInternos()">Gestión Mecanismos Internos
       </a>
     <hr *ngIf="admin" />
-      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Gestion Mecanismos Externos
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarMecanismosExternos()">Gestión Mecanismos Externos
       </a> 
     <hr *ngIf="admin"/>
-      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarParametros()">Gestio de Parametros del Sistema</a>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionarParametros()">Gestión de Parametros del Sistema</a>
     <hr *ngIf="admin"/>
       <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="irPrincipal()">Listado de Hechos General</a>
     <hr *ngIf="admin"/>
       <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="crearUsuario()">Crear Usuario</a>
     <hr *ngIf="admin"/>
-      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestion de Perifericos</a>
+      <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="gestionNodos()">Gestión de Perifericos</a>
     <hr *ngIf="admin"/>
       <a style="cursor: pointer" *ngIf="admin" mat-list-item (click)="irGraficas()">Grafica por Estado</a>
     <hr *ngIf="admin"/>
@@ -49,8 +49,6 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content calss="sidenav-content">
-    <!--<a (click)="pruebaObs()">Ver ROl</a>
-    <app-app-layout></app-app-layout>-->
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

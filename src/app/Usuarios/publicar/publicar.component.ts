@@ -84,7 +84,6 @@ export class PublicarComponent implements OnInit {
     },
     err=>{
       console.log(err);
-     // this.apiService.mensajeConError(err);
     }
   )
 
@@ -95,10 +94,18 @@ publicar(){
   if (this.codigo != undefined) {
   this.apiService.setEstadoHechos(this.codigo,"PUBLICADO").subscribe(
     (res)=>{
-      console.log(res);
+      alert("Se ha publicado correctamente");
+      this.hechos = this.apiService.gethechosByEstados("VERIFICADO");
+      this.hechos.subscribe(
+        ()=> {
+          this.loading=false
+        },
+        err=>{
+          this.loading=false;
+        }
+      )
     }
   )
-  this.router.navigate(['/']);
   }else{
     alert("Debe seleccionar un hecho a verirficar")
   }

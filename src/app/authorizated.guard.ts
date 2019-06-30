@@ -16,6 +16,6 @@ export class AuthorizatedGuard implements CanActivate {
       console.log('Authorizated geuard CantActivate')
       return false;
     }
-//    this.router.navigate(['/login']);
+
   }
 }

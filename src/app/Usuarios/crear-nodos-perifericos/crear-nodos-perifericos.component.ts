@@ -36,13 +36,6 @@ export class CrearNodosPerifericosComponent implements OnInit {
 
     this.nodoPeriferico.descripcion = descripcion;
     this.nodoPeriferico.usuario = usuario;
-    /*
-    var crypto = require('crypto'); //Libreria de criptografia
-    var cipher = crypto.createCipher('aes256', 'pass'); // tipo de cifrado y password
-    var data = password;
-    cipher.update(data, 'utf8', 'hex'); // cifro la contraseña
-    var cip = cipher.final('hex'); //Cifrado
-    console.log("Encrypted data = " + cip);*/
 
     this.nodoPeriferico.password = password;
     this.nodoPeriferico.mecanismo = "PERIFERICO";
@@ -61,7 +54,7 @@ export class CrearNodosPerifericosComponent implements OnInit {
     err=>{
       console.log("ERROR",err);
       console.log(this.nodoPeriferico);
-      //this.apiService.mensajeConError(err);
+     
     }
     )
 

@@ -95,6 +95,12 @@ public total : number = 0;
         }else{
           this.calificaciones = res;
           this.calificaciones.forEach(c =>{
+            if(c.calificacion == null){
+              c.calificacion = "SIN CALIFICAR"
+            }
+            if (c.calificacion == "VERD_A_MEDIAS"){
+              c.calificacion = "VERDAD A MEDIAS"
+            }
             this.total = this.total + parseInt(c.cantidad);
           })
         }

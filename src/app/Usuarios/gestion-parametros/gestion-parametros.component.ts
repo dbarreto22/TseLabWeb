@@ -35,7 +35,6 @@ export class GestionParametrosComponent implements OnInit {
       },
       err=>{
         this.loading=false;
-        //this.apiService.mensajeConError(err);
       }
     )
       
@@ -84,7 +83,6 @@ export class GestionParametrosComponent implements OnInit {
     },
     err=>{
       console.log(err);
-     // this.apiService.mensajeConError(err);
     }
   )
 

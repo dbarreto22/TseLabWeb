@@ -30,7 +30,6 @@ export class ModificarNodosPerifericosComponent implements OnInit {
       ()=> {},
       err=>{
        
-        //this.apiService.mensajeConError(err);
       }
     )
 
@@ -60,7 +59,6 @@ export class ModificarNodosPerifericosComponent implements OnInit {
     },
     err=>{
       console.log(err);
-     // this.apiService.mensajeConError(err);
     }
   )
 
@@ -71,8 +69,6 @@ export class ModificarNodosPerifericosComponent implements OnInit {
 
   modificarNodo(descripcion,url,usuario, password){
     let nodoEnviar = new Perifericos();
-    console.log("DESC", url);
-    //let desc = descripcion
    if(descripcion!= undefined && url!= undefined && usuario!= undefined && password!= undefined && this.habilita != undefined){
     nodoEnviar.id = this.idNodo;
     nodoEnviar.descripcion = descripcion;
@@ -93,9 +89,7 @@ export class ModificarNodosPerifericosComponent implements OnInit {
     },
     err=>{
       console.log("ERROR",err);
-      console.log(nodoEnviar);
-      //this.apiService.mensajeConError(err);
-    }
+     }
     )
 
 

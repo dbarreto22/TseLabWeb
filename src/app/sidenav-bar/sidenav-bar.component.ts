@@ -41,18 +41,14 @@ export class SidenavBarComponent implements OnInit {
     this.storage.select$().subscribe(logueado => {
     this.aux = logueado.valueOf();
       this.aux2 = !this.aux;
-      console.log('sidenv-Bar logueado***************************')
-      console.log(logueado)
+
     });
     this.aux = this.storage.usrLogged();
-    console.log('**************Sidenav-Bar-Logueado*****************');
-    console.log(this.aux);
+
 
     this.storage.roles$().subscribe(rol => {
       if (rol != null && rol != "") {
         this.rolElegido = rol.valueOf();
-        console.log('sidenv-Bar rol***************************')
-        console.log(rol)
         if (rol == 'ADMIN')
           this.admin = true;
         else if (rol == 'SUBMITTER')
@@ -138,17 +134,11 @@ export class SidenavBarComponent implements OnInit {
     this.router.navigate(['login']);
   }
   logInRedSocial() {
-    console.log("ACA ESTOY")
     this.router.navigate(['/loginRedSocial']);
   }
 
 
   pruebaObs() {
-    console.log('**********************Prueba obs****************');
-    console.log(this.rolElegido);
-    console.log(this.admin);
-    console.log(this.submiter);
-    console.log(this.checker);
 
 
     this.storage.pruebaObs();

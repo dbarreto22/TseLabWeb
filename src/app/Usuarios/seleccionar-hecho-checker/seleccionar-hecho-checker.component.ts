@@ -122,7 +122,6 @@ verificar(){
   public hechoVerificar() {
     if (this.codigo != undefined) {
       localStorage.setItem('listarComponentes', this.codigo);
-      //if(this.selector==1)
       this.router.navigate(['/verificarhecho']);
     }
 

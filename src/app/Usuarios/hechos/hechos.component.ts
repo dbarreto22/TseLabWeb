@@ -77,16 +77,12 @@ export class HechosComponent implements OnInit {
           if (hecho.id == this.mySelection[0]) {
             this.id = hecho.id;
             this.titulo = hecho.titulo;
-            console.log("***************IDHECHO********************");
-            console.log(this.id);
             localStorage.setItem("idHecho",this.id);
           }
         })
 
       },
       err => {
-        console.error("Se rompe en hechos.component",err);
-        //this.apiService.mensajeConError(err);
       }
     )
   }

@@ -25,7 +25,6 @@ export class CrearParametroComponent implements OnInit {
       },
       err=>{
         console.log("ERROR",err);
-        //this.apiService.mensajeConError(err);
       }
       );
       alert("Se ha enviado correctamente.");
