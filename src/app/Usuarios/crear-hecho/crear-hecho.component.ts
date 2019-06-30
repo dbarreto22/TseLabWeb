@@ -43,10 +43,10 @@ export class CrearHechoComponent implements OnInit {
       alert("Debe completar todos los campos")
     }
 
-   
+  }
 
-
-
+  cancelar(){
+    this.router.navigate(['/']);
   }
 
 }
