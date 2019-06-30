@@ -77,7 +77,7 @@ export class HechosComponent implements OnInit {
           if (hecho.id == this.mySelection[0]) {
             this.id = hecho.id;
             this.titulo = hecho.titulo;
-            localStorage.setItem("idHecho",this.id);
+          
           }
         })
 
@@ -88,8 +88,15 @@ export class HechosComponent implements OnInit {
   }
 
   seleccionarUsuarios(){
+    if (this.id == undefined){
+      alert("Debe seleccionar un hecho.");
+    }else{
+      console.log(this.id)
+      localStorage.setItem("idHecho",this.id);
+      this.router.navigate(["/usuarios"]);
+    }
     
-    this.router.navigate(["/usuarios"]);
+    
   }
 
 }

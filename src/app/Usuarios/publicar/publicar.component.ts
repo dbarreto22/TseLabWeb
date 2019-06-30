@@ -107,7 +107,7 @@ publicar(){
     }
   )
   }else{
-    alert("Debe seleccionar un hecho a verirficar")
+    alert("Debe seleccionar un hecho a publicar")
   }
 }
 

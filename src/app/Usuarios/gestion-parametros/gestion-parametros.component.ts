@@ -94,7 +94,7 @@ modificarParametro(){
   localStorage.setItem("name", this.name);
   this.router.navigate(['/modificarParametro']);
   }else{
-    alert("Debe seleccionar un hecho a verificar")
+    alert("Debe seleccionar un parametro.")
   }
 }
 
@@ -106,11 +106,15 @@ crearParametro(){
 
 
   public eliminarParametro() {
-    this.dialogOpened = true;
+    if (this.name != undefined) {
+      this.dialogOpened = true;
+    }else{
+      alert("Debe seleccionar un parametro.")
+    }
   }
 
 
-  public confirmarEliminarParametro() {
+public confirmarEliminarParametro() {
     
     if (this.name != undefined) {
       console.log(this.name);
@@ -119,14 +123,17 @@ crearParametro(){
         err => {
           
         });
-        //this.router.navigate(['/gestionParametros']);
         this.dialogOpened = false;
         this.parametros = this.apiService.getParametros();
         this.parametros.subscribe(()=> {},err=>{});
         
     }
     else
-      alert('Debe seleccionar una carrera para continuar.');
+      alert('Debe seleccionar un parametro para continuar.');
+ }
+
+ action(){
+  this.dialogOpened = false;
  }
 
 }

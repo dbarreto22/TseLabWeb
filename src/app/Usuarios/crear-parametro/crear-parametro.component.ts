@@ -33,6 +33,10 @@ export class CrearParametroComponent implements OnInit {
       alert("Debe completar todos los campos")
     }
     }
+
+    cancelar(){
+      this.router.navigate(['/gestionParametros']);
+    }
     
 }
   

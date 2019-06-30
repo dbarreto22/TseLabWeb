@@ -64,6 +64,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   change() {
+    
     this.usuarios.subscribe(
       (data: Array<Usuario>) => {
         data.forEach(usr => {
@@ -83,16 +84,18 @@ export class UsuariosComponent implements OnInit {
   }
 
   asignarUsuarios(){
-    this.apiService.asignarUsuario().subscribe(msg=>{console.log(msg)
+
+    this.apiService.asignarUsuario().subscribe(msg=>{
+      console.log(msg)
     
     
     },err=>{console.log(err)
     });
-    this.router.navigate([''])
+    this.router.navigate(['/hechos'])
   }
 
   cancelar(){
-    this.router.navigate([''])
+    this.router.navigate(['/hechos'])
   }
 
 }

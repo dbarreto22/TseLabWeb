@@ -67,8 +67,6 @@
     <div class="col-sm-12 example-col">
       <kendo-buttongroup  [selection]="'single'" [width]="'100%'">
         <button *ngIf="verificar" kendoButton [toggleable]="true"  (click)="siguiente()" aria-placeholder="Seleccione Mecanismo">Siguiente</button>
-        <button *ngIf="verificar" kendoButton [toggleable]="true"  (click)="cancelar()" aria-placeholder="Verificar Hecho sin Mecanismo">Cancelar</button>
-        <button *ngIf="gestionar" kendoButton [toggleable]="true"  (click)="alta()" aria-placeholder="Alta Mecanismo">Alta</button>
         <button *ngIf="gestionar" kendoButton [toggleable]="true"  (click)="modificar()" aria-placeholder="Modificacion Mecanismo">Modificacion</button>
         <button kendoButton [toggleable]="true"  (click)="volver()" aria-placeholder="Volver al menú">Volver</button>
     </kendo-buttongroup>

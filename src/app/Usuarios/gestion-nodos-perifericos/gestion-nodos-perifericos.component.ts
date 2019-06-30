@@ -96,7 +96,7 @@ public modificarNodo() {
     this.router.navigate(['/modificarNodosPerifericos']);
   }
   else
-    alert('Debe seleccionar una carrera para continuar.');
+    alert('Debe seleccionar un nodo para continuar.');
 }
 
 crearNodo(){
