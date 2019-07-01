@@ -81,7 +81,7 @@ export class ApiServiceService {
   }
 
   getPreview(link): Observable<object> {
-    return this.http.get<Observable<object>>(`https://api.linkpreview.net/?key=5d18d774cfb26b6bf0bd978e378e1d2090c9b74859d43` + link);
+    return this.http.get<Observable<object>>(`https://api.linkpreview.net/?key=5d18d774cfb26b6bf0bd978e378e1d2090c9b74859d43&q=` + link);
   }
 
   asignarUsuario() {

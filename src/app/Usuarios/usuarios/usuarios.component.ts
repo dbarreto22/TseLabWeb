@@ -6,6 +6,7 @@ import { ApiServiceService } from '../../api-service.service';
 import { Router } from '@angular/router';
 import { Observable } from "rxjs";
 import { Usuario } from '../clases/usuario';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -23,8 +24,7 @@ export class UsuariosComponent implements OnInit {
   public selectableSettings: SelectableSettings;
   public dialogOpened = false;
   constructor(  private apiService: ApiServiceService,
-    private router: Router
-  ) {
+    private router: Router,private storage:StorageService) {
     this.setSelectableSettings();
       this.usuarios = this.apiService.getCheckers();
       this.usuarios.subscribe(
@@ -87,9 +87,9 @@ export class UsuariosComponent implements OnInit {
 
     this.apiService.asignarUsuario().subscribe(msg=>{
       console.log(msg)
-    
-    
+      var error=this.storage.hayError(msg);
     },err=>{console.log(err)
+      alert('Ha habido un error, vuelva a intentarlo más tarde');
     });
     this.router.navigate(['/hechos'])
   }

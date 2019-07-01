@@ -116,7 +116,7 @@ export class SidenavBarComponent implements OnInit {
   suscripcion() {
     var aceptar;
     aceptar = confirm("Desea suscribirse a las notificaciones").valueOf();
-    if (aceptar = true) {
+    if (aceptar == true) {
       this.apiService.suscribirse().subscribe((res) => {
         console.log(res);
       },

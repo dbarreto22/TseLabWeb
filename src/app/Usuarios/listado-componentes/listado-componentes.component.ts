@@ -187,7 +187,10 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
         if(this.resultado.resultado == "ASYNC"){
           alert("El mecanismo utilizado es asyncrono, el resultado lo obtendra a la brevedad");
           this.router.navigate(['/seleccionarHecho']);
-        }else {
+        }else if(this.resultado.resultado == "ERROR"){
+          alert('ha sucedido un error, vuelva a intentarlo más tarde');
+        }
+        else {
           alert("El resultado es: " + this.resultado.resultado );
           this.router.navigate(['/seleccionarHecho']);
         }

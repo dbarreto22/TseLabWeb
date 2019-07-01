@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Mecanismos } from '../clases/mecanismos';
 import { containsElement } from '@angular/animations/browser/src/render/shared';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-mecanismos',
@@ -24,7 +25,9 @@ export class MecanismosComponent implements OnInit {
   public estado;
   public id;
   public tipoMecanismo;
-  constructor(public http: HttpClient, private router: Router, private apiService: ApiServiceService) {
+  public externo;
+  constructor(public http: HttpClient, private router: Router,
+    private storage:StorageService, private apiService: ApiServiceService) {
     
     this.funcion = localStorage.getItem("funcion");
     this.tipoMecanismo=
@@ -40,6 +43,10 @@ export class MecanismosComponent implements OnInit {
       this.estado = this.mecanismo.habilitado;
       this.modificacion=true;
       console.log(this.descripcion);
+      if(this.url==null || this.url=="")
+        this.externo=false;
+      else
+        this.externo=true;
     }
     else {
       this.titulo = "Alta mecanismo";
@@ -60,9 +67,12 @@ export class MecanismosComponent implements OnInit {
         this.apiService.modificarMecanismo(this.id,this.descripcion,this.url,this.estado,this.mecanismo.mecanismo).subscribe(
          (res)=>{
            console.log(res);
+           var error=this.storage.hayError(res);
    
          },(err)=>{
            console.log(err);
+           this.storage.manejarError(err);
+           
          }
        );
 

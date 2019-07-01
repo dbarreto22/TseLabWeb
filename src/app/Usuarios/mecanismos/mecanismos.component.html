@@ -7,17 +7,17 @@
   <div class="example-config">
     <p class="font-weight-normal" style="color: black">{{encabezado}}</p>
 
-    <label *ngIf="modificacion">Id</label>
-    <input *ngIf="modificacion" disabled="true" class="fadeIn second" [(ngModel)]="id">
+    <label *ngIf="modificacion" class="k-form-field">Id</label>
+    <input *ngIf="modificacion" disabled="true" class="form-control" [(ngModel)]="id">
     <br>
-    <label>Descripcion</label>
-    <input class="fadeIn second" [(ngModel)]="this.descripcion">
+    <label class="k-form-field">Descripcion</label>
+    <input class="form-control" [(ngModel)]="this.descripcion">
     <br>
-    <label>URL</label>
-    <input class="fadeIn second" [(ngModel)]="url">
+    <label *ngIf="externo" class="k-form-field"  >URL</label>
+    <input *ngIf="externo" class="form-control" [(ngModel)]="url">
     <br>
-    <label *ngIf="modificacion" class="fadeIn second" >Estado</label>
-    <input *ngIf="modificacion" type="checkbox" class="fadeIn second" [(ngModel)]="estado">
+    <label *ngIf="modificacion" class="fadeIn second k-form-field"  >Habilitado</label>
+    <input *ngIf="modificacion" type="checkbox" [(ngModel)]="estado">
   </div>
 
   <div class="row">
