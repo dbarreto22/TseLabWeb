@@ -8,6 +8,7 @@ import { RowArgs, PageChangeEvent, SelectableSettings } from '@progress/kendo-an
 import { Observable } from 'rxjs';
 import { Hechos } from '../clases/hechos';
 import { Mecanismos } from '../clases/mecanismos';
+import { StorageService } from 'src/app/storage.service';
 
 
 interface Item {
@@ -46,7 +47,8 @@ export class VerificarHechoComponent implements OnInit {
 public selectedValue: string;
   
   
-  constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {
+  constructor(public http: HttpClient, private router: Router,
+    private storage:StorageService, private apiService:ApiServiceService) {
     this.idMecanismo = localStorage.getItem("idMecanismo");
     this.idHecho = localStorage.getItem("idHecho");
 
@@ -78,10 +80,12 @@ verificar(justificacion){
    this.apiService.calificarHecho(this.hecho.id, this.selectedValue,justificacion).subscribe((res)=> {
     console.log("RESP",res);
     console.log(this.hecho);
+    this.storage.hayError(res);
   },
   err=>{
     console.log("ERROR",err);
     console.log(this.hecho);
+    this.storage.manejarError(err);
     //this.apiService.mensajeConError(err);
   }
   );

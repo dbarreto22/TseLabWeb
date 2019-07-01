@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/api-service.service';
 import { State } from '@progress/kendo-data-query';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-publicar',
@@ -25,7 +26,8 @@ export class PublicarComponent implements OnInit {
   public hecho : Hechos;
   public hechos : Observable<Array<any>>;
 
-  constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
+  constructor(public http: HttpClient, private router: Router,
+    private storage:StorageService, private apiService:ApiServiceService) { 
     this.setSelectableSettings();
 
     this.hechos = this.apiService.gethechosByEstados("VERIFICADO");
@@ -93,8 +95,7 @@ export class PublicarComponent implements OnInit {
 publicar(){
   if (this.codigo != undefined) {
   this.apiService.setEstadoHechos(this.codigo,"PUBLICADO").subscribe(
-    (res)=>{
-      alert("Se ha publicado correctamente");
+    (res)=>{ this.storage.hayError(res);
       this.hechos = this.apiService.gethechosByEstados("VERIFICADO");
       this.hechos.subscribe(
         ()=> {
@@ -104,7 +105,7 @@ publicar(){
           this.loading=false;
         }
       )
-    }
+    },err=>this.storage.manejarError(err)
   )
   }else{
     alert("Debe seleccionar un hecho a publicar")

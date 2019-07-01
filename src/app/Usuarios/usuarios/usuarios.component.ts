@@ -89,7 +89,7 @@ export class UsuariosComponent implements OnInit {
       console.log(msg)
       var error=this.storage.hayError(msg);
     },err=>{console.log(err)
-      alert('Ha habido un error, vuelva a intentarlo más tarde');
+      this.storage.manejarError(err);
     });
     this.router.navigate(['/hechos'])
   }

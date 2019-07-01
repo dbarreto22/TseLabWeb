@@ -4,6 +4,7 @@ import { ApiServiceService } from 'src/app/api-service.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { StorageService } from 'src/app/storage.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class ModificarNodosPerifericosComponent implements OnInit {
   public idNodo ;
 
 
-  constructor(public http: HttpClient, private apiService: ApiServiceService,private router: Router) { 
+  constructor(public http: HttpClient, private apiService: ApiServiceService, 
+    private storage:StorageService, private router: Router) { 
 
     this.nodoPerifericos = this.apiService.getNodosPerifericos();
     this.idNodo = localStorage.getItem("idNodo")
@@ -85,10 +87,12 @@ export class ModificarNodosPerifericosComponent implements OnInit {
     this.apiService.modificarMecanismoVerificacionPeriferico(nodoEnviar ).subscribe((res)=> {
       console.log("RESP",res);
       console.log(nodoEnviar);
+      this.storage.hayError(res);
       this.router.navigate(['/']);
     },
     err=>{
       console.log("ERROR",err);
+      this.storage.manejarError(err);
      }
     )
 
@@ -102,7 +106,4 @@ export class ModificarNodosPerifericosComponent implements OnInit {
   cancelar(){
     this.router.navigate(['/']);
   }
-
-
-
 }

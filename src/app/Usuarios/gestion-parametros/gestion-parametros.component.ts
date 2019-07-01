@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/api-service.service';
 import { State } from '@progress/kendo-data-query';
 import { Parametro } from '../clases/parametro';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-gestion-parametros',
@@ -24,7 +25,8 @@ export class GestionParametrosComponent implements OnInit {
   public skip = 0;
   public parametros : Observable<Array<any>>;
 
-  constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) { 
+  constructor(public http: HttpClient, private router: Router,
+    private storage:StorageService, private apiService:ApiServiceService) { 
     this.setSelectableSettings();
 
     this.parametros = this.apiService.getParametros();
@@ -118,10 +120,12 @@ public confirmarEliminarParametro() {
     
     if (this.name != undefined) {
       console.log(this.name);
-      this.apiService.borrarParametro(this.name, this.value).subscribe( (res) => {console.log(res)
+      this.apiService.borrarParametro(this.name, this.value).subscribe( (res) => {
+        console.log(res)
+        this.storage.hayError(res);
         },
         err => {
-          
+          this.storage.manejarError(err);
         });
         this.dialogOpened = false;
         this.parametros = this.apiService.getParametros();

@@ -197,6 +197,7 @@ export class ListadoComponentesComponent implements OnInit, OnDestroy, AfterCont
         
       },
        ( err )=> {
+         this.storage.manejarError(err);
           console.log("ERROR", err);
         }
       );

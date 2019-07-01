@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiServiceService } from 'src/app/api-service.service';
 import { Parametro } from '../clases/parametro';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-modificar-parametro',
@@ -15,7 +16,8 @@ export class ModificarParametroComponent implements OnInit {
   public name;
 
 
-  constructor(public http: HttpClient, private router: Router, private apiService:ApiServiceService) {
+  constructor(public http: HttpClient, private router: Router,
+     private storage:StorageService, private apiService:ApiServiceService) {
 
     this.name = localStorage.getItem("name")
     this.apiService.getParametros().subscribe(
@@ -43,7 +45,8 @@ export class ModificarParametroComponent implements OnInit {
     if(name != undefined && valor != undefined){
       this.apiService.modificarParametro(name, valor).subscribe((res)=>{
         console.log(res);
-      }
+        this.storage.hayError(res);
+      },err=>this.storage.manejarError(err)
       )
       alert("Se ha modificado correctamente");
       this.router.navigate(['/gestionParametros']);

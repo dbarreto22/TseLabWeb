@@ -6,6 +6,7 @@ import { Usuario } from '../clases/usuario';
 import { Admin } from '../clases/admin';
 import { Submiter } from '../clases/submiter';
 import { Checker } from '../clases/checker';
+import { StorageService } from 'src/app/storage.service';
 
 
 
@@ -20,7 +21,8 @@ export class CrearUsuarioComponent implements OnInit {
   public rol : string;
   public user = new Usuario();
   public validEmail :boolean;
-  constructor(public http: HttpClient, private apiService: ApiServiceService,private router: Router) {}
+  constructor(public http: HttpClient, private apiService: ApiServiceService, 
+   private storage:StorageService, private router: Router) {}
 
   ngOnInit() {
     if(localStorage.getItem('rol')!='ADMIN')
@@ -49,12 +51,12 @@ export class CrearUsuarioComponent implements OnInit {
       
       this.apiService.crearUser(this.user).subscribe((res)=> {
         console.log("RESP",res);
-        alert("Se ha creado correctamente.");
+        this.storage.hayError(res);
         this.router.navigate(['/principalAdmin']);
       },
       err=>{
         console.log("ERROR",err);
-        
+        this.storage.manejarError(err);
       }
       )
       
