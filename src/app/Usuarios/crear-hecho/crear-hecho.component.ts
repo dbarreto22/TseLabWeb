@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiServiceService } from 'src/app/api-service.service';
 import { Router } from '@angular/router';
 import { Hechos } from '../clases/hechos';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-crear-hecho',
@@ -16,7 +17,8 @@ export class CrearHechoComponent implements OnInit {
 
 
 
-  constructor(public http: HttpClient, private apiService: ApiServiceService,private router: Router) { }
+  constructor(public http: HttpClient, private apiService: ApiServiceService,
+    private storage:StorageService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -32,12 +34,13 @@ export class CrearHechoComponent implements OnInit {
   
       this.apiService.crearhecho(titulo,url).subscribe((res)=> {
         console.log("RESP",res);
+        this.storage.hayError(res);
       },
       err=>{
         console.log("ERROR",err);
+        this.storage.manejarError(err);
       }
       );
-      alert("Se ha enviado correctamente.");
       this.router.navigate(['/']);
     }else {
       alert("Debe completar todos los campos")

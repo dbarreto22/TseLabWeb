@@ -4,6 +4,7 @@ import { ApiServiceService } from 'src/app/api-service.service';
 import { Router } from '@angular/router';
 import { Mecanismos } from '../clases/mecanismos';
 import { Perifericos } from '../clases/perifericos';
+import { StorageService } from 'src/app/storage.service';
 
 @Component({
   selector: 'app-crear-nodos-perifericos',
@@ -16,7 +17,8 @@ export class CrearNodosPerifericosComponent implements OnInit {
   public habilita : string;
   public nodoPeriferico = new Perifericos();
 
-  constructor(public http: HttpClient, private apiService: ApiServiceService,private router: Router) { }
+  constructor(public http: HttpClient, private apiService: ApiServiceService,
+    private storage:StorageService, private router: Router) { }
 
   ngOnInit() {
     if(localStorage.getItem('rol')!='ADMIN')
@@ -48,12 +50,14 @@ export class CrearNodosPerifericosComponent implements OnInit {
     this.apiService.crearMecanismoVerificacionPeriferico(this.nodoPeriferico ).subscribe((res)=> {
       console.log("RESP",res);
       console.log(this.nodoPeriferico);
+      this.storage.hayError(res);
       this.router.navigate(['/gestionNodosPerifericos']);
     
     },
     err=>{
       console.log("ERROR",err);
       console.log(this.nodoPeriferico);
+      this.storage.manejarError(err);
      
     }
     )
