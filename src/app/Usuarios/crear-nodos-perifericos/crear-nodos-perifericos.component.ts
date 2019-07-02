@@ -34,7 +34,7 @@ export class CrearNodosPerifericosComponent implements OnInit {
   crearNodo(descripcion,url,usuario, password){
     console.log("DESC", url);
     //let desc = descripcion
-   if(descripcion!= undefined && url!= undefined && usuario!= undefined && password!= undefined && this.habilita != undefined){
+   if(descripcion!= undefined && usuario!= undefined && password!= undefined && this.habilita != undefined){
 
     this.nodoPeriferico.descripcion = descripcion;
     this.nodoPeriferico.usuario = usuario;
